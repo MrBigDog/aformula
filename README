@@ -1,0 +1,33 @@
+AFormula
+========
+
+AFormula is a library for dynamically calculating the value of mathematical
+formulas, passed in as strings.  It is designed to mirror roughly the API of
+the muParser library <http://muparser.sourceforge.net/> as well as offer me
+a place to experiment with more advanced formula evaluation techniques such as
+JIT-compiling formulas.
+
+Support is included for all the standard arithmetic and comparative operators,
+including <=, >=, !=, ==, <, >, +, -, *, /, and ^ (power).  Arbitrary
+variables may be defined (as pointers to double-values), and the assignment
+operator (=) may be used to assign values to them.  A full suite of builtin
+functions is supported, including:
+
+ * Trigonometry (sin, cos, tan, asin, acos, atan)
+ * Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
+ * Exponentials (log2, log10 [= log], ln, exp, sqrt)
+ * Miscellaneous (sign, rint, abs)
+ * Logical control (if)
+
+AFormula is designed to be quite robust to invalid formulas, and is careful to
+return appropriate errors when necessary.
+
+
+Thanks
+------
+
+Thanks are most obviously due to the author of muParser, Ingo Berg.  Without
+muParser having been written, I never would have been able to start on the
+project that produced the need for AFormula.  muParser, which is licensed under
+the MIT license, is Copyright (C) 2004-2006 Ingo Berg.
+
