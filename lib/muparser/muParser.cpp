@@ -100,71 +100,6 @@ namespace mu
   }
 
   //---------------------------------------------------------------------------
-  /** \brief Callback for adding multiple values. 
-      \param [in] a_afArg Vector with the function arguments
-      \param [in] a_iArgc The size of a_afArg
-  */
-  value_type Parser::Sum(const value_type *a_afArg, int a_iArgc)
-  { 
-    if (!a_iArgc)	
-      throw exception_type(_T("too few arguments for function sum."));
-
-    value_type fRes=0;
-    for (int i=0; i<a_iArgc; ++i) fRes += a_afArg[i];
-    return fRes;
-  }
-
-  //---------------------------------------------------------------------------
-  /** \brief Callback for averaging multiple values. 
-      \param [in] a_afArg Vector with the function arguments
-      \param [in] a_iArgc The size of a_afArg
-  */
-  value_type Parser::Avg(const value_type *a_afArg, int a_iArgc)
-  { 
-    if (!a_iArgc)	
-      throw exception_type(_T("too few arguments for function sum."));
-
-    value_type fRes=0;
-    for (int i=0; i<a_iArgc; ++i) fRes += a_afArg[i];
-    return fRes/(double)a_iArgc;
-  }
-
-
-  //---------------------------------------------------------------------------
-  /** \brief Callback for determining the minimum value out of a vector. 
-      \param [in] a_afArg Vector with the function arguments
-      \param [in] a_iArgc The size of a_afArg
-  */
-  value_type Parser::Min(const value_type *a_afArg, int a_iArgc)
-  { 
-      if (!a_iArgc)	
-          throw exception_type(_T("too few arguments for function min."));
-
-      value_type fRes=a_afArg[0];
-      for (int i=0; i<a_iArgc; ++i) fRes = std::min(fRes, a_afArg[i]);
-
-      return fRes;
-  }
-
-
-  //---------------------------------------------------------------------------
-  /** \brief Callback for determining the maximum value out of a vector. 
-      \param [in] a_afArg Vector with the function arguments
-      \param [in] a_iArgc The size of a_afArg
-  */
-  value_type Parser::Max(const value_type *a_afArg, int a_iArgc)
-  { 
-    if (!a_iArgc)	
-      throw exception_type(_T("too few arguments for function min."));
-
-    value_type fRes=a_afArg[0];
-    for (int i=0; i<a_iArgc; ++i) fRes = std::max(fRes, a_afArg[i]);
-
-    return fRes;
-  }
-
-
-  //---------------------------------------------------------------------------
   /** \brief Default value recognition callback. 
       \param [in] a_szExpr Pointer to the expression
       \param [in, out] a_iPos Pointer to an index storing the current position within the expression
@@ -261,11 +196,6 @@ namespace mu
     DefineFun(_T("rint"), Rint);
     DefineFun(_T("abs"), Abs);
     DefineFun(_T("if"), Ite);
-    // Functions with variable number of arguments
-    DefineFun(_T("sum"), Sum);
-    DefineFun(_T("avg"), Avg);
-    DefineFun(_T("min"), Min);
-    DefineFun(_T("max"), Max);
   }
 
   //---------------------------------------------------------------------------

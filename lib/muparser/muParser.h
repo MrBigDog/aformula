@@ -140,12 +140,6 @@ namespace mu
     // !!! Unary Minus is a MUST if you want to use negative signs !!!
     static value_type  UnaryMinus(value_type);
 
-    // Functions with variable number of arguments
-    static value_type Sum(const value_type*, int);  // sum
-    static value_type Avg(const value_type*, int);  // mean value
-    static value_type Min(const value_type*, int);  // minimum
-    static value_type Max(const value_type*, int);  // maximum
-
     static int IsVal(const char_type* a_szExpr, int *a_iPos, value_type *a_fVal);
 
     static std::locale s_locale;  ///< The locale used by the parser

@@ -462,37 +462,8 @@ namespace mu
       iStat += EqnTest( _T("1,2*a,3"), 0, false);
      
       // correct calculation of arguments
-      iStat += EqnTest( _T("min(a, 1)"),  1, true);
-      iStat += EqnTest( _T("min(3*2, 1)"),  1, true);
-      iStat += EqnTest( _T("min(3*2, 1)"),  6, false);
       iStat += EqnTest( _T("firstArg(2,3,4)"), 2, true);
       iStat += EqnTest( _T("lastArg(2,3,4)"), 4, true);
-      iStat += EqnTest( _T("min(3*a+1, 1)"),  1, true);
-      iStat += EqnTest( _T("max(3*a+1, 1)"),  4, true);
-      iStat += EqnTest( _T("max(3*a+1, 1)*2"),  8, true);
-      iStat += EqnTest( _T("2*max(3*a+1, 1)+2"),  10, true);
-
-      // functions with Variable argument count
-      iStat += EqnTest( _T("sum(a)"), 1, true);
-      iStat += EqnTest( _T("sum(1,2,3)"),  6, true);
-      iStat += EqnTest( _T("sum(a,b,c)"),  6, true);
-      iStat += EqnTest( _T("sum(1,-max(1,2),3)*2"),  4, true);
-      iStat += EqnTest( _T("2*sum(1,2,3)"),  12, true);
-      iStat += EqnTest( _T("2*sum(1,2,3)+2"),  14, true);
-      iStat += EqnTest( _T("2*sum(-1,2,3)+2"),  10, true);
-      iStat += EqnTest( _T("2*sum(-1,2,-(-a))+2"),  6, true);
-      iStat += EqnTest( _T("2*sum(-1,10,-a)+2"),  18, true);
-      iStat += EqnTest( _T("2*sum(1,2,3)*2"),  24, true);
-      iStat += EqnTest( _T("sum(1,-max(1,2),3)*2"),  4, true);
-      iStat += EqnTest( _T("sum(1*3, 4, a+2)"),  10, true);
-      iStat += EqnTest( _T("sum(1*3, 2*sum(1,2,2), a+2)"),  16, true);
-      iStat += EqnTest( _T("sum(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2)"), 24, true);
-
-      // some failures
-      iStat += EqnTest( _T("sum()"),  0, false);
-      iStat += EqnTest( _T("sum(,)"),  0, false);
-      iStat += EqnTest( _T("sum(1,2,)"),  0, false);
-      iStat += EqnTest( _T("sum(,1,2)"),  0, false);
 
       if (iStat==0) 
         mu::console() << _T("passed") << endl;
@@ -975,9 +946,6 @@ namespace mu
         p1->DefineFun( _T("f4of5"), f4of5);
         p1->DefineFun( _T("f5of5"), f5of5);
         // sample functions
-        p1->DefineFun( _T("min"), Min);
-        p1->DefineFun( _T("max"), Max);
-        p1->DefineFun( _T("sum"), Sum);
         p1->DefineFun( _T("valueof"), ValueOf);
         p1->DefineFun( _T("atof"), StrToFloat);
         p1->DefineFun( _T("strfun1"), StrFun1);
