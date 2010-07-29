@@ -23,11 +23,11 @@ Finally, the constants 'pi' and 'e' are supported.
 
 The priority of operations is:
 
-=				(assignment, lowest)
-<=, >=, !=, ==, <, >		(comparisons)
-+, -				(addition/subtraction)
-*, /				(multiplication/division)
-^				(exponentiation)
+=                       (assignment, lowest)
+<=, >=, !=, ==, <, >    (comparisons)
++, -                    (addition/subtraction)
+*, /                    (multiplication/division)
+^                       (exponentiation)
 
 AFormula is designed to be quite robust to invalid formulas, and is careful to
 return appropriate errors when necessary.
