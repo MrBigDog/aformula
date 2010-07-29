@@ -1,0 +1,6 @@
+*.o
+runtests
+Makefile
+Makefile.in
+.libs
+.deps
