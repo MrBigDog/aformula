@@ -346,9 +346,6 @@ namespace mu
       {
         switch(i)
         {
-        case cmAND:
-        case cmOR:
-        case cmXOR:
         case cmLT:
         case cmGT:
         case cmLE:

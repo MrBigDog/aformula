@@ -53,8 +53,7 @@ namespace mu
     _T("<="), _T(">="),  _T("!="), 
     _T("=="), _T("<"),   _T(">"), 
     _T("+"),  _T("-"),   _T("*"), 
-    _T("/"),  _T("^"),   _T("and"), 
-    _T("or"), _T("xor"), _T("="), 
+    _T("/"),  _T("^"),   _T("="), 
     _T("("),  _T(")"), 0 
   };
 
@@ -513,9 +512,6 @@ namespace mu
     case cmBO :	
     case cmBC :      return -2;
     case cmASSIGN:   return -1;               
-    case cmAND:
-    case cmXOR:
-    case cmOR:       return  prLOGIC;  
     case cmLT:
     case cmGT:
     case cmLE:
@@ -844,9 +840,6 @@ namespace mu
       switch (optTok.GetCode())
       {
         // built in binary operators
-        case cmAND: resTok.SetVal( (int)x & (int)y ); break;
-        case cmOR:  resTok.SetVal( (int)x | (int)y ); break;
-        case cmXOR: resTok.SetVal( (int)x ^ (int)y ); break;
         case cmLT:  resTok.SetVal( x < y ); break;
         case cmGT:  resTok.SetVal( x > y ); break;
         case cmLE:  resTok.SetVal( x <= y ); break;
@@ -941,9 +934,6 @@ namespace mu
     switch (iCode)
     {
       // built in binary operators
-      case cmAND: Stack[idx]  = (int)Stack[idx] & (int)Stack[idx+1]; goto __start;
-      case cmOR:  Stack[idx]  = (int)Stack[idx] | (int)Stack[idx+1]; goto __start;
-      case cmXOR: Stack[idx]  = (int)Stack[idx] ^ (int)Stack[idx+1]; goto __start;
       case cmLE:  Stack[idx]  = Stack[idx] <= Stack[idx+1]; goto __start;
       case cmGE:  Stack[idx]  = Stack[idx] >= Stack[idx+1]; goto __start;
       case cmNEQ: Stack[idx]  = Stack[idx] != Stack[idx+1]; goto __start;
@@ -1162,9 +1152,6 @@ namespace mu
         //
         // Next are the binary operator entries
         //
-        case cmAND:   // built in binary operators
-        case cmOR:
-        case cmXOR:
         case cmLT:
         case cmGT:
         case cmLE:

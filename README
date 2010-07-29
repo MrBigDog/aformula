@@ -19,6 +19,8 @@ functions is supported, including:
  * Miscellaneous (sign, rint, abs)
  * Logical control (if)
 
+Finally, the constants 'pi' and 'e' are supported.
+
 AFormula is designed to be quite robust to invalid formulas, and is careful to
 return appropriate errors when necessary.
 

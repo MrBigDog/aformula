@@ -137,19 +137,6 @@ namespace mu
       int iStat = 0;
       mu::console() << _T("testing binary operators...");
    
-      // built in operators
-      // xor operator
-      iStat += EqnTest(_T("1 xor 2"), 3, true); 
-      iStat += EqnTest(_T("a xor b"), 3, true);            // with a=1 and b=2
-      iStat += EqnTest(_T("1 xor 2 xor 3"), 0, true); 
-      iStat += EqnTest(_T("a xor b xor 3"), 0, true);      // with a=1 and b=2
-      iStat += EqnTest(_T("a xor b xor c"), 0, true);      // with a=1 and b=2
-      iStat += EqnTest(_T("(1 xor 2) xor 3"), 0, true); 
-      iStat += EqnTest(_T("(a xor b) xor c"), 0, true);    // with a=1 and b=2
-      iStat += EqnTest(_T("(a) xor (b) xor c"), 0, true);  // with a=1 and b=2
-      iStat += EqnTest(_T("1 or 2"), 3, true); 
-      iStat += EqnTest(_T("a or b"), 3, true);             // with a=1 and b=2
-
       // Assignement operator
       iStat += EqnTest(_T("a = b"), 2, true); 
       iStat += EqnTest(_T("a = sin(b)"), 0.909297, true); 

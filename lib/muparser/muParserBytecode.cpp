@@ -382,9 +382,6 @@ namespace mu
         case cmEQ:  std::cout << "EQ\n"; ++i; break;
         case cmNEQ: std::cout << "NEQ\n"; ++i; break;
         case cmADD: std::cout << "ADD\n"; ++i; break;
-        case cmAND: std::cout << "AND\n"; ++i; break;
-        case cmOR:  std::cout << "OR\n";  ++i; break;
-        case cmXOR: std::cout << "XOR\n"; ++i; break;
         case cmSUB: std::cout << "SUB\n"; ++i; break;
         case cmMUL: std::cout << "MUL\n"; ++i; break;
         case cmDIV: std::cout << "DIV\n"; ++i; break;

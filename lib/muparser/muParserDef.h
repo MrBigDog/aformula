@@ -169,12 +169,9 @@ namespace mu
     cmMUL           = 8,   ///< Operator item:  multiply
     cmDIV           = 9,   ///< Operator item:  division
     cmPOW           = 10,  ///< Operator item:  y to the power of ...
-    cmAND           = 11,  ///< Operator item:  logical and
-    cmOR            = 12,  ///< Operator item:  logical or
-    cmXOR           = 13,  ///< Operator item:  logical xor
-    cmASSIGN        = 14,  ///< Operator item:  Assignment operator
-    cmBO            = 15,  ///< Operator item:  opening bracket
-    cmBC            = 16,  ///< Operator item:  closing bracket
+    cmASSIGN        = 11,  ///< Operator item:  Assignment operator
+    cmBO            = 12,  ///< Operator item:  opening bracket
+    cmBC            = 13,  ///< Operator item:  closing bracket
     cmARG_SEP,             ///< function argument separator
     cmVAR,                 ///< variable item
     cmVAL,                 ///< value item
