@@ -17,9 +17,17 @@ functions is supported, including:
  * Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
  * Exponentials (log2, log10 [= log], ln, exp, sqrt)
  * Miscellaneous (sign, rint, abs)
- * Logical control (if)
+ * Logical control (if(x,if-true,if-false))
 
 Finally, the constants 'pi' and 'e' are supported.
+
+The priority of operations is:
+
+=				(assignment, lowest)
+<=, >=, !=, ==, <, >		(comparisons)
++, -				(addition/subtraction)
+*, /				(multiplication/division)
+^				(exponentiation)
 
 AFormula is designed to be quite robust to invalid formulas, and is careful to
 return appropriate errors when necessary.
