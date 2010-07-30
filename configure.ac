@@ -28,6 +28,11 @@ AC_SUBST([LIBTOOL_DEPS])
 AC_LANG(C++)
 
 
+# Libraries
+###################
+AX_LLVM([core jit])
+
+
 # Output Files
 ##############
 AC_CONFIG_HEADERS([config.h])

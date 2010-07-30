@@ -1,0 +1,10 @@
+AFormula THANKS file
+
+AFormula has originally been written by Charles Pence.  Many people further 
+contributed to AFormula by reporting problems, suggesting various improvements 
+or submitting actual code.  Here is a list of these people.  Help me keep it 
+complete and exempt of errors.
+
+
+Andy Kitchen				<agimbleinthewabe@gmail.com>
+  (LLVM M4 macro for Autoconf)
