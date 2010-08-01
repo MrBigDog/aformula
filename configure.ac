@@ -45,3 +45,18 @@ AC_CONFIG_FILES([
 ])
 AC_OUTPUT
 
+
+# Echo Output
+#############
+echo ""
+echo ""
+echo "AFormula Configuration:"
+echo ""
+echo "muParser: yes"
+if test "x$ax_cv_llvm" = xyes ; then
+  echo "LLVM: yes"
+else
+  echo "LLVM: no"
+fi
+echo ""
+

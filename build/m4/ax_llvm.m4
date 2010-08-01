@@ -85,10 +85,12 @@ AC_ARG_WITH([llvm],
 	fi
 
 		if test "$succeeded" != "yes" ; then
-			AC_MSG_ERROR([[We could not detect the llvm libraries make sure that llvm-config is on your path or specified by --with-llvm.]])
+			AC_MSG_WARN([[We could not detect the llvm libraries.  Make sure that llvm-config is on your path or specified by --with-llvm.]])
+			AC_SUBST([HAVE_LLVM], $ax_cv_llvm)
 		else
 			AC_SUBST(LLVM_CPPFLAGS)
 			AC_SUBST(LLVM_LDFLAGS)
-			AC_DEFINE(HAVE_LLVM,,[define if the llvm library is available])
+			AC_DEFINE(HAVE_LLVM,[1],[define if the llvm library is available])
+			AC_SUBST([HAVE_LLVM], $ax_cv_llvm)
 		fi
 ])
