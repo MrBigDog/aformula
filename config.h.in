@@ -6,7 +6,13 @@
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
-/* define if the llvm library is available */
+/* Define to 1 if you have the <jit/jit.h> header file. */
+#undef HAVE_JIT_JIT_H
+
+/* Define to 1 if you have the `jit' library (-ljit). */
+#undef HAVE_LIBJIT
+
+/* define if the LLVM library is available */
 #undef HAVE_LLVM
 
 /* Define to 1 if you have the <memory.h> header file. */

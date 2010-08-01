@@ -29,7 +29,7 @@
 AC_DEFUN([AX_LLVM],
 [
 AC_ARG_WITH([llvm],
-	AS_HELP_STRING([--with-llvm@<:@=DIR@:>@], [use llvm (default is yes) - it is possible to specify the root directory for llvm (optional)]),
+	AS_HELP_STRING([--with-llvm@<:@=PATH-TO-LLVM-CONFIG@:>@], [use LLVM (default is yes, may specify the path to the llvm-config executable)]),
 	[
     if test "$withval" = "no"; then
 		want_llvm="no"
@@ -62,7 +62,7 @@ AC_ARG_WITH([llvm],
 			LDFLAGS="$LDFLAGS $LLVM_LDFLAGS"
 			export LDFLAGS
 
-			AC_CACHE_CHECK(can compile with and link with llvm([$1]),
+			AC_CACHE_CHECK(can compile with and link with LLVM([$1]),
 						   ax_cv_llvm,
 	        [AC_LANG_PUSH([C++])
 				 AC_LINK_IFELSE(AC_LANG_PROGRAM([[@%:@include <llvm/Module.h>
@@ -85,12 +85,12 @@ AC_ARG_WITH([llvm],
 	fi
 
 		if test "$succeeded" != "yes" ; then
-			AC_MSG_WARN([[We could not detect the llvm libraries.  Make sure that llvm-config is on your path or specified by --with-llvm.]])
+			AC_MSG_WARN([[LLVM could not be detected; the LLVM backend will not be built!  Make sure that llvm-config is on your path or specified by --with-llvm.]])
 			AC_SUBST([HAVE_LLVM], $ax_cv_llvm)
 		else
 			AC_SUBST(LLVM_CPPFLAGS)
 			AC_SUBST(LLVM_LDFLAGS)
-			AC_DEFINE(HAVE_LLVM,[1],[define if the llvm library is available])
+			AC_DEFINE(HAVE_LLVM,[1],[define if the LLVM library is available])
 			AC_SUBST([HAVE_LLVM], $ax_cv_llvm)
 		fi
 ])

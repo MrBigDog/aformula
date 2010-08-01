@@ -32,6 +32,24 @@ AC_LANG(C++)
 ###################
 AX_LLVM([core jit])
 
+AC_CHECK_HEADERS([jit/jit.h])
+AC_CHECK_LIB([jit],[jit_context_create],[],[])
+AC_MSG_CHECKING([if libjit is available])
+if test "x$ac_cv_lib_jit_jit_context_create" = xyes -a \
+        "x$ac_cv_header_jit_jit_h" = xyes ; then
+  af_have_libjit="yes"
+  AC_MSG_RESULT([yes])
+  AC_DEFINE([HAVE_LIBJIT],[1])
+  AC_SUBST([HAVE_LIBJIT],[yes])
+  AC_SUBST([JIT_CPPFLAGS],[])
+  AC_SUBST([JIT_LDFLAGS],[-ljit])
+else
+  af_have_libjit="no"
+  AC_MSG_RESULT([no])
+  AC_MSG_WARN([libjit is not available; the libjit backend will not be built!])
+  AC_SUBST([HAVE_LIBJIT],[no])
+fi
+
 
 # Output Files
 ##############
@@ -52,11 +70,17 @@ echo ""
 echo ""
 echo "AFormula Configuration:"
 echo ""
-echo "muParser: yes"
+echo "Available backends:"
+echo "  * muParser: yes"
 if test "x$ax_cv_llvm" = xyes ; then
-  echo "LLVM: yes"
+  echo "  * LLVM: yes"
 else
-  echo "LLVM: no"
+  echo "  * LLVM: no"
+fi
+if test "x$af_have_libjit" = xyes ; then
+  echo "  * libjit: yes"
+else
+  echo "  * libjit: no"
 fi
 echo ""
 
