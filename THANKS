@@ -8,3 +8,7 @@ complete and exempt of errors.
 
 Andy Kitchen				<agimbleinthewabe@gmail.com>
   (LLVM M4 macro for Autoconf)
+Chris Lattner and the LLVM team		<sabre@nondot.org>
+  (LLVM)
+Rhys Weatherley				<rweather@southern-storm.com.au>
+  (libjit)
