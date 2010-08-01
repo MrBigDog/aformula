@@ -32,6 +32,12 @@ The priority of operations is:
 AFormula is designed to be quite robust to invalid formulas, and is careful to
 return appropriate errors when necessary.
 
+There are two JIT backends which AFormula can use in order to compile functions
+on the fly: LLVM and libjit.  In general, both should provide roughly the same
+performance, though there is a performance test included which will benchmark
+the library and permit selection at runtime.
+
+
 
 Thanks
 ------
@@ -40,4 +46,8 @@ Thanks are most obviously due to the author of muParser, Ingo Berg.  Without
 muParser having been written, I never would have been able to start on the
 project that produced the need for AFormula.  muParser, which is licensed under
 the MIT license, is Copyright (C) 2004-2006 Ingo Berg.
+
+Also, thanks is due to the pair of massively cross-platform JIT compilation
+libraries, LLVM and libjit, without which a JIT-compilation backend (for 
+something like an order of magnitude of performance) would be impossible.
 
