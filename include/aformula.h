@@ -23,8 +23,20 @@
 namespace AFormula
 {
 
+namespace Private
+{
+struct FormulaBackend;
+};
+
+
 class Formula
 {
+public:
+	
+	// Not virtual; do not derive from this class
+	~Formula ();
+
+	
 	//
 	// Available formula-execution backends
 	//
@@ -32,21 +44,33 @@ class Formula
 	static const int BACKEND_MUPARSER = 1;
 	static const int BACKEND_LVVM = 2;
 	static const int BACKEND_LIBJIT = 3;
+	static const int NUM_BACKENDS = 4;
+		
 	
-	
-public:
-
 	//
 	// Formula creation and backend support
 	//
 	
-	// Create a Formula using the currently-selected backend
+	// Create a Formula using the currently-selected backend.  The returned
+	// formula should be deleted using 'delete' when it is no longer
+	// needed.
 	static Formula *createFormula (int withBackend = BACKEND_DEFAULT);
 
 	// Determine using a run-time benchmark the fastest parsing backend.
-	// Note that this is a blocking call that will take some time.
-	static int fastestBackend ();
+	// Note that this is a blocking call that will take some time.  If
+	// setAsDefault is true (the default), future calls to createFormula
+	// with BACKEND_DEFAULT will use the backend that this function
+	// determines to be the fastest.
+	static int fastestBackend (bool setAsDefault = true);
 
+
+	//
+	// Error support
+	//
+
+	// FIXME: As written, this function is not thread-safe
+	std::string errorString ();
+	
 
 	//
 	// Formula evaluation, expressions, and variables
@@ -55,14 +79,14 @@ public:
 	// Set and retrieve the expression to evaluate.  Return false on
 	// error.
 	bool setExpression (const std::string &str);
-	const std::string &expression ();
+	std::string expression ();
 
 	// Set a variable to a given double-pointer
 	bool setVariable (const std::string &variable, double *pointer);
 
 	
 	// Evaluate the formula
-	double evaulate ();
+	double evaluate ();
 
 private:
 
@@ -71,7 +95,10 @@ private:
 	
 	// Not implemented; this class is not copyable
 	Formula (const Formula &rhs);
-	Formula &operator= (const Formula &rhs);	
+	Formula &operator= (const Formula &rhs);
+
+	// Formula backend contains private data
+	Private::FormulaBackend *backend;
 };
 
 };
