@@ -56,6 +56,7 @@ fi
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
   Makefile
+    include/Makefile
     lib/Makefile
       lib/muparser/Makefile
         lib/muparser/tests/Makefile

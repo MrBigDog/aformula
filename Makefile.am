@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I build/m4
 
-SUBDIRS = lib src
+SUBDIRS = include lib src
 
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)
