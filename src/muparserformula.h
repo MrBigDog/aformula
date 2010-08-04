@@ -14,8 +14,10 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef BACKEND_H__
-#define BACKEND_H__
+#ifndef MUPARSERFORMULA_H__
+#define MUPARSERFORMULA_H__
+
+#include <muParser.h>
 
 namespace AFormula
 {
@@ -23,12 +25,21 @@ namespace AFormula
 namespace Private
 {
 
-struct FormulaBackend
+class MuParserFormula : public Formula
 {
-	bool (*setExpression)(const std::string &str);
-	std::string (*expression)();
-	bool (*setVariable)(const std::string &variable, double *pointer);
-	double (*evaluate)();
+public:
+	MuParserFormula ();
+	virtual ~MuParserFormula ();
+		
+	virtual bool setExpression (const std::string &str);
+	virtual std::string expression () const;
+
+	virtual bool setVariable (const std::string &variable, double *pointer);
+
+	virtual double evaluate ();
+
+private:
+	mu::Parser muParser;
 };
 
 };
@@ -36,7 +47,7 @@ struct FormulaBackend
 };
 
 
-#endif /* BACKEND_H__ */
+#endif /* MUPARSERFORMULA_H__ */
 
 // Local Variables:
 // mode: c++

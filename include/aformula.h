@@ -23,18 +23,11 @@
 namespace AFormula
 {
 
-namespace Private
-{
-struct FormulaBackend;
-};
-
 
 class Formula
 {
 public:
-	
-	// Not virtual; do not derive from this class
-	~Formula ();
+	virtual ~Formula ();
 
 	
 	//
@@ -78,15 +71,15 @@ public:
 	
 	// Set and retrieve the expression to evaluate.  Return false on
 	// error.
-	bool setExpression (const std::string &str);
-	std::string expression ();
+	virtual bool setExpression (const std::string &str) = 0;
+	virtual std::string expression () const = 0;
 
 	// Set a variable to a given double-pointer
-	bool setVariable (const std::string &variable, double *pointer);
+	virtual bool setVariable (const std::string &variable, double *pointer) = 0;
 
 	
 	// Evaluate the formula
-	double evaluate ();
+	virtual double evaluate () = 0;
 
 private:
 
@@ -96,9 +89,6 @@ private:
 	// Not implemented; this class is not copyable
 	Formula (const Formula &rhs);
 	Formula &operator= (const Formula &rhs);
-
-	// Formula backend contains private data
-	Private::FormulaBackend *backend;
 };
 
 };

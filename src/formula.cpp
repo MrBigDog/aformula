@@ -21,7 +21,7 @@
 #include <aformula.h>
 #include <csignal>
 #include <sys/time.h>
-#include "backend.h"
+#include "muparserformula.h"
 
 namespace AFormula
 {
@@ -29,12 +29,15 @@ namespace AFormula
 //
 // Error message support
 //
-static std::string errorMessage;
+namespace Private
+{
+std::string errorMessage;
+};
 
 std::string Formula::errorString ()
 {
-	std::string copy (errorMessage);
-	errorMessage.clear ();
+	std::string copy (Private::errorMessage);
+	Private::errorMessage.clear ();
 	
 	return copy;
 }
@@ -50,7 +53,7 @@ Formula *Formula::createFormula (int withBackend)
 	// Check input
 	if (withBackend < 0 || withBackend > NUM_BACKENDS)
 	{
-		errorMessage = "Formula::createFormula: Invalid backend requested";
+		Private::errorMessage = "Formula::createFormula: Invalid backend requested";
 		return NULL;
 	}
 	
@@ -59,11 +62,8 @@ Formula *Formula::createFormula (int withBackend)
 		withBackend = defaultBackend;
 
 
-	// Create a new formula
-	Formula *formula = new Formula;
-
-	// FIXME: Set the backend of the formula here!
-
+	// Create a new formula (FIXME: backend)
+	Formula *formula = new Private::MuParserFormula;
 	return formula;
 }
 
@@ -191,39 +191,13 @@ int Formula::fastestBackend (bool setAsDefault)
 // Constructor / Destructor
 //
 
-Formula::Formula () : backend (NULL)
+Formula::Formula ()
 {
 }
 
 
 Formula::~Formula ()
 {
-	if (backend)
-		delete backend;
-}
-
-
-//
-// Pass-throughs to the backend
-//
-bool Formula::setExpression (const std::string &expression)
-{
-	return backend->setExpression (expression);
-}
-
-std::string Formula::expression ()
-{
-	return backend->expression ();
-}
-
-bool Formula::setVariable (const std::string &variable, double *pointer)
-{
-	return backend->setVariable (variable, pointer);
-}
-
-double Formula::evaluate ()
-{
-	return backend->evaluate ();
 }
 
 
