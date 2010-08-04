@@ -91,7 +91,8 @@ int main (int argc, char *argv[])
 	for (int i = 1 ; i < AFormula::Formula::NUM_BACKENDS ; i++)
 	{
 		f = makeFormula (i);
-
+		fprintf (stdout, "Begin testing backend number %d\n\n", i);
+		
 		x = 1.0;
 		y = 2.0;
 		z = 3.0;

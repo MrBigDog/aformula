@@ -368,7 +368,7 @@ namespace mu
         p.DefineVar( _T("b"), &vVarVal[1]);
         p.DefineVar( _T("c"), &vVarVal[2]);
         p.DefineVar( _T("d"), &vVarVal[3]);
-        p.DefineVar( _T("e"), &vVarVal[4]);
+        p.DefineVar( _T("f"), &vVarVal[4]);
 
         // Test lookup of defined variables
         // 4 used variables
