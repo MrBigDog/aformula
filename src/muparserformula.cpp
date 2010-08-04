@@ -26,6 +26,15 @@ namespace Private
 extern std::string errorMessage;
 
 
+MuParserFormula::MuParserFormula () 
+{
+}
+
+MuParserFormula::~MuParserFormula ()
+{
+}
+
+
 bool MuParserFormula::setExpression (const std::string &str)
 {
 	try
@@ -70,7 +79,7 @@ double MuParserFormula::evaluate ()
 	catch (mu::Parser::exception_type &e)
 	{
 		errorMessage = "muParser: Error evaluating expression";
-		return false;
+		return 0.0f;
 	}
 }
 

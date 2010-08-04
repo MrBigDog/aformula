@@ -81,11 +81,11 @@ public:
 	// Evaluate the formula
 	virtual double evaluate () = 0;
 
-private:
-
+protected:
 	// Constructor is private; call the creation function above
 	Formula ();
-	
+
+private:
 	// Not implemented; this class is not copyable
 	Formula (const Formula &rhs);
 	Formula &operator= (const Formula &rhs);
