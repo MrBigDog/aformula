@@ -1,0 +1,8 @@
+Makefile.in
+Makefile
+*.o
+*.lo
+.libs
+.deps
+test1
+test1.exe

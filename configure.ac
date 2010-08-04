@@ -61,6 +61,7 @@ AC_CONFIG_FILES([
       lib/muparser/Makefile
         lib/muparser/tests/Makefile
     src/Makefile
+    tests/Makefile
 ])
 AC_OUTPUT
 

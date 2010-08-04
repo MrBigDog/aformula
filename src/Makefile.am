@@ -5,4 +5,4 @@ lib_LTLIBRARIES = libaformula.la
 
 libaformula_la_SOURCES = formula.cpp muparserformula.cpp
 
-libaformula_la_LTADD = @top_builddir@/lib/muparser/libmuparser.la
+libaformula_la_LIBADD = @top_builddir@/lib/muparser/libmuparser.la
