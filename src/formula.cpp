@@ -22,6 +22,7 @@
 #include <csignal>
 #include <sys/time.h>
 #include "muparserformula.h"
+#include "jitformula.h"
 
 namespace AFormula
 {
@@ -61,9 +62,21 @@ Formula *Formula::createFormula (int withBackend)
 	if (withBackend == BACKEND_DEFAULT)
 		withBackend = defaultBackend;
 
-
-	// Create a new formula (FIXME: backend)
-	Formula *formula = new Private::MuParserFormula;
+	Formula *formula = NULL;
+	
+	switch (withBackend)
+	{
+	case BACKEND_LLVM:
+	case BACKEND_LIBJIT:
+		formula = new Private::JITFormula;
+		break;
+		
+	case BACKEND_MUPARSER:
+	default:
+		formula = new Private::MuParserFormula;
+		break;
+	};
+	
 	return formula;
 }
 

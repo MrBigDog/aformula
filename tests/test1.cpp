@@ -36,6 +36,8 @@ void CHECK_FORMULA (const char *formula, double value)
 	if (!f->setExpression (formula))
 	{
 		fprintf (stderr, "FAIL: Could not set expression to %s\n", formula);
+		fprintf (stderr, "%s\n", f->errorString ().c_str ());
+		
 		exit (1);
 	}
 
@@ -44,6 +46,8 @@ void CHECK_FORMULA (const char *formula, double value)
 	if (f->errorString () != "")
 	{
 		fprintf (stderr, "FAIL: Could not evaluate %s\n", formula);
+		fprintf (stderr, "%s\n", f->errorString ().c_str ());
+		
 		exit (1);
 	}
 
@@ -51,6 +55,10 @@ void CHECK_FORMULA (const char *formula, double value)
 	{
 		fprintf (stderr, "FAIL: Evaluated %s and expected %f, got %f\n",
 		         formula, value, ret);
+
+		if (f->errorString () != "")
+			fprintf (stderr, "%s\n", f->errorString ().c_str ());
+				
 		exit (1);
 	}
 

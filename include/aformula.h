@@ -35,7 +35,7 @@ public:
 	//
 	static const int BACKEND_DEFAULT = 0;
 	static const int BACKEND_MUPARSER = 1;
-	static const int BACKEND_LVVM = 2;
+	static const int BACKEND_LLVM = 2;
 	static const int BACKEND_LIBJIT = 3;
 	static const int NUM_BACKENDS = 4;
 		

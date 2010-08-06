@@ -3,6 +3,10 @@ AM_LDFLAGS = @LLVM_LDFLAGS@ @JIT_LDFLAGS@
 
 lib_LTLIBRARIES = libaformula.la
 
-libaformula_la_SOURCES = formula.cpp muparserformula.cpp
+noinst_HEADERS = \
+	jitformula.h muparserformula.h parser.h
+
+libaformula_la_SOURCES = \
+	formula.cpp jitformula.cpp muparserformula.cpp parser.cpp
 
 libaformula_la_LIBADD = @top_builddir@/lib/muparser/libmuparser.la
