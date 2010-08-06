@@ -1,8 +1,9 @@
 AM_DEFAULT_SOURCE_EXT = .cpp
 AM_CPPFLAGS = -I@top_srcdir@/include
 
-check_PROGRAMS = test1
+check_PROGRAMS = test1 test2
 TESTS = $(check_PROGRAMS)
 
 test1_LDADD = @top_builddir@/src/libaformula.la
+test2_LDADD = @top_builddir@/src/libaformula.la
 

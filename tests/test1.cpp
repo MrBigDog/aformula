@@ -90,9 +90,16 @@ int main (int argc, char *argv[])
 {
 	for (int i = 1 ; i < AFormula::Formula::NUM_BACKENDS ; i++)
 	{
-		f = makeFormula (i);
 		fprintf (stdout, "Begin testing backend number %d\n\n", i);
+
+		f = makeFormula (i);
 		
+		if (!f)
+		{
+			fprintf (stderr, "FAIL: Could not create formula for backend %d\n", i);
+			return 1;
+		}
+
 		x = 1.0;
 		y = 2.0;
 		z = 3.0;
