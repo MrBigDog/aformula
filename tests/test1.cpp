@@ -119,7 +119,7 @@ int main (int argc, char *argv[])
 		CHECK_VARIABLE (x, 1.0);
 		CHECK_FORMULA ("x = y * z", 6.0);
 		CHECK_VARIABLE (x, 6.0);
-		CHECK_FORMULA ("x = x / 6.0", 1.0);
+		CHECK_FORMULA ("x = 6 / 6.0", 1.0);
 		CHECK_VARIABLE (x, 1.0);
 		
 		// Comparison

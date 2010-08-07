@@ -26,49 +26,31 @@
 
 AFormula::Formula *f;
 
-void CHECK_EQUATION(const char *formula, double result, bool pass)
+void CHECK_EQUATION(const char *formula, bool pass)
 {
-	bool error = false;
-	double ret;
-
-	f->errorString ();
-
-	if (f->setExpression (formula))
-	{
-		ret = f->evaluate ();
-
-		if (f->errorString () == "")
-		{
-			if (fabs (ret - result) > 0.001f)
-				error = true;
-		}
-		else
-			error = true;
-	}
-	else
-		error = true;
+	bool error = !f->setExpression (formula);
 	
 	if (pass)
 	{
 		// Expected pass
 		if (error)
 		{
-			fprintf (stderr, "FAIL (fail, expected pass): %s => %f (expected %f)\n", formula, ret, result);
+			fprintf (stderr, "FAIL (fail, expected pass): %s does not parse\n", formula);
 			exit (1);
 		}
 		else
-			fprintf (stdout, "PASS (pass, expected pass): %s => %f\n", formula, result);
+			fprintf (stdout, "PASS (pass, expected pass): %s parses\n", formula);
 	}
 	else
 	{
 		// Expected fail
 		if (!error)
 		{
-			fprintf (stderr, "FAIL (pass, expected fail): %s\n", formula);
+			fprintf (stderr, "FAIL (pass, expected fail): %s does parse, should not\n", formula);
 			exit (1);
 		}
 		else
-			fprintf (stdout, "FAIL (fail, expected fail): %s\n", formula);
+			fprintf (stdout, "FAIL (fail, expected fail): %s does not parse\n", formula);
 	}
 }
 
@@ -95,33 +77,32 @@ int main (int argc, char *argv[])
 			return 1;
 		}
 				
-		CHECK_EQUATION ("(1+ 2*a)", 3, true);   // Spaces within formula
-		CHECK_EQUATION ("sqrt((4))", 2, true);  // Multiple brackets
-		CHECK_EQUATION ("sqrt((2)+2)", 2, true);// Multiple brackets
-		CHECK_EQUATION ("sqrt(2+(2))", 2, true);// Multiple brackets
-		CHECK_EQUATION ("sqrt(a+(3))", 2, true);// Multiple brackets
-		CHECK_EQUATION ("sqrt((3)+a)", 2, true);// Multiple brackets
-		CHECK_EQUATION ("(2+", 0, false);       // missing closing bracket 
-		CHECK_EQUATION ("2++4", 0, false);      // unexpected operator
-		CHECK_EQUATION ("2+-4", 0, false);      // unexpected operator
-		CHECK_EQUATION ("(2+)", 0, false);      // unexpected closing bracket
-		CHECK_EQUATION ("--2", 0, false);       // double sign
-		CHECK_EQUATION ("ksdfj", 0, false);     // unknown token
-		CHECK_EQUATION ("()", 0, false);        // empty bracket without a function
-		CHECK_EQUATION ("5+()", 0, false);      // empty bracket without a function
-		CHECK_EQUATION ("sin(cos)", 0, false);  // unexpected function
-		CHECK_EQUATION ("5t6", 0, false);       // unknown token
-		CHECK_EQUATION ("5 t 6", 0, false);     // unknown token
-		CHECK_EQUATION ("8*", 0, false);        // unexpected end of formula
-		CHECK_EQUATION (",3", 0, false);        // unexpected comma
-		CHECK_EQUATION ("3,5", 0, false);       // unexpected comma
-		CHECK_EQUATION ("sin(8,8)", 0, false);  // too many function args
-		CHECK_EQUATION ("(7,8)", 0, false);     // too many function args
-		CHECK_EQUATION ("sin)", 0, false);      // unexpected closing bracket
-		CHECK_EQUATION ("a)", 0, false);        // unexpected closing bracket
-		CHECK_EQUATION ("pi)", 0, false);       // unexpected closing bracket
-		CHECK_EQUATION ("sin(())", 0, false);   // unexpected closing bracket
-		CHECK_EQUATION ("sin()", 0, false);     // unexpected closing bracket
+		CHECK_EQUATION ("(1+ 2*a)", true);   // Spaces within formula
+		CHECK_EQUATION ("sqrt((4))", true);  // Multiple brackets
+		CHECK_EQUATION ("sqrt((2)+2)", true);// Multiple brackets
+		CHECK_EQUATION ("sqrt(2+(2))", true);// Multiple brackets
+		CHECK_EQUATION ("sqrt(a+(3))", true);// Multiple brackets
+		CHECK_EQUATION ("sqrt((3)+a)", true);// Multiple brackets
+		CHECK_EQUATION ("(2+", false);       // missing closing bracket 
+		CHECK_EQUATION ("2++4", false);      // unexpected operator
+		CHECK_EQUATION ("(2+)", false);      // unexpected closing bracket
+		CHECK_EQUATION ("--2", false);       // double sign
+		CHECK_EQUATION ("ksdfj", false);     // unknown token
+		CHECK_EQUATION ("()", false);        // empty bracket without a function
+		CHECK_EQUATION ("5+()", false);      // empty bracket without a function
+		CHECK_EQUATION ("sin(cos)", false);  // unexpected function
+		CHECK_EQUATION ("5t6", false);       // unknown token
+		CHECK_EQUATION ("5 t 6", false);     // unknown token
+		CHECK_EQUATION ("8*", false);        // unexpected end of formula
+		CHECK_EQUATION (",3", false);        // unexpected comma
+		CHECK_EQUATION ("3,5", false);       // unexpected comma
+		CHECK_EQUATION ("sin(8,8)", false);  // too many function args
+		CHECK_EQUATION ("(7,8)", false);     // too many function args
+		CHECK_EQUATION ("sin)", false);      // unexpected closing bracket
+		CHECK_EQUATION ("a)", false);        // unexpected closing bracket
+		CHECK_EQUATION ("pi)", false);       // unexpected closing bracket
+		CHECK_EQUATION ("sin(())", false);   // unexpected closing bracket
+		CHECK_EQUATION ("sin()", false);     // unexpected closing bracket
 		
 		delete f;
 	}

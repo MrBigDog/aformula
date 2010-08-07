@@ -39,7 +39,13 @@ bool MuParserFormula::setExpression (const std::string &str)
 {
 	try
 	{
+		// Set the expression
 		muParser.SetExpr (str);
+
+		// muParser precompiles to bytecode only on the first call to Eval,
+		// while we want AFormula formulas to precompile right now.
+		muParser.Eval ();
+		
 		return true;
 	}
 	catch (const mu::Parser::exception_type &e)
