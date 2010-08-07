@@ -15,6 +15,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <aformula.h>
+#include <limits>
 #include "jitformula.h"
 #include "parser.h"
 
@@ -27,7 +28,7 @@ namespace Private
 extern std::string errorMessage;
 
 
-JITFormula::JITFormula () : parseTree (NULL)
+JITFormula::JITFormula () : func (NULL), parseTree (NULL)
 {
 }
 
@@ -45,10 +46,17 @@ bool JITFormula::setExpression (const std::string &str)
 	
 	expr = str;
 
+	// Build the parse tree for the expression
 	parseTree = Parser::parseString (expr);
 	if (!parseTree)
 		return false;
-	
+
+	// Generate the code for the function
+	if (!buildFunction ())
+		return false;
+	if (!func)
+		return false;
+			
 	return true;
 }
 
@@ -64,10 +72,13 @@ bool JITFormula::setVariable (const std::string &variable, double *pointer)
 
 double JITFormula::evaluate ()
 {
-	// teehee woo
-	errorMessage = "not implemented";
+	if (!func)
+	{
+		errorMessage = "JITFormula: Could not build function for formula";
+		return std::numeric_limits<double>::quiet_NaN ();
+	}
 	
-	return 0.0;
+	return func ();
 }
 
 };

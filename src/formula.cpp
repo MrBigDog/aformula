@@ -19,10 +19,17 @@
 #endif
 
 #include <aformula.h>
+#include <config.h>
 #include <csignal>
 #include <sys/time.h>
 #include "muparserformula.h"
-#include "jitformula.h"
+
+#ifdef HAVE_LLVM
+#  include "llvmformula.h"
+#endif
+#ifdef HAVE_LIBJIT
+#  include "libjitformula.h"
+#endif
 
 namespace AFormula
 {
@@ -66,10 +73,17 @@ Formula *Formula::createFormula (int withBackend)
 	
 	switch (withBackend)
 	{
+#ifdef HAVE_LLVM
 	case BACKEND_LLVM:
-	case BACKEND_LIBJIT:
-		formula = new Private::JITFormula;
+		formula = new Private::LLVMFormula;
 		break;
+#endif
+
+#ifdef HAVE_LIBJIT
+	case BACKEND_LIBJIT:
+		formula = new Private::LibJITFormula;
+		break;
+#endif
 		
 	case BACKEND_MUPARSER:
 	default:

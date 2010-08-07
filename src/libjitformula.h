@@ -14,8 +14,11 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef JITFORMULA_H__
-#define JITFORMULA_H__
+#ifndef LIBJITFORMULA_H__
+#define LIBJITFORMULA_H__
+
+#include "jitformula.h"
+#include <jit/jit.h>
 
 namespace AFormula
 {
@@ -23,40 +26,19 @@ namespace AFormula
 namespace Private
 {
 
-namespace Parser
+class LibJITFormula : public JITFormula
 {
-class ExprAST;
-};
-
-class JITFormula : public Formula
-{
-public:
-	JITFormula ();
-	virtual ~JITFormula ();
-		
-	virtual bool setExpression (const std::string &str);
-	virtual std::string expression () const;
-
-	virtual bool setVariable (const std::string &variable, double *pointer);
-
-	virtual double evaluate ();
-
 protected:
-	virtual bool buildFunction () = 0;
+	virtual bool buildFunction ();
 
-	typedef double (*FunctionType)(void);
-	FunctionType func;
-	
-	std::string expr;
-	Parser::ExprAST *parseTree;	
+private:
+	// yadda
 };
 
 };
-
 };
 
-
-#endif /* LLVMFORMULA_H__ */
+#endif /* LIBJITFORMULA_H__ */
 
 // Local Variables:
 // mode: c++

@@ -31,23 +31,19 @@ AC_LANG(C++)
 # Libraries
 ###################
 AX_LLVM([core jit])
+AF_LIBJIT
 
-AC_CHECK_HEADERS([jit/jit.h])
-AC_CHECK_LIB([jit],[jit_context_create],[],[])
-AC_MSG_CHECKING([if libjit is available])
-if test "x$ac_cv_lib_jit_jit_context_create" = xyes -a \
-        "x$ac_cv_header_jit_jit_h" = xyes ; then
-  af_have_libjit="yes"
-  AC_MSG_RESULT([yes])
-  AC_DEFINE([HAVE_LIBJIT],[1])
-  AC_SUBST([HAVE_LIBJIT],[yes])
-  AC_SUBST([JIT_CPPFLAGS],[])
-  AC_SUBST([JIT_LDFLAGS],[-ljit])
+AM_CONDITIONAL([LIBJIT], [test x$af_have_libjit = xyes])
+AM_CONDITIONAL([LLVM], [test x$ax_cv_llvm = xyes])
+if test "x$ax_cv_llvm" = "xyes" ; then
+  AC_SUBST([LLVM_DEF], [1])
 else
-  af_have_libjit="no"
-  AC_MSG_RESULT([no])
-  AC_MSG_WARN([libjit is not available; the libjit backend will not be built!])
-  AC_SUBST([HAVE_LIBJIT],[no])
+  AC_SUBST([LLVM_DEF], [0])
+fi
+if test "x$af_cv_libjit" = "xyes" ; then
+  AC_SUBST([LIBJIT_DEF], [1])
+else
+  AC_SUBST([LIBJIT_DEF], [0])
 fi
 
 
@@ -57,6 +53,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
   Makefile
     include/Makefile
+      include/aformula.h
     lib/Makefile
       lib/muparser/Makefile
         lib/muparser/tests/Makefile
@@ -79,7 +76,7 @@ if test "x$ax_cv_llvm" = xyes ; then
 else
   echo "  * LLVM: no"
 fi
-if test "x$af_have_libjit" = xyes ; then
+if test "x$af_cv_libjit" = xyes ; then
   echo "  * libjit: yes"
 else
   echo "  * libjit: no"

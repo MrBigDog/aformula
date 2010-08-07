@@ -31,13 +31,23 @@ public:
 
 	
 	//
-	// Available formula-execution backends
+	// Available formula-execution backends.  If some of these are surrounded
+	// by #if 0 on your platform, *do not* enable them!  They were disabled at
+	// compile-time, and *will not* work.
 	//
-	static const int BACKEND_DEFAULT = 0;
-	static const int BACKEND_MUPARSER = 1;
-	static const int BACKEND_LLVM = 2;
-	static const int BACKEND_LIBJIT = 3;
-	static const int NUM_BACKENDS = 4;
+	enum
+	{
+		BACKEND_DEFAULT = 0,
+		BACKEND_MUPARSER,
+#if @LLVM_DEF@
+		BACKEND_LLVM,
+#endif
+#if @LIBJIT_DEF@
+		BACKEND_LIBJIT,
+#endif
+		NUM_BACKENDS
+	};
+	
 		
 	
 	//

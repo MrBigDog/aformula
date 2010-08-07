@@ -86,11 +86,11 @@ AC_ARG_WITH([llvm],
 
 		if test "$succeeded" != "yes" ; then
 			AC_MSG_WARN([[LLVM could not be detected; the LLVM backend will not be built!  Make sure that llvm-config is on your path or specified by --with-llvm.]])
-			AC_SUBST([HAVE_LLVM], $ax_cv_llvm)
+			AC_SUBST([HAVE_LLVM], [no])
 		else
 			AC_SUBST(LLVM_CPPFLAGS)
 			AC_SUBST(LLVM_LDFLAGS)
 			AC_DEFINE(HAVE_LLVM,[1],[define if the LLVM library is available])
-			AC_SUBST([HAVE_LLVM], $ax_cv_llvm)
+			AC_SUBST([HAVE_LLVM], [yes])
 		fi
 ])

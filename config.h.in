@@ -9,7 +9,7 @@
 /* Define to 1 if you have the <jit/jit.h> header file. */
 #undef HAVE_JIT_JIT_H
 
-/* Define to 1 if you have the `jit' library (-ljit). */
+/* Define to 1 if the libjit library is available */
 #undef HAVE_LIBJIT
 
 /* define if the LLVM library is available */
