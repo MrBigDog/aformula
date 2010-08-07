@@ -33,8 +33,8 @@ AC_LANG(C++)
 AX_LLVM([core jit])
 AF_LIBJIT
 
-AM_CONDITIONAL([LIBJIT], [test x$af_have_libjit = xyes])
 AM_CONDITIONAL([LLVM], [test x$ax_cv_llvm = xyes])
+AM_CONDITIONAL([LIBJIT], [test x$af_cv_libjit = xyes])
 if test "x$ax_cv_llvm" = "xyes" ; then
   AC_SUBST([LLVM_DEF], [1])
 else
