@@ -18,6 +18,7 @@
 #include <math.h>
 #include <aformula.h>
 #include "parser.h"
+#include "parsetree.h"
 
 namespace AFormula
 {
@@ -27,21 +28,43 @@ namespace Private
 
 extern std::string errorMessage;
 
-namespace Parser
-{
 
 //
 // Our accepted function, constant, and binary operator names are
 // hard-coded at compile time.
 //
 
-static const char *functionNames[] =
+struct Function
 {
-	"sin", "cos", "tan", "asin", "acos", "atan",
-	"sinh", "cosh", "tanh", "asinh", "acosh", "atanh",
-	"log2", "log10", "log", "ln", "exp", "sqrt",
-	"sign", "rint", "abs",
-	"if", NULL
+	const char *name;
+	int numArgs;
+};
+
+#define NUM_FUNCTIONS 22
+static const Function functions[NUM_FUNCTIONS] =
+{
+	{"sin", 1},
+	{"cos", 1},
+	{"tan", 1},
+	{"asin", 1},
+	{"acos", 1},
+	{"atan", 1},
+	{"sinh", 1},
+	{"cosh", 1},
+	{"tanh", 1},
+	{"asinh", 1},
+	{"acosh", 1},
+	{"atanh", 1},
+	{"log2", 1},
+	{"log10", 1},
+	{"log", 1},
+	{"ln", 1},
+	{"exp", 1},
+	{"sqrt", 1},
+	{"sign", 1},
+	{"rint", 1},
+	{"abs", 1},
+	{"if", 3}
 };
 
 static const char *constantNames[] =
@@ -77,23 +100,14 @@ static const Operator operators[NUM_OPERATORS] =
 // The variables, however, are registered on the fly.
 //
 
-struct Variable
-{
-	std::string name;
-	double *pointer;
-};
-
-static std::vector<Variable> variables;
-
-
-void clearVariables ()
+void Parser::clearVariables ()
 {
 	variables.clear ();
 }
 
 static int getIdentifierType (const std::string &ident);
 
-bool setVariable (const std::string &name, double *pointer)
+bool Parser::setVariable (const std::string &name, double *pointer)
 {
 	// If this name is already some kind of identifier, you can't
 	// register such a variable
@@ -118,47 +132,20 @@ bool setVariable (const std::string &name, double *pointer)
 // Token parsing
 //
 
-enum
-{
-	TOKEN_BAD = 0,
-	TOKEN_END,
-	TOKEN_IDENTIFIER_FUNCTION,
-	TOKEN_IDENTIFIER_CONSTANT,
-	TOKEN_IDENTIFIER_VARIABLE,
-	TOKEN_OPERATOR,
-	TOKEN_NUMBER,
-	TOKEN_PAREN_OPEN,
-	TOKEN_PAREN_CLOSE,
-	TOKEN_COMMA
-};
-
-// These will be filled in if the token is an IDENT_* (strToken, operator)
-// or a NUMBER (numToken), respectively.
-static std::string strToken;
-static double numToken;
-static int currentToken;
-
-// What's left of the string being parsed
-static std::string parseBuffer;
-
 
 static ExprAST *ParseExpression ();
 
 
 // What kind of identifier is this?
-static int getIdentifierType (const std::string &ident)
+int Parser::getIdentifierType (const std::string &ident) const
 {
-	const char **ptr;
-
-	ptr = functionNames;
-	while (*ptr)
+	for (int i = 0 ; i < NUM_FUNCTIONS ; i++)
 	{
-		if (ident == *ptr)
+		if (ident == functions[i].name)
 			return TOKEN_IDENTIFIER_FUNCTION;
-		++ptr;
 	}
-
-	ptr = constantNames;
+	
+	const char **ptr = constantNames;
 	while (*ptr)
 	{
 		if (ident == *ptr)
@@ -166,7 +153,7 @@ static int getIdentifierType (const std::string &ident)
 		++ptr;
 	}
 
-	std::vector<Variable>::iterator iter;
+	std::vector<Variable>::const_iterator iter;
 	for (iter = variables.begin () ; iter != variables.end () ; ++iter)
 	{
 		if ((*iter).name == ident)
@@ -177,8 +164,9 @@ static int getIdentifierType (const std::string &ident)
 }
 
 
+
 // Consume one more token from the string (return token type)
-static int getToken ()
+int Parser::getToken ()
 {
 	if (!parseBuffer.length ())
 		return TOKEN_END;
@@ -282,7 +270,8 @@ static int getToken ()
 	return TOKEN_BAD;
 }
 
-static int getNextToken ()
+// Implement a one-token read-ahead buffer
+int Parser::getNextToken ()
 {
 	return (currentToken = getToken ());
 }
@@ -292,7 +281,7 @@ static int getNextToken ()
 // Parse tokens into expression objects
 //
 
-static ExprAST *ParseNumberExpr ()
+ExprAST *Parser::parseNumberExpr ()
 {
 	ExprAST *ret = new NumberExprAST (numToken);
 
@@ -302,13 +291,13 @@ static ExprAST *ParseNumberExpr ()
 	return ret;
 }
 
-static ExprAST *ParseOpenParenExpr ()
+ExprAST *Parser::parseOpenParenExpr ()
 {
 	// Eat '('
 	getNextToken ();
 
 	// Parse a complete expression
-	ExprAST *expr = ParseExpression ();
+	ExprAST *expr = parseExpression ();
 	if (!expr)
 		return NULL;
 
@@ -326,7 +315,7 @@ static ExprAST *ParseOpenParenExpr ()
 	return expr;
 }
 
-static ExprAST *ParseFunctionIdentifierExpr ()
+ExprAST *Parser::parseFunctionIdentifierExpr ()
 {
 	std::string function (strToken);
 	getNextToken ();
@@ -343,7 +332,7 @@ static ExprAST *ParseFunctionIdentifierExpr ()
 	{
 		while (1)
 		{
-			ExprAST *arg = ParseExpression ();
+			ExprAST *arg = parseExpression ();
 			if (!arg)
 				return NULL;
 			args.push_back (arg);
@@ -359,13 +348,31 @@ static ExprAST *ParseFunctionIdentifierExpr ()
 		}
 	}
 
+	// Look up expected number of arguments
+	for (int i = 0 ; i < NUM_FUNCTIONS ; i++)
+	{
+		if (function == functions[i].name)
+		{
+			if (args.size () < functions[i].numArgs)
+			{
+				errorMessage = "Parsing error: Not enough arguments for function";
+				return NULL;
+			}
+			else if (args.size () > functions[i].numArgs)
+			{
+				errorMessage = "Parsing error: Too many arguments for function";
+				return NULL;
+			}
+		}
+	}
+		
 	// Eat the ')'
 	getNextToken ();
 
 	return new CallExprAST (function, args);
 }
 
-static ExprAST *ParseConstantIdentifierExpr ()
+ExprAST *Parser::parseConstantIdentifierExpr ()
 {
 	std::string name (strToken);
 	getNextToken ();
@@ -381,23 +388,23 @@ static ExprAST *ParseConstantIdentifierExpr ()
 	}
 }
 
-static ExprAST *ParseVariableIdentifierExpr ()
+ExprAST *Parser::parseVariableIdentifierExpr ()
 {
 	std::string name (strToken);
 	getNextToken ();
 	return new VariableExprAST (name);
 }
 
-static ExprAST *ParseUnaryMinusExpr ()
+ExprAST *Parser::parseUnaryMinusExpr ()
 {
 	getNextToken ();
-	ExprAST *child = ParseExpression ();
+	ExprAST *child = parseExpression ();
 	if (!child)
 		return NULL;
 	return new UnaryMinusExprAST (child);
 }
 
-static ExprAST *ParsePrimary ()
+ExprAST *Parser::parsePrimary ()
 {
 	// At the top level, we have to have either an identifier of some kind,
 	// a number, or an open paren.  We might also have a unary minus sign, handle
@@ -405,18 +412,18 @@ static ExprAST *ParsePrimary ()
 	switch (currentToken)
 	{
 	case TOKEN_IDENTIFIER_FUNCTION:
-		return ParseFunctionIdentifierExpr ();
+		return parseFunctionIdentifierExpr ();
 	case TOKEN_IDENTIFIER_CONSTANT:
-		return ParseConstantIdentifierExpr ();
+		return parseConstantIdentifierExpr ();
 	case TOKEN_IDENTIFIER_VARIABLE:
-		return ParseVariableIdentifierExpr ();
+		return parseVariableIdentifierExpr ();
 	case TOKEN_NUMBER:
-		return ParseNumberExpr ();
+		return parseNumberExpr ();
 	case TOKEN_PAREN_OPEN:
-		return ParseOpenParenExpr ();
+		return parseOpenParenExpr ();
 	case TOKEN_OPERATOR:
 		if (strToken == "-")
-			return ParseUnaryMinusExpr ();
+			return parseUnaryMinusExpr ();
 		// Fall through for any other operator
 	default:
 		errorMessage = "Parsing error: unknown token when expecting an expression";
@@ -424,29 +431,37 @@ static ExprAST *ParsePrimary ()
 	}
 }
 
-static int getTokenPrecedence ()
-{
-	if (currentToken != TOKEN_OPERATOR)
-		return -1;
 
-	for (int i = 0 ; i < NUM_OPERATORS ; i++)
-	{
-		if (strToken == operators[i].name)
-			return operators[i].precedence;
-	}
-
-	return -1;
-}
-
-static ExprAST *ParseBinOpRHS (int exprPrecedence, ExprAST *LHS)
+ExprAST *Parser::parseBinOpRHS (int exprPrecedence, ExprAST *LHS)
 {
 	while (1)
 	{
+		// This should be either an operator, a close-paren, comma,
+		// or the end of the formula.
+		if (currentToken != TOKEN_OPERATOR &&
+		    currentToken != TOKEN_PAREN_CLOSE &&
+		    currentToken != TOKEN_COMMA &&
+		    currentToken != TOKEN_END)
+		{
+			errorMessage = "Parsing error: found something unacceptable while parsing binop RHS";
+			return NULL;
+		}
+		
 		// Get the precedence
-		int tokenPrecedence = getTokenPrecedence ();
-
+		int tokenPrecedence = -1;
+		
+		for (int i = 0 ; i < NUM_OPERATORS ; i++)
+		{
+			if (strToken == operators[i].name)
+			{
+				tokenPrecedence = operators[i].precedence;
+				break;
+			}
+		}
+		
 		// We're done if we run into an equivalent or lower-precedence binary
-		// operator
+		// operator (or, notably, something that's not an operator at all, like
+		// the end of the formula)
 		if (tokenPrecedence < exprPrecedence)
 			return LHS;
 
@@ -455,7 +470,7 @@ static ExprAST *ParseBinOpRHS (int exprPrecedence, ExprAST *LHS)
 		getNextToken ();
 
 		// Parse the primary after the operator
-		ExprAST *RHS = ParsePrimary ();
+		ExprAST *RHS = parsePrimary ();
 		if (!RHS)
 			return NULL;
 
@@ -463,12 +478,21 @@ static ExprAST *ParseBinOpRHS (int exprPrecedence, ExprAST *LHS)
 		// thing is a binary operator (which it should be, or it should be
 		// nothing at all), we need to see whether we want "(A op B) op2 ..." or
 		// "A op (B op2 ...)" by precedence rules.  Look ahead:
-		int nextPrecedence = getTokenPrecedence ();
+		int nextPrecedence = -1;
+		for (int i = 0 ; i < NUM_OPERATORS ; i++)
+		{
+			if (strToken == operators[i].name)
+			{
+				nextPrecedence = operators[i].precedence;
+				break;
+			}
+		}
+				
 		if (tokenPrecedence < nextPrecedence)
 		{
 			// Next precedence is greater, we want "A op (B op2 ...)".  Do that by
 			// parsing B op2 ... into a new RHS.
-			RHS = ParseBinOpRHS (tokenPrecedence + 1, RHS);
+			RHS = parseBinOpRHS (tokenPrecedence + 1, RHS);
 			if (RHS == NULL)
 				return NULL;
 		}
@@ -482,24 +506,35 @@ static ExprAST *ParseBinOpRHS (int exprPrecedence, ExprAST *LHS)
 
 		
 
-static ExprAST *ParseExpression ()
+ExprAST *Parser::parseExpression ()
 {
-	ExprAST *LHS = ParsePrimary ();
+	ExprAST *LHS = parsePrimary ();
 	if (!LHS)
 		return NULL;
 
-	return ParseBinOpRHS (0, LHS);
+	return parseBinOpRHS (0, LHS);
 }
 
 
-ExprAST *parseString (const std::string &formula)
+ExprAST *Parser::parseString (const std::string &formula)
 {
 	parseBuffer = formula;
 	getNextToken ();
 		
-	return ParseExpression ();
+	ExprAST *result = parseExpression ();
+
+	// If there's any junk left over after an otherwise
+	// successful parse, there's an error
+	if (result && (currentToken != TOKEN_END || parseBuffer != ""))
+	{
+		errorMessage = "Parsing error: junk left after formula parsing";
+		delete result;
+		
+		return NULL;
+	}
+
+	return result;
 }
 
-};
 };
 };

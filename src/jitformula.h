@@ -22,11 +22,9 @@ namespace AFormula
 
 namespace Private
 {
-
-namespace Parser
-{
+class Parser;
 class ExprAST;
-};
+
 
 class JITFormula : public Formula
 {
@@ -48,7 +46,8 @@ protected:
 	FunctionType func;
 	
 	std::string expr;
-	Parser::ExprAST *parseTree;	
+	Parser *parser;
+	ExprAST *parseTree;
 };
 
 };

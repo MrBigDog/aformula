@@ -18,6 +18,7 @@
 #include <limits>
 #include "jitformula.h"
 #include "parser.h"
+#include "parsetree.h"
 
 namespace AFormula
 {
@@ -30,10 +31,13 @@ extern std::string errorMessage;
 
 JITFormula::JITFormula () : func (NULL), parseTree (NULL)
 {
+	parser = new Parser;
 }
 
 JITFormula::~JITFormula ()
 {
+	if (parser)
+		delete parser;
 	if (parseTree)
 		delete parseTree;
 }
@@ -47,15 +51,16 @@ bool JITFormula::setExpression (const std::string &str)
 	expr = str;
 
 	// Build the parse tree for the expression
-	parseTree = Parser::parseString (expr);
+	parseTree = parser->parseString (expr);
 	if (!parseTree)
 		return false;
 
-	// Generate the code for the function
-	if (!buildFunction ())
-		return false;
-	if (!func)
-		return false;
+	// Generate the code for the function (don't error on this for now, we're
+	// testing the parser)
+//	if (!buildFunction ())
+//		return false;
+//	if (!func)
+//		return false;
 			
 	return true;
 }
@@ -67,7 +72,7 @@ std::string JITFormula::expression () const
 
 bool JITFormula::setVariable (const std::string &variable, double *pointer)
 {
-	return Parser::setVariable (variable, pointer);
+	return parser->setVariable (variable, pointer);
 }
 
 double JITFormula::evaluate ()

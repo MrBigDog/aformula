@@ -25,101 +25,72 @@ namespace AFormula
 
 namespace Private
 {
+class ExprAST;
 
-namespace Parser
-{
-
-//
-// Thanks to the LLVM docs for this easy-to-use parser setup, which
-// I've hacked and simplified even more for our case.
-//
-
-class ExprAST
+class Parser
 {
 public:
-	virtual ~ExprAST () 
+	void clearVariables ();
+	bool setVariable (const std::string &name, double *pointer);
+
+	ExprAST *parseString (const std::string &formula);
+
+private:
+
+	// Variable registration
+	struct Variable
 	{
-	}
+		std::string name;
+		double *pointer;
+	};
+
+	std::vector<Variable> variables;
+
+	// Token types
+	enum
+	{
+		TOKEN_BAD = 0,
+		TOKEN_END,
+		TOKEN_IDENTIFIER_FUNCTION,
+		TOKEN_IDENTIFIER_CONSTANT,
+		TOKEN_IDENTIFIER_VARIABLE,
+		TOKEN_OPERATOR,
+		TOKEN_NUMBER,
+		TOKEN_PAREN_OPEN,
+		TOKEN_PAREN_CLOSE,
+		TOKEN_COMMA
+	};
+
+	// These will be filled in if the token is an IDENT_* (strToken, operator)
+	// or a NUMBER (numToken), respectively.
+	std::string strToken;
+	double numToken;
+	int currentToken;
+
+	// What's left of the string being parsed
+	std::string parseBuffer;
+
+	// Get another token out of the parse buffer
+	int getToken ();
+	int getNextToken ();
+
+	// Get the type of an identifier
+	int getIdentifierType (const std::string &ident) const;
+
+	// Parsing for all the various sorts of expression pieces.
+	ExprAST *parseNumberExpr ();
+	ExprAST *parseOpenParenExpr ();
+	ExprAST *parseFunctionIdentifierExpr ();
+	ExprAST *parseConstantIdentifierExpr ();
+	ExprAST *parseVariableIdentifierExpr ();
+	ExprAST *parseUnaryMinusExpr ();
+	ExprAST *parsePrimary ();
+	ExprAST *parseBinOpRHS (int exprPrecedence, ExprAST *LHS);
+
+	// Parse a complete expression
+	ExprAST *parseExpression ();
 };
 
-class NumberExprAST : public ExprAST
-{
-	double val;
-public:
-	NumberExprAST (double d) : val (d)
-	{
-	}
-};
-
-class VariableExprAST : public ExprAST
-{
-	std::string name;
-public:
-	VariableExprAST (const std::string &n) : name (n)
-	{
-	}
-};
-
-class UnaryMinusExprAST : public ExprAST
-{
-	ExprAST *child;
-public:
-	UnaryMinusExprAST (ExprAST *c) : child (c)
-	{
-	}
-	virtual ~UnaryMinusExprAST ()
-	{
-		if (child)
-			delete child;
-	}
-};
-
-class BinaryExprAST : public ExprAST
-{
-	std::string op;
-	ExprAST *LHS, *RHS;
-public:
-	BinaryExprAST (const std::string &o, ExprAST *l, ExprAST *r) :
-		op (o), LHS (l), RHS (r)
-	{
-	}
-	virtual ~BinaryExprAST ()
-	{
-		if (LHS)
-			delete LHS;
-		if (RHS)
-			delete RHS;
-	}
-};
-
-class CallExprAST : public ExprAST
-{
-	std::string function;
-	std::vector<ExprAST *> args;
-public:
-	CallExprAST (const std::string &fun, const std::vector<ExprAST *> &a) :
-		function (fun), args (a)
-	{
-	}
-	virtual ~CallExprAST ()
-	{
-		for (std::vector<ExprAST *>::iterator iter = args.begin () ;
-		     iter != args.end () ; ++iter)
-			delete (*iter);
-	}
-};
-
-
-//
-// Parser access functions
-//
-
-void clearVariables ();
-bool setVariable (const std::string &name, double *pointer);
-
-ExprAST *parseString (const std::string &formula);
-
-};
 };
 };
 

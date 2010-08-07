@@ -36,6 +36,8 @@ void CHECK_EQUATION(const char *formula, bool pass)
 		if (error)
 		{
 			fprintf (stderr, "FAIL (fail, expected pass): %s does not parse\n", formula);
+			fprintf (stderr, "%s\n", f->errorString ().c_str ());
+			
 			exit (1);
 		}
 		else
@@ -46,11 +48,14 @@ void CHECK_EQUATION(const char *formula, bool pass)
 		// Expected fail
 		if (!error)
 		{
-			fprintf (stderr, "FAIL (pass, expected fail): %s does parse, should not\n", formula);
+			fprintf (stderr, "FAIL (pass, expected fail): %s does parse, should not\n", formula);			
 			exit (1);
 		}
 		else
+		{
 			fprintf (stdout, "FAIL (fail, expected fail): %s does not parse\n", formula);
+			fprintf (stdout, "%s\n", f->errorString ().c_str ());
+		}
 	}
 }
 
