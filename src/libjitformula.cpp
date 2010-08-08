@@ -16,6 +16,7 @@
 */
 #include <aformula.h>
 #include "libjitformula.h"
+#include "parsetree.h"
 
 
 namespace AFormula
@@ -23,6 +24,26 @@ namespace AFormula
 
 namespace Private
 {
+
+void LibJITFormula::emit (NumberExprAST *)
+{
+}
+
+void LibJITFormula::emit (VariableExprAST *)
+{
+}
+
+void LibJITFormula::emit (UnaryMinusExprAST *)
+{
+}
+
+void LibJITFormula::emit (BinaryExprAST *)
+{
+}
+
+void LibJITFormula::emit (CallExprAST *)
+{
+}
 
 
 bool LibJITFormula::buildFunction ()

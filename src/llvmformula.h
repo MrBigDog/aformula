@@ -18,6 +18,7 @@
 #define LLVMFORMULA_H__
 
 #include "jitformula.h"
+#include "codegenerator.h"
 
 #include <llvm/Module.h>
 #include <llvm/Support/IRBuilder.h>
@@ -28,13 +29,20 @@ namespace AFormula
 namespace Private
 {
 
-class LLVMFormula : public JITFormula
+class LLVMFormula : public JITFormula, public CodeGenerator
 {
+public:
+	virtual void emit (NumberExprAST *);
+	virtual void emit (VariableExprAST *);
+	virtual void emit (UnaryMinusExprAST *);
+	virtual void emit (BinaryExprAST *);
+	virtual void emit (CallExprAST *);
+	
 protected:
 	virtual bool buildFunction ();
 
 private:
-	// yadda
+	
 };
 
 };

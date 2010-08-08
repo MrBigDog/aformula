@@ -17,6 +17,10 @@
 #ifndef PARSETREE_H__
 #define PARSETREE_H__
 
+#include <vector>
+
+#include "codegenerator.h"
+
 namespace AFormula
 {
 
@@ -35,29 +39,38 @@ public:
 	virtual ~ExprAST () 
 	{
 	}
+
+	virtual void generate (CodeGenerator *) = 0;
 };
 
 class NumberExprAST : public ExprAST
 {
-	double val;
 public:
 	NumberExprAST (double d) : val (d)
 	{
 	}
+
+	double val;
+
+	virtual void generate (CodeGenerator *gen)
+	{ gen->emit (this); }
 };
 
 class VariableExprAST : public ExprAST
 {
-	std::string name;
 public:
 	VariableExprAST (const std::string &n) : name (n)
 	{
 	}
+
+	std::string name;
+
+	virtual void generate (CodeGenerator *gen)
+	{ gen->emit (this); }
 };
 
 class UnaryMinusExprAST : public ExprAST
 {
-	ExprAST *child;
 public:
 	UnaryMinusExprAST (ExprAST *c) : child (c)
 	{
@@ -67,12 +80,15 @@ public:
 		if (child)
 			delete child;
 	}
+
+	ExprAST *child;
+
+	virtual void generate (CodeGenerator *gen)
+	{ gen->emit (this); }
 };
 
 class BinaryExprAST : public ExprAST
 {
-	std::string op;
-	ExprAST *LHS, *RHS;
 public:
 	BinaryExprAST (const std::string &o, ExprAST *l, ExprAST *r) :
 		op (o), LHS (l), RHS (r)
@@ -85,12 +101,16 @@ public:
 		if (RHS)
 			delete RHS;
 	}
+
+	std::string op;
+	ExprAST *LHS, *RHS;
+	
+	virtual void generate (CodeGenerator *gen)
+	{ gen->emit (this); }
 };
 
 class CallExprAST : public ExprAST
 {
-	std::string function;
-	std::vector<ExprAST *> args;
 public:
 	CallExprAST (const std::string &fun, const std::vector<ExprAST *> &a) :
 		function (fun), args (a)
@@ -102,6 +122,12 @@ public:
 		     iter != args.end () ; ++iter)
 			delete (*iter);
 	}
+
+	std::string function;
+	std::vector<ExprAST *> args;
+	
+	virtual void generate (CodeGenerator *gen)
+	{ gen->emit (this); }
 };
 
 };

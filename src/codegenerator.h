@@ -14,13 +14,8 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef LIBJITFORMULA_H__
-#define LIBJITFORMULA_H__
-
-#include "jitformula.h"
-#include "codegenerator.h"
-
-#include <jit/jit.h>
+#ifndef CODEGENERATOR_H__
+#define CODEGENERATOR_H__
 
 namespace AFormula
 {
@@ -28,26 +23,40 @@ namespace AFormula
 namespace Private
 {
 
-class LibJITFormula : public JITFormula, public CodeGenerator
+//
+// We implement a visitor pattern over a "code generator" class, so
+// that it's easy to spin this parse tree out to whatever JIT library
+// we might like.
+//
+class ExprAST;
+class NumberExprAST;
+class VariableExprAST;
+class UnaryMinusExprAST;
+class BinaryExprAST;
+class CallExprAST;
+
+
+// We need this full list of all kinds of expressions to write the
+// CodeGenerator base class.
+
+class CodeGenerator
 {
 public:
-	virtual void emit (NumberExprAST *);
-	virtual void emit (VariableExprAST *);
-	virtual void emit (UnaryMinusExprAST *);
-	virtual void emit (BinaryExprAST *);
-	virtual void emit (CallExprAST *);
+	virtual ~CodeGenerator ()
+	{
+	}
 
-protected:
-	virtual bool buildFunction ();
-
-private:
-	// yadda
+	virtual void emit (NumberExprAST *) = 0;
+	virtual void emit (VariableExprAST *) = 0;
+	virtual void emit (UnaryMinusExprAST *) = 0;
+	virtual void emit (BinaryExprAST *) = 0;
+	virtual void emit (CallExprAST *) = 0;
 };
 
 };
 };
 
-#endif /* LIBJITFORMULA_H__ */
+#endif /* CODEGENERATOR_H__ */
 
 // Local Variables:
 // mode: c++

@@ -16,6 +16,7 @@
 */
 #include <aformula.h>
 #include "llvmformula.h"
+#include "parsetree.h"
 
 
 namespace AFormula
@@ -23,6 +24,26 @@ namespace AFormula
 
 namespace Private
 {
+
+void LLVMFormula::emit (NumberExprAST *)
+{
+}
+
+void LLVMFormula::emit (VariableExprAST *)
+{
+}
+
+void LLVMFormula::emit (UnaryMinusExprAST *)
+{
+}
+
+void LLVMFormula::emit (BinaryExprAST *)
+{
+}
+
+void LLVMFormula::emit (CallExprAST *)
+{
+}
 
 
 bool LLVMFormula::buildFunction ()
