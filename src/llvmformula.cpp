@@ -62,22 +62,26 @@ LLVMFormula::LLVMFormula () : builder (getGlobalContext ())
 		throw std::runtime_error ("holycrap exceptions?");
 	}
 	
-	// Build an optimizer
+	// Build an optimizer.  These default JIT optimizer settings are taken from
+	// the folks at unladen-swallow.
 	FPM = new FunctionPassManager (MP);
 	
-	// Set up the optimizer pipeline.  Start with registering info about how the
-	// target lays out data structures.
-	FPM->add(new TargetData(*engine->getTargetData()));
-	// Do simple "peephole" optimizations and bit-twiddling optzns.
-	FPM->add(createInstructionCombiningPass());
-	// Reassociate expressions.
-	FPM->add(createReassociatePass());
-	// Eliminate Common SubExpressions.
-	FPM->add(createGVNPass());
-	// Simplify the control flow graph (deleting unreachable blocks, etc).
-	FPM->add(createCFGSimplificationPass());
-	
-	FPM->doInitialization();
+	FPM->add (new TargetData(*engine->getTargetData ()));
+	FPM->add (createCFGSimplificationPass ());
+	FPM->add (createJumpThreadingPass ());
+	FPM->add (createPromoteMemoryToRegisterPass ());
+	FPM->add (createInstructionCombiningPass ());
+	FPM->add (createCFGSimplificationPass ());
+	FPM->add (createScalarReplAggregatesPass ());
+	FPM->add (createReassociatePass ());
+	FPM->add (createJumpThreadingPass ());
+	FPM->add (createGVNPass ());
+	FPM->add (createSCCPPass ());
+	FPM->add (createAggressiveDCEPass ());
+	FPM->add (createCFGSimplificationPass ());
+	FPM->add (createVerifierPass ());
+		
+	FPM->doInitialization ();
 }
 
 LLVMFormula::~LLVMFormula ()
@@ -107,18 +111,17 @@ bool LLVMFormula::buildFunction ()
 		F->eraseFromParent ();
 		return false;
 	}
-
-	F->dump ();
-
+	
 	// Create a return statement, and check that the function makes sense
 	builder.CreateRet (val);
-	verifyFunction (*F);
 
-	// Optimize
+	// Optimize and verify
 	FPM->run (*F);
-	
-	void *fptr = engine->getPointerToFunction (F);
 
+	// Dump the optimized code
+	F->dump ();
+
+	void *fptr = engine->getPointerToFunction (F);
 	func = (FunctionPointer)(intptr_t)fptr;
 		
 	return true;
