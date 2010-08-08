@@ -1,0 +1,100 @@
+2010-08-07  Charles Pence <charles@charlespence.net>
+
+  * src/codegenerator.h, src/libjitformula.cpp, src/libjitformula.h,
+  src/llvmformula.cpp, src/llvmformula.h, src/parsetree.h: Added a visitor
+  pattern for the syntax tree for a CodeGenerator class.  The LLVMFormula and
+  LibJITFormula classes are CodeGenerators.  The entire skeleton is now present
+  to write JIT emission code.
+
+  * README, build/m4/ax_boost_base.m4, config.h.in, configure.ac,
+  src/parser.cpp, src/parser.h: Added much better error message formatting,
+  which brings in a dependency on Boost.
+
+  * src/jitformula.cpp, src/jitformula.h, src/parser.cpp, src/parser.h,
+  src/parsetree.h, tests/test2.cpp: Of course, if the parser is global,
+  everything breaks.  Right.  Stupid.  And fixed.
+
+  * configure.ac, src/llvmformula.h: Fixed a few errors from the last build
+  system change.
+
+  * src/muparserformula.cpp, tests/test1.cpp, tests/test2.cpp: Updated the
+  parser test to only test the parser; forcing the muParser code to parse to
+  bytecode when setExpression is called.
+
+  * build/m4/af_libjit.m4, build/m4/ax_llvm.m4, config.h.in, configure.ac,
+  include/.gitignore, include/aformula.h, include/aformula.h.in,
+  src/Makefile.am, src/formula.cpp, src/jitformula.cpp, src/jitformula.h,
+  src/libjitformula.cpp, src/libjitformula.h, src/llvmformula.cpp,
+  src/llvmformula.h: Doing a better job detecting libjit and llvm now, and
+  compiling differentially based upon whether the two are available.
+
+2010-08-06  Charles Pence <charles@charlespence.net>
+
+  * include/aformula.h, src/Makefile.am, src/formula.cpp, src/jitformula.cpp,
+  src/jitformula.h, src/parser.cpp, src/parser.h, tests/test1.cpp: First shot
+  at a parser; need to implement code generation now for LLVM and libjit.
+
+  * tests/.gitignore, tests/Makefile.am, tests/test1.cpp, tests/test2.cpp:
+  Added a test (mostly borrowed from muParser for now) for syntax parsing.
+
+2010-08-04  Charles Pence <charles@charlespence.net>
+
+  * lib/muparser/muParserTest.cpp, tests/test1.cpp: The change from pi_ and e_
+  to pi and e broke the muParser test suite.  Fixing.
+
+  * include/aformula.h, lib/muparser/muParser.cpp, src/muparserformula.cpp,
+  tests/test1.cpp: Passing a first round of well-formed expression tests.
+
+  * Makefile.am, configure.ac, src/Makefile.am, tests/.gitignore,
+  tests/Makefile.am, tests/test1.cpp: Added a basic testing infrastructure;
+  tests don't do anything yet.
+
+  * include/aformula.h, src/Makefile.am, src/backend.h, src/formula.cpp,
+  src/muparserformula.cpp, src/muparserformula.h: Forget the silly backend
+  stuff -- let the compiler handle a vtable for me and make this a proper
+  virtual class.  Also, the first backend for muParser is written.
+
+2010-08-02  Charles Pence <charles@charlespence.net>
+
+  * configure.ac, include/aformula.h, src/Makefile.am, src/aformula.cpp: Added
+  much of the guts of the AFormula::Formula class, including support for
+  backends and the timing test.  No backends written yet.
+
+2010-08-01  Charles Pence <charles@charlespence.net>
+
+  * Makefile.am, configure.ac, include/.gitignore, include/Makefile.am,
+  include/aformula.h, src/.gitignore, src/Makefile.am, src/aformula.cpp: Added
+  a first version of the AFormula::Formula interface.  Obviously this is very
+  minimal; I'm not sure if it will grow or not.
+
+  * README: Updated README.
+
+  * THANKS: Updated THANKS file with the libjit and LLVM folks.
+
+  * build/m4/ax_llvm.m4, config.h.in, configure.ac, src/Makefile.am: Added
+  support for detecting libjit, if available.
+
+  * build/m4/ax_llvm.m4, configure.ac: Make LLVM optional, not required.
+
+2010-07-29  Charles Pence <charles@charlespence.net>
+
+  * build/m4/ax_llvm.m4: Yipes, forgot to add an M4 script.
+
+  * THANKS, config.h.in, configure.ac, src/Makefile.am: Added a check for LLVM,
+  and set its flags in the Makefile.
+
+  * README: Fix README formatting.
+
+  * README: Update README to include operator priority.
+
+  * lib/muparser/muParser.cpp, lib/muparser/muParser.h,
+  lib/muparser/muParserTest.cpp: Removed support for min, max, and avg, which
+  AFormula will not use.
+
+  * README, lib/muparser/muParserBase.cpp, lib/muparser/muParserBytecode.cpp,
+  lib/muparser/muParserDef.h, lib/muparser/muParserTest.cpp,
+  lib/muparser/muParserTokenReader.cpp: Remove support for 'and', 'or', and
+  'xor' from muParser, as AFormula won't support those.
+
+  * README, lib/muparser/COPYING: Updated README with design goals; added
+  license for muParser.
