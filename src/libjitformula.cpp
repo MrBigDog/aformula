@@ -25,23 +25,23 @@ namespace AFormula
 namespace Private
 {
 
-void LibJITFormula::emit (NumberExprAST *)
+void LibJITFormula::emit (NumberExprAST<void> *)
 {
 }
 
-void LibJITFormula::emit (VariableExprAST *)
+void LibJITFormula::emit (VariableExprAST<void> *)
 {
 }
 
-void LibJITFormula::emit (UnaryMinusExprAST *)
+void LibJITFormula::emit (UnaryMinusExprAST<void> *)
 {
 }
 
-void LibJITFormula::emit (BinaryExprAST *)
+void LibJITFormula::emit (BinaryExprAST<void> *)
 {
 }
 
-void LibJITFormula::emit (CallExprAST *)
+void LibJITFormula::emit (CallExprAST<void> *)
 {
 }
 

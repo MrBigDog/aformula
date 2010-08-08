@@ -20,8 +20,10 @@
 #include "jitformula.h"
 #include "codegenerator.h"
 
+#include <llvm/DerivedTypes.h>
 #include <llvm/Module.h>
 #include <llvm/Support/IRBuilder.h>
+#include <llvm/Value.h>
 
 namespace AFormula
 {
@@ -29,20 +31,23 @@ namespace AFormula
 namespace Private
 {
 
-class LLVMFormula : public JITFormula, public CodeGenerator
+class LLVMFormula : public JITFormula<llvm::Value *>, public CodeGenerator<llvm::Value *>
 {
 public:
-	virtual void emit (NumberExprAST *);
-	virtual void emit (VariableExprAST *);
-	virtual void emit (UnaryMinusExprAST *);
-	virtual void emit (BinaryExprAST *);
-	virtual void emit (CallExprAST *);
+	LLVMFormula ();
+		
+	virtual llvm::Value *emit (NumberExprAST<llvm::Value *> *);
+	virtual llvm::Value *emit (VariableExprAST<llvm::Value *> *);
+	virtual llvm::Value *emit (UnaryMinusExprAST<llvm::Value *> *);
+	virtual llvm::Value *emit (BinaryExprAST<llvm::Value *> *);
+	virtual llvm::Value *emit (CallExprAST<llvm::Value *> *);
 	
 protected:
 	virtual bool buildFunction ();
 
 private:
-	
+	llvm::Module *theModule;
+	llvm::IRBuilder<> builder;
 };
 
 };

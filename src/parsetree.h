@@ -27,12 +27,14 @@ namespace AFormula
 namespace Private
 {
 
+template<typename T> class CodeGenerator;
 
 //
 // Thanks to the LLVM docs for this easy-to-use parser setup, which
 // I've hacked and simplified even more for our case.
 //
 
+template<typename T>
 class ExprAST
 {
 public:
@@ -40,10 +42,11 @@ public:
 	{
 	}
 
-	virtual void generate (CodeGenerator *) = 0;
+	virtual T generate (CodeGenerator<T> *) = 0;
 };
 
-class NumberExprAST : public ExprAST
+template<typename T>
+class NumberExprAST : public ExprAST<T>
 {
 public:
 	NumberExprAST (double d) : val (d)
@@ -52,27 +55,30 @@ public:
 
 	double val;
 
-	virtual void generate (CodeGenerator *gen)
-	{ gen->emit (this); }
+	virtual T generate (CodeGenerator<T> *gen)
+	{ return gen->emit (this); }
 };
 
-class VariableExprAST : public ExprAST
+template<typename T>
+class VariableExprAST : public ExprAST<T>
 {
 public:
-	VariableExprAST (const std::string &n) : name (n)
+	VariableExprAST (const std::string &n, double *p) : name (n), pointer (p)
 	{
 	}
 
 	std::string name;
-
-	virtual void generate (CodeGenerator *gen)
-	{ gen->emit (this); }
+	double *pointer;
+	
+	virtual T generate (CodeGenerator<T> *gen)
+	{ return gen->emit (this); }
 };
 
-class UnaryMinusExprAST : public ExprAST
+template<typename T>
+class UnaryMinusExprAST : public ExprAST<T>
 {
 public:
-	UnaryMinusExprAST (ExprAST *c) : child (c)
+	UnaryMinusExprAST (ExprAST<T> *c) : child (c)
 	{
 	}
 	virtual ~UnaryMinusExprAST ()
@@ -81,16 +87,17 @@ public:
 			delete child;
 	}
 
-	ExprAST *child;
+	ExprAST<T> *child;
 
-	virtual void generate (CodeGenerator *gen)
-	{ gen->emit (this); }
+	virtual T generate (CodeGenerator<T> *gen)
+	{ return gen->emit (this); }
 };
 
-class BinaryExprAST : public ExprAST
+template<typename T>
+class BinaryExprAST : public ExprAST<T>
 {
 public:
-	BinaryExprAST (const std::string &o, ExprAST *l, ExprAST *r) :
+	BinaryExprAST (const std::string &o, ExprAST<T> *l, ExprAST<T> *r) :
 		op (o), LHS (l), RHS (r)
 	{
 	}
@@ -103,31 +110,32 @@ public:
 	}
 
 	std::string op;
-	ExprAST *LHS, *RHS;
-	
-	virtual void generate (CodeGenerator *gen)
-	{ gen->emit (this); }
+	ExprAST<T> *LHS, *RHS;
+
+	virtual T generate (CodeGenerator<T> *gen)
+	{ return gen->emit (this); }
 };
 
-class CallExprAST : public ExprAST
+template<typename T>
+class CallExprAST : public ExprAST<T>
 {
 public:
-	CallExprAST (const std::string &fun, const std::vector<ExprAST *> &a) :
+	CallExprAST (const std::string &fun, const std::vector<ExprAST<T> *> &a) :
 		function (fun), args (a)
 	{
 	}
 	virtual ~CallExprAST ()
 	{
-		for (std::vector<ExprAST *>::iterator iter = args.begin () ;
+		for (typename std::vector<ExprAST<T> *>::iterator iter = args.begin () ;
 		     iter != args.end () ; ++iter)
 			delete (*iter);
 	}
 
 	std::string function;
-	std::vector<ExprAST *> args;
-	
-	virtual void generate (CodeGenerator *gen)
-	{ gen->emit (this); }
+	std::vector<ExprAST<T> *> args;
+
+	virtual T generate (CodeGenerator<T> *gen)
+	{ return gen->emit (this); }
 };
 
 };

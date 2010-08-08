@@ -28,14 +28,14 @@ namespace AFormula
 namespace Private
 {
 
-class LibJITFormula : public JITFormula, public CodeGenerator
+class LibJITFormula : public JITFormula<void>, public CodeGenerator<void>
 {
 public:
-	virtual void emit (NumberExprAST *);
-	virtual void emit (VariableExprAST *);
-	virtual void emit (UnaryMinusExprAST *);
-	virtual void emit (BinaryExprAST *);
-	virtual void emit (CallExprAST *);
+	virtual void emit (NumberExprAST<void> *);
+	virtual void emit (VariableExprAST<void> *);
+	virtual void emit (UnaryMinusExprAST<void> *);
+	virtual void emit (BinaryExprAST<void> *);
+	virtual void emit (CallExprAST<void> *);
 
 protected:
 	virtual bool buildFunction ();

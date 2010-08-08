@@ -28,17 +28,18 @@ namespace Private
 // that it's easy to spin this parse tree out to whatever JIT library
 // we might like.
 //
-class ExprAST;
-class NumberExprAST;
-class VariableExprAST;
-class UnaryMinusExprAST;
-class BinaryExprAST;
-class CallExprAST;
+
+template <typename T> class NumberExprAST;
+template <typename T> class VariableExprAST;
+template <typename T> class UnaryMinusExprAST;
+template <typename T> class BinaryExprAST;
+template <typename T> class CallExprAST;
 
 
 // We need this full list of all kinds of expressions to write the
 // CodeGenerator base class.
 
+template<typename T>
 class CodeGenerator
 {
 public:
@@ -46,11 +47,11 @@ public:
 	{
 	}
 
-	virtual void emit (NumberExprAST *) = 0;
-	virtual void emit (VariableExprAST *) = 0;
-	virtual void emit (UnaryMinusExprAST *) = 0;
-	virtual void emit (BinaryExprAST *) = 0;
-	virtual void emit (CallExprAST *) = 0;
+	virtual T emit (NumberExprAST<T> *) = 0;
+	virtual T emit (VariableExprAST<T> *) = 0;
+	virtual T emit (UnaryMinusExprAST<T> *) = 0;
+	virtual T emit (BinaryExprAST<T> *) = 0;
+	virtual T emit (CallExprAST<T> *) = 0;
 };
 
 };

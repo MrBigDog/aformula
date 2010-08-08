@@ -17,27 +17,76 @@
 #ifndef JITFORMULA_H__
 #define JITFORMULA_H__
 
+#include "parser.h"
+
 namespace AFormula
 {
 
 namespace Private
 {
-class Parser;
-class ExprAST;
+
+extern std::string errorMessage;
 
 
+template<typename T>
 class JITFormula : public Formula
 {
 public:
-	JITFormula ();
-	virtual ~JITFormula ();
+	JITFormula () : func (NULL), parseTree (NULL)
+	{
+		parser = new Parser<T>;
+	}
+	
+	virtual ~JITFormula ()
+	{
+		if (parser)
+			delete parser;
+		if (parseTree)
+			delete parseTree;
+	}
+	
+	
+	virtual bool setExpression (const std::string &str)
+	{
+		if (parseTree)
+			delete parseTree;
 		
-	virtual bool setExpression (const std::string &str);
-	virtual std::string expression () const;
+		expr = str;
+		
+		// Build the parse tree for the expression
+		parseTree = parser->parseString (expr);
+		if (!parseTree)
+			return false;
+		
+		// Generate the code for the function
+		if (!buildFunction ())
+			return false;
+		if (!func)
+			return false;
+		
+		return true;
+	}
 
-	virtual bool setVariable (const std::string &variable, double *pointer);
-
-	virtual double evaluate ();
+	virtual std::string expression () const
+	{
+		return expr;
+	}
+	
+	virtual bool setVariable (const std::string &variable, double *pointer)
+	{
+		return parser->setVariable (variable, pointer);
+	}
+	
+	virtual double evaluate ()
+	{
+		if (!func)
+		{
+			errorMessage = "JITFormula: Could not build function for formula";
+			return std::numeric_limits<double>::quiet_NaN ();
+		}
+		
+		return func ();
+	}
 
 protected:
 	virtual bool buildFunction () = 0;
@@ -46,8 +95,8 @@ protected:
 	FunctionType func;
 	
 	std::string expr;
-	Parser *parser;
-	ExprAST *parseTree;
+	Parser<T> *parser;
+	ExprAST<T> *parseTree;
 };
 
 };
