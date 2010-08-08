@@ -22,6 +22,7 @@
 #include <llvm/ModuleProvider.h>
 #include <llvm/Analysis/Verifier.h>
 #include <llvm/Function.h>
+#include <llvm/Intrinsics.h>
 #include <llvm/Target/TargetData.h>
 #include <llvm/Target/TargetSelect.h>
 #include <llvm/Transforms/Scalar.h>
@@ -250,18 +251,11 @@ Value *LLVMFormula::emit (BinaryExprAST<Value *> *expr)
 		return builder.CreateFDiv (L, R, "divtmp");
 	else if (expr->op == "^")
 	{
-		// Call pow (L, R)
-		Module *M = builder.GetInsertBlock ()->getParent ()->getParent ();
-		Value *Callee = M->getOrInsertFunction ("pow",
-		                                        Type::getDoubleTy (getGlobalContext ()),
-		                                        Type::getDoubleTy (getGlobalContext ()),
-		                                        Type::getDoubleTy (getGlobalContext ()),
-		                                        NULL);
-		CallInst *CI = builder.CreateCall2 (Callee, L, R, "pow");
-		if (const Function *F = dyn_cast<Function>(Callee->stripPointerCasts ()))
-			CI->setCallingConv (F->getCallingConv ());
-
-		return CI;
+		// The floating-point intrinsics are overloaded for multiple types
+		const Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
+		
+		Value *func = Intrinsic::getDeclaration (theModule, Intrinsic::pow, types, 1);
+		return builder.CreateCall2 (func, L, R, "pow");
 	}
 	else
 		return NULL;
@@ -299,10 +293,11 @@ Value *LLVMFormula::emit (CallExprAST<Value *> *expr)
 		Value *fselect = builder.CreateSelect (cmplzero, none, zero, "sgnsellzero");
 		return builder.CreateSelect (cmpgzero, one, fselect, "sgnselgzero");
 	}
-	
-	// The rest of these are calls to stdlib floating point math
-	// functions.
 
+	//
+	// Map our function names to standard libm names
+	//
+	
 	// If we're calling "log", we want "log10"
 	if (expr->function == "log")
 		expr->function = "log10";
@@ -312,7 +307,39 @@ Value *LLVMFormula::emit (CallExprAST<Value *> *expr)
 	// If we're calling "abs", we want "fabs"
 	if (expr->function == "abs")
 		expr->function = "fabs";
+	
+	// The following are available as LLVM intrinsics, and we should emit them
+	// specially without calling out to libm:
+	Intrinsic::ID intrinsicID = Intrinsic::not_intrinsic;
+		
+	if (expr->function == "cos")
+		intrinsicID = Intrinsic::cos;
+	else if (expr->function == "exp")
+		intrinsicID = Intrinsic::exp;
+	else if (expr->function == "log")
+		intrinsicID = Intrinsic::log;
+	else if (expr->function == "log10")
+		intrinsicID = Intrinsic::log10;
+	else if (expr->function == "sin")
+		intrinsicID = Intrinsic::sin;
+	else if (expr->function == "sqrt")
+		intrinsicID = Intrinsic::sqrt;
 
+	if (intrinsicID != Intrinsic::not_intrinsic)
+	{
+		// Most of the floating-point intrinsics are overloaded for multiple types
+		const Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
+		
+		Value *arg = expr->args[0]->generate (this);
+		if (!arg) return NULL;
+
+		Value *func = Intrinsic::getDeclaration (theModule, intrinsicID, types, 1);
+		return builder.CreateCall (func, arg, expr->function);
+	}
+	
+	// The rest of these are calls to stdlib floating point math
+	// functions.
+	
 	// Emit a call to function (arg)
 	Value *arg = expr->args[0]->generate (this);
 	if (!arg) return NULL;
@@ -322,11 +349,7 @@ Value *LLVMFormula::emit (CallExprAST<Value *> *expr)
 	                                        Type::getDoubleTy (getGlobalContext ()),
 	                                        Type::getDoubleTy (getGlobalContext ()),
 	                                        NULL);
-	CallInst *CI = builder.CreateCall (Callee, arg, expr->function);
-	if (const Function *F = dyn_cast<Function>(Callee->stripPointerCasts ()))
-		CI->setCallingConv (F->getCallingConv ());
-	
-	return CI;
+	return builder.CreateCall (Callee, arg, expr->function);
 }
 
 
