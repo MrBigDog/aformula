@@ -24,6 +24,9 @@
 #include <llvm/Module.h>
 #include <llvm/Support/IRBuilder.h>
 #include <llvm/Value.h>
+#include <llvm/ExecutionEngine/ExecutionEngine.h>
+#include <llvm/ExecutionEngine/JIT.h>
+#include <llvm/PassManager.h>
 
 namespace AFormula
 {
@@ -35,7 +38,8 @@ class LLVMFormula : public JITFormula<llvm::Value *>, public CodeGenerator<llvm:
 {
 public:
 	LLVMFormula ();
-		
+	virtual ~LLVMFormula ();
+	
 	virtual llvm::Value *emit (NumberExprAST<llvm::Value *> *);
 	virtual llvm::Value *emit (VariableExprAST<llvm::Value *> *);
 	virtual llvm::Value *emit (UnaryMinusExprAST<llvm::Value *> *);
@@ -47,7 +51,12 @@ protected:
 
 private:
 	llvm::Module *theModule;
+ 	llvm::ModuleProvider *MP;
 	llvm::IRBuilder<> builder;
+	llvm::FunctionPassManager *FPM;
+	llvm::ExecutionEngine *engine;
+	
+	llvm::Constant *getGlobalVariableFor (double *ptr);
 };
 
 };

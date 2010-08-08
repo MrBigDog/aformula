@@ -32,7 +32,7 @@ AC_LANG(C++)
 ###################
 AX_BOOST_BASE([1.29.0])
 
-AX_LLVM([core jit])
+AX_LLVM([core jit target native])
 AF_LIBJIT
 
 AM_CONDITIONAL([LLVM], [test x$ax_cv_llvm = xyes])

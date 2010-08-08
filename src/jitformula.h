@@ -91,8 +91,8 @@ public:
 protected:
 	virtual bool buildFunction () = 0;
 
-	typedef double (*FunctionType)(void);
-	FunctionType func;
+	typedef double (*FunctionPointer)(void);
+	FunctionPointer func;
 	
 	std::string expr;
 	Parser<T> *parser;

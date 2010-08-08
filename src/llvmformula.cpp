@@ -19,8 +19,12 @@
 #include "parsetree.h"
 
 #include <llvm/GlobalVariable.h>
+#include <llvm/ModuleProvider.h>
 #include <llvm/Analysis/Verifier.h>
 #include <llvm/Function.h>
+#include <llvm/Target/TargetData.h>
+#include <llvm/Target/TargetSelect.h>
+#include <llvm/Transforms/Scalar.h>
 
 // For this file, I want to import this namespace
 using namespace llvm;
@@ -31,17 +35,62 @@ namespace AFormula
 namespace Private
 {
 
+class LLVMInitializer
+{
+public:
+	LLVMInitializer ()
+	{
+		InitializeNativeTarget ();
+	}
+};
+LLVMInitializer llvmInitializer;
+
+
 LLVMFormula::LLVMFormula () : builder (getGlobalContext ())
 {
+	// Build a module and a JIT engine
+	theModule = new Module ("AFormula JIT", getGlobalContext ());
+	MP = new ExistingModuleProvider (theModule);
+
+	// The Engine is going to take control of this MP and theModule,
+	// don't delete them later.
+	std::string errorString;
+	engine = EngineBuilder (MP).setErrorStr (&errorString).create ();
+	if (!engine)
+	{
+		errorMessage = "LLVM Error: " + errorString;
+		throw std::runtime_error ("holycrap exceptions?");
+	}
+	
+	// Build an optimizer
+	FPM = new FunctionPassManager (MP);
+	
+	// Set up the optimizer pipeline.  Start with registering info about how the
+	// target lays out data structures.
+	FPM->add(new TargetData(*engine->getTargetData()));
+	// Do simple "peephole" optimizations and bit-twiddling optzns.
+	FPM->add(createInstructionCombiningPass());
+	// Reassociate expressions.
+	FPM->add(createReassociatePass());
+	// Eliminate Common SubExpressions.
+	FPM->add(createGVNPass());
+	// Simplify the control flow graph (deleting unreachable blocks, etc).
+	FPM->add(createCFGSimplificationPass());
+	
+	FPM->doInitialization();
+}
+
+LLVMFormula::~LLVMFormula ()
+{
+	delete FPM;
+	delete engine;
 }
 
 
 bool LLVMFormula::buildFunction ()
 {
 	// First, build a prototype for the nullary function we're about to define.
-	// FIXME: For some reason that I don't understand, "using namespace llvm" doesn't
-	// import FunctionType?
-	llvm::FunctionType *FT = llvm::FunctionType::get (Type::getDoubleTy (getGlobalContext ()), false);
+	FunctionType *FT = FunctionType::get (Type::getDoubleTy (getGlobalContext ()), false);
 
 	// Make a function
 	Function *F = Function::Create (FT, Function::ExternalLinkage, "", theModule);
@@ -59,14 +108,20 @@ bool LLVMFormula::buildFunction ()
 		return false;
 	}
 
+	F->dump ();
+
 	// Create a return statement, and check that the function makes sense
 	builder.CreateRet (val);
 	verifyFunction (*F);
 
-	// DEBUG: PRINT GENERATED CODE
-	theModule->dump ();
-			
-	return false;
+	// Optimize
+	FPM->run (*F);
+	
+	void *fptr = engine->getPointerToFunction (F);
+
+	func = (FunctionPointer)(intptr_t)fptr;
+		
+	return true;
 }
 
 
@@ -75,22 +130,41 @@ Value *LLVMFormula::emit (NumberExprAST<Value *> *expr)
 	return ConstantFP::get (getGlobalContext (), APFloat (expr->val));
 }
 
+Constant *LLVMFormula::getGlobalVariableFor (double *ptr)
+{
+	// Thanks to the unladen-swallow project for this snippet, which was almost
+	// impossible to figure out from the LLVM docs!
+
+	// See if the JIT already knows about this global
+	GlobalVariable *result = const_cast<GlobalVariable *>(
+		cast_or_null<GlobalVariable>(
+			engine->getGlobalValueAtAddress (ptr)));
+	if (result && result->hasInitializer ())
+		return result;
+	
+	Constant *initializer = ConstantFP::get (Type::getDoubleTy (getGlobalContext ()), *ptr);
+	if (result == NULL)
+	{
+		// Make a global variable
+		result = new GlobalVariable (*theModule, initializer->getType (),
+		                             false, GlobalVariable::InternalLinkage,
+		                             NULL, "");
+		
+		// Link the global variable to the right address
+		engine->addGlobalMapping (result, ptr);
+	}
+	assert (!result->hasInitializer ());
+		
+	// Add the initial value
+	result->setInitializer (initializer);
+
+	return result;
+}
+
 Value *LLVMFormula::emit (VariableExprAST<Value *> *expr)
 {
-	// Set the intial value to the correct pointer
-	Type *pointerToDoubleType = 
-		PointerType::getUnqual (Type::getDoubleTy (getGlobalContext ()));
-	Constant *initialValue =
-		ConstantInt::get (pointerToDoubleType, (uint64_t)expr->pointer);
-	
-	// Make a global variable of that type with that value
-	GlobalVariable *var = new GlobalVariable (getGlobalContext (),
-	                                          pointerToDoubleType, false,
-	                                          GlobalVariable::InternalLinkage,
-	                                          initialValue);
-	
-	// Now, we need a dereference-this-pointer instruction
-	return builder.CreateLoad (var);
+	// This is just "dereference expr->pointer"
+	return builder.CreateLoad (getGlobalVariableFor (expr->pointer));
 }
 
 Value *LLVMFormula::emit (UnaryMinusExprAST<Value *> *expr)
@@ -117,20 +191,9 @@ Value *LLVMFormula::emit (BinaryExprAST<Value *> *expr)
 		Value *val = expr->RHS->generate (this);
 		if (!val) return NULL;
 		
-		// Set the intial value to the correct pointer
-		Type *pointerToDoubleType = 
-			PointerType::getUnqual (Type::getDoubleTy (getGlobalContext ()));
-		Constant *initialValue =
-			ConstantInt::get (pointerToDoubleType, (uint64_t)var->pointer);
-		
-		// Make a global variable of that type with that value
-		GlobalVariable *global = new GlobalVariable (getGlobalContext (),
-		                                             pointerToDoubleType, false,
-		                                             GlobalVariable::InternalLinkage,
-		                                             initialValue);
-
 		// Emit a store-to-pointer instruction
-		return builder.CreateStore (val, global, "storetmp");
+		builder.CreateStore (val, getGlobalVariableFor (var->pointer), "storetmp");
+		return val;
 	}
 
 	// The rest of the operators function normally

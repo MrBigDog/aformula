@@ -229,7 +229,7 @@ private:
 			strToken.erase ();
 			
 			while (parseBuffer.length () &&
-			       isalpha (parseBuffer[0]))
+			       (isalpha (parseBuffer[0]) || isdigit (parseBuffer[0])))
 			{
 				strToken += parseBuffer[0];
 				parseBuffer.erase (0,1);
@@ -690,6 +690,14 @@ const typename Parser<T>::Operator Parser<T>::operators[NUM_OPERATORS] =
 
 };
 };
+
+// LLVM imports its config.h into the global namespace, which means we have to do this
+// (naughty LLVM!)
+#undef PACKAGE_BUGREPORT
+#undef PACKAGE_NAME
+#undef PACKAGE_STRING
+#undef PACKAGE_TARNAME
+#undef PACKAGE_VERSION
 
 #endif /* PARSER_H__ */
 
