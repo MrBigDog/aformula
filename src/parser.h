@@ -19,6 +19,7 @@
 
 #include <string>
 #include <vector>
+#include <boost/format.hpp>
 
 namespace AFormula
 {
@@ -37,6 +38,15 @@ public:
 
 private:
 
+	// Format a nice parser error
+	void error (const std::string &err) const;
+	inline void error (const boost::format &fmt) const
+	{ error (boost::str (fmt)); }
+
+	// Utility for error messages: format the details of the current token
+	std::string formatToken () const;
+		
+	
 	// Variable registration
 	struct Variable
 	{
@@ -67,6 +77,9 @@ private:
 	double numToken;
 	int currentToken;
 
+	// The full parsed formula
+	std::string formula;
+	
 	// What's left of the string being parsed
 	std::string parseBuffer;
 

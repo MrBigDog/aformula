@@ -14,9 +14,12 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include <boost/format.hpp>
 #include <stdlib.h>
 #include <math.h>
+
 #include <aformula.h>
+#include <config.h>
 #include "parser.h"
 #include "parsetree.h"
 
@@ -27,6 +30,62 @@ namespace Private
 {
 
 extern std::string errorMessage;
+
+//
+// Nice error message parsing
+//
+
+const char *tokenStrings[] =
+{
+	"an invalid token",
+	"end-of-formula",
+	"a function name",
+	"a constant name",
+	"a variable name",
+	"an operator",
+	"a number",
+	"an open parenthesis",
+	"a close parenthesis",
+	"a comma"
+};
+
+std::string Parser::formatToken () const
+{
+	// Mark up identifiers and operators with their corresponding string
+	if (currentToken >= TOKEN_IDENTIFIER_FUNCTION &&
+	    currentToken <= TOKEN_OPERATOR)
+		return boost::str (boost::format ("%1% (\"%2%\")") %
+		                   tokenStrings[currentToken] % strToken);
+
+	// Mark up numbers with their number
+	if (currentToken == TOKEN_NUMBER)
+		return boost::str (boost::format ("%1% (%2%)") %
+		                   tokenStrings[currentToken] % numToken);
+
+	// Everything else is just the token name
+	return tokenStrings[currentToken];
+}
+
+void Parser::error (const std::string &err) const
+{
+	std::string message;
+		
+	// If we're parsing, we'll work with the formula
+	if (formula.length ())
+	{
+		// Figure out what character we're near
+		int charIndex = formula.length () - parseBuffer.length () - 1;
+		
+		// Format a nice error string
+		message = boost::str (boost::format ("Parser Error (around character %1%): %2%")
+		                      % charIndex % err);
+	}
+	else
+		message = boost::str (boost::format ("Parser Error: %1%") % err);
+	
+	errorMessage = message;
+}
+
 
 
 //
@@ -111,9 +170,22 @@ bool Parser::setVariable (const std::string &name, double *pointer)
 {
 	// If this name is already some kind of identifier, you can't
 	// register such a variable
-	if (getIdentifierType (name) != 0)
+	int type = getIdentifierType (name);
+	
+	if (type != 0)
 	{
-		errorMessage = "Cannot register a duplicate variable, or a variable with the same name as a built-in";
+		std::string str;
+		
+		if (type == TOKEN_IDENTIFIER_FUNCTION)
+			str = "function";
+		else if (type == TOKEN_IDENTIFIER_CONSTANT)
+			str = "mathematical constant";
+		else
+			str = "variable";
+		
+		error (boost::format ("Cannot register variable %1%, "
+		                      "a %2% with this name already exists!") %
+		       name % str);
 		return false;
 	}
 	
@@ -304,7 +376,7 @@ ExprAST *Parser::parseOpenParenExpr ()
 	// Make sure that worked
 	if (currentToken != TOKEN_PAREN_CLOSE)
 	{
-		errorMessage = "Parsing error: expected ')'";
+		error ("Expected ')' after '('!");
 		return NULL;
 	}
 
@@ -322,7 +394,8 @@ ExprAST *Parser::parseFunctionIdentifierExpr ()
 
 	if (currentToken != TOKEN_PAREN_OPEN)
 	{
-		errorMessage = "Parsing error: Function call without opening parenthesis following";
+		error (boost::format ("Call to function %1% without following opening parenthesis!")
+		       % function);
 		return NULL;
 	}
 	getNextToken ();
@@ -341,7 +414,8 @@ ExprAST *Parser::parseFunctionIdentifierExpr ()
 				break;
 			if (currentToken != TOKEN_COMMA)
 			{
-				errorMessage = "Parsing error: Expected ')' or ',' in argument list";
+				error (boost::format ("Expected ')' or ',' in argument list to function %1%!")
+				       % function);
 				return NULL;
 			}
 			getNextToken ();
@@ -355,12 +429,14 @@ ExprAST *Parser::parseFunctionIdentifierExpr ()
 		{
 			if (args.size () < functions[i].numArgs)
 			{
-				errorMessage = "Parsing error: Not enough arguments for function";
+				error (boost::format ("Not enough arguments for function %1% (%2%, expecting %3%)!")
+				       % function % args.size () % functions[i].numArgs);
 				return NULL;
 			}
 			else if (args.size () > functions[i].numArgs)
 			{
-				errorMessage = "Parsing error: Too many arguments for function";
+				error (boost::format ("Too many arguments for function %1% (%2%, expecting %3%)!")
+				       % function % args.size () % functions[i].numArgs);
 				return NULL;
 			}
 		}
@@ -383,7 +459,8 @@ ExprAST *Parser::parseConstantIdentifierExpr ()
 		return new NumberExprAST (M_E);
 	else
 	{
-		errorMessage = "Parsing error: Somehow wound up with an invalid constant name";
+		error ("Internal Error: Attempted to treat %1% as a constant, though it is not.  "
+		       "Report this as a bug to <" PACKAGE_BUGREPORT ">!");
 		return NULL;
 	}
 }
@@ -426,7 +503,8 @@ ExprAST *Parser::parsePrimary ()
 			return parseUnaryMinusExpr ();
 		// Fall through for any other operator
 	default:
-		errorMessage = "Parsing error: unknown token when expecting an expression";
+		error (boost::format ("Expecting an expression, got %1% instead!") %
+		       formatToken ());
 		return NULL;
 	}
 }
@@ -443,7 +521,8 @@ ExprAST *Parser::parseBinOpRHS (int exprPrecedence, ExprAST *LHS)
 		    currentToken != TOKEN_COMMA &&
 		    currentToken != TOKEN_END)
 		{
-			errorMessage = "Parsing error: found something unacceptable while parsing binop RHS";
+			error (boost::format ("Attempting to parse the RHS of a binary operator, "
+			                      "and got %1%!") % formatToken ());
 			return NULL;
 		}
 		
@@ -516,9 +595,9 @@ ExprAST *Parser::parseExpression ()
 }
 
 
-ExprAST *Parser::parseString (const std::string &formula)
+ExprAST *Parser::parseString (const std::string &f)
 {
-	parseBuffer = formula;
+	formula = parseBuffer = f;
 	getNextToken ();
 		
 	ExprAST *result = parseExpression ();
@@ -527,7 +606,7 @@ ExprAST *Parser::parseString (const std::string &formula)
 	// successful parse, there's an error
 	if (result && (currentToken != TOKEN_END || parseBuffer != ""))
 	{
-		errorMessage = "Parsing error: junk left after formula parsing";
+		error ("Parsed a complete expression, but content still remains in the formula!");
 		delete result;
 		
 		return NULL;

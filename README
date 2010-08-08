@@ -38,6 +38,20 @@ performance, though there is a performance test included which will benchmark
 the library and permit selection at runtime.
 
 
+Requirements
+------------
+
+The Boost C++ Libraries <http://www.boost.org> are required to build AFormula.
+
+If you want either of the dynamic-compilation backends to be built, you will
+need to install either LLVM <http://www.llvm.org>, or libjit 
+<http://freshmeat.net/projects/libjit/>.  Note that at the time of this writing
+I was not able to get libjit to compile without a fair bit of hacking around on
+its source code.
+
+Neither of these libraries are necessary (the included muParser backend will be
+built regardless), but they will provide a large speed boost.
+
 
 Thanks
 ------
