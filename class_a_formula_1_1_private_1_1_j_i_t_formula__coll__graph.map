@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="1228,5,1375,35"/>
+<area shape="rect" id="node4" href="$class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="1197,59,1405,88"/>
+<area shape="rect" id="node6" href="$class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree." alt="" coords="1204,235,1399,264"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="249,183,340,212"/>
+<area shape="rect" id="node18" href="$struct_a_formula_1_1_private_1_1_parser_1_1_variable.html" title="Details of a user&#45;registered variable." alt="" coords="429,235,688,264"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="5,183,197,212"/>
+<area shape="rect" id="node12" href="$struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="Details of a hard&#45;coded binary operator." alt="" coords="816,288,1083,317"/>
+<area shape="rect" id="node14" href="$struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="Details of a hard&#45;coded function identifier." alt="" coords="817,341,1081,371"/>
+</map>
