@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -56,9 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#a9854670c506947363b886c213fbffb32">expression</a>() const =0</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#afa83275c5418bc9b4ccf5595bdc6cc74">fastestBackend</a>(bool setAsDefault=true)</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [static]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#a8e6d50fc848b5a6ff5070f18b4d5934d">Formula</a>()</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [protected]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#a6fdad711314eac734a586852de60c501">Formula</a>(const Formula &amp;rhs)</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#a37115887bbd8a788ce61356febaf0b35acea1d69ae5a13fbe0ea0c071dbd27def">NUM_BACKENDS</a> enum value</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#aced2ad07beb88adb78f2288346ab3a93">operator=</a>(const Formula &amp;rhs)</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [private]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#ab444548983e200013dc7c9b6d45072de">setExpression</a>(const std::string &amp;str)=0</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#a42f3fe0cc07731ebfbb55b83bd241fd3">setVariable</a>(const std::string &amp;variable, double *pointer)=0</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_formula.html#aedb8258a55cf8312a4a4594a29e2a8c2">~Formula</a>()</td><td><a class="el" href="class_a_formula_1_1_formula.html">AFormula::Formula</a></td><td><code> [virtual]</code></td></tr>
@@ -68,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:36 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:49 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

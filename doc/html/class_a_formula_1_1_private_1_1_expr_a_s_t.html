@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -48,24 +49,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>AFormula::Private::ExprAST Class Reference</h1><!-- doxytag: class="AFormula::Private::ExprAST" -->
+<p>Base class for all expressions in our syntax tree.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="parsetree_8h_source.html">parsetree.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AFormula::Private::ExprAST:</div>
 <div class="dynsection">
 <div class="center"><img src="class_a_formula_1_1_private_1_1_expr_a_s_t__inherit__graph.png" border="0" usemap="#_a_formula_1_1_private_1_1_expr_a_s_t_inherit__map" alt="Inheritance graph"/></div>
 <map name="_a_formula_1_1_private_1_1_expr_a_s_t_inherit__map" id="_a_formula_1_1_private_1_1_expr_a_s_t_inherit__map">
-<area shape="rect" id="node3" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html" title="AFormula::Private::BinaryExprAST" alt="" coords="279,5,529,35"/><area shape="rect" id="node5" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html" title="AFormula::Private::CallExprAST" alt="" coords="288,59,520,88"/><area shape="rect" id="node7" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="AFormula::Private::NumberExprAST" alt="" coords="273,112,535,141"/><area shape="rect" id="node9" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html" title="AFormula::Private::UnaryMinusExprAST" alt="" coords="263,165,545,195"/><area shape="rect" id="node11" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html" title="AFormula::Private::VariableExprAST" alt="" coords="275,219,533,248"/></map>
+<area shape="rect" id="node3" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html" title="Syntax tree element representing a binary&#45;operator expression." alt="" coords="279,5,529,35"/><area shape="rect" id="node5" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html" title="Syntax tree element representing a function call." alt="" coords="288,59,520,88"/><area shape="rect" id="node7" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number." alt="" coords="273,112,535,141"/><area shape="rect" id="node9" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html" title="Syntax tree element for a unary minus operator." alt="" coords="263,165,545,195"/><area shape="rect" id="node11" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html" title="Syntax tree element for a reference to a variable." alt="" coords="275,219,533,248"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_a_formula_1_1_private_1_1_expr_a_s_t-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#ab6d33a252d3fc16a85f93ee4165d6d31">~ExprAST</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#ad075e22328e4c06a4c309a175163917b">generate</a> (<a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html">CodeGenerator</a> *)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#ab6d33a252d3fc16a85f93ee4165d6d31"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#aa35ac8fb32acb6c6ebf33c634346dc60">generate</a> (<a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html">CodeGenerator</a> *gen)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Double-dispatch code generation method.  <a href="#aa35ac8fb32acb6c6ebf33c634346dc60"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Base class for all expressions in our syntax tree. </p>
 
-<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00036">36</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
+<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00038">38</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab6d33a252d3fc16a85f93ee4165d6d31"></a><!-- doxytag: member="AFormula::Private::ExprAST::~ExprAST" ref="ab6d33a252d3fc16a85f93ee4165d6d31" args="()" -->
 <div class="memitem">
@@ -82,12 +89,14 @@ Inheritance diagram for AFormula::Private::ExprAST:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00039">39</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
+<p>Destructor. </p>
+
+<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00042">42</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ad075e22328e4c06a4c309a175163917b"></a><!-- doxytag: member="AFormula::Private::ExprAST::generate" ref="ad075e22328e4c06a4c309a175163917b" args="(CodeGenerator *)=0" -->
+<a class="anchor" id="aa35ac8fb32acb6c6ebf33c634346dc60"></a><!-- doxytag: member="AFormula::Private::ExprAST::generate" ref="aa35ac8fb32acb6c6ebf33c634346dc60" args="(CodeGenerator *gen)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -95,7 +104,7 @@ Inheritance diagram for AFormula::Private::ExprAST:</div>
           <td class="memname">virtual void* AFormula::Private::ExprAST::generate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html">CodeGenerator</a> *&nbsp;</td>
-          <td class="paramname"></td>
+          <td class="paramname"> <em>gen</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [pure virtual]</code></td>
         </tr>
@@ -103,7 +112,17 @@ Inheritance diagram for AFormula::Private::ExprAST:</div>
 </div>
 <div class="memdoc">
 
-<p>Implemented in <a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html#a1c4c9990abbcdfc506e492a590ab8e51">AFormula::Private::NumberExprAST</a>, <a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html#ad3e07831e37499a98c5a5a1f80774075">AFormula::Private::VariableExprAST</a>, <a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#ad465d8d645321b61af15feedab97a3a5">AFormula::Private::UnaryMinusExprAST</a>, <a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html#a84c8fa802b5538a944e44d9b3df30438">AFormula::Private::BinaryExprAST</a>, and <a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#a036c08e0a9928120125e8574b86d7472">AFormula::Private::CallExprAST</a>.</p>
+<p>Double-dispatch code generation method. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>gen</em>&nbsp;</td><td>Code generator to call for emitting code. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Result of <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">CodeGenerator::emit</a></code>, see documentation for that function for information about this pointer type.</dd></dl>
+<p>This method is overridden to call the appropriate <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">CodeGenerator::emit</a></code> method </p>
+
+<p>Implemented in <a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html#a1c4c9990abbcdfc506e492a590ab8e51">AFormula::Private::NumberExprAST</a>, <a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html#ad3e07831e37499a98c5a5a1f80774075">AFormula::Private::VariableExprAST</a>, <a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#ad465d8d645321b61af15feedab97a3a5">AFormula::Private::UnaryMinusExprAST</a>, <a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html#a84c8fa802b5538a944e44d9b3df30438">AFormula::Private::BinaryExprAST</a>, and <a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#af97315aeb12d5ab238511c50ed8108db">AFormula::Private::CallExprAST</a>.</p>
 
 </div>
 </div>
@@ -116,7 +135,7 @@ Inheritance diagram for AFormula::Private::ExprAST:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -125,7 +144,7 @@ Inheritance diagram for AFormula::Private::ExprAST:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:37 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:51 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

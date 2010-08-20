@@ -23,35 +23,45 @@ namespace AFormula
 namespace Private
 {
 
-//
-// We implement a visitor pattern over a "code generator" class, so
-// that it's easy to spin this parse tree out to whatever JIT library
-// we might like.
-//
-
-template <typename T> class NumberExprAST;
-template <typename T> class VariableExprAST;
-template <typename T> class UnaryMinusExprAST;
-template <typename T> class BinaryExprAST;
-template <typename T> class CallExprAST;
+class NumberExprAST;
+class VariableExprAST;
+class UnaryMinusExprAST;
+class BinaryExprAST;
+class CallExprAST;
 
 
-// We need this full list of all kinds of expressions to write the
-// CodeGenerator base class.
 
-template<typename T>
+/// @brief Abstract interface for code generator visitor.
+///
+/// We implement a visitor pattern (with double-dispatch) for
+/// just-in-time code compilation with any compiler.  The parser creates a
+/// recursive-descent parsing tree, and the JIT formula classes implement
+/// this pattern, overriding the various @c emit() methods to produce
+/// appropriate code.
+///
+/// All of the @c emit() methods are defined to return @c void* pointers.
+/// These will in fact be whatever the appropriate class for the JIT
+/// compiler at issue is.  For @c LLVMFormula class, this is an @c
+/// LLVM::Value* pointer, and for the @c LibJITFormula class, this is a
+/// @c jit_value_t pointer.  The ponters are defined generically here to
+/// prevent the entire @c CodeGenerator, @c ExprAST, and @c Parser class
+/// structure from being template classes.
 class CodeGenerator
 {
 public:
-	virtual ~CodeGenerator ()
-	{
-	}
+	/// @brief Destructor.
+	virtual ~CodeGenerator () { }
 
-	virtual T emit (NumberExprAST<T> *) = 0;
-	virtual T emit (VariableExprAST<T> *) = 0;
-	virtual T emit (UnaryMinusExprAST<T> *) = 0;
-	virtual T emit (BinaryExprAST<T> *) = 0;
-	virtual T emit (CallExprAST<T> *) = 0;
+	/// @brief Emit the code for a constant number.
+	virtual void *emit (NumberExprAST *) = 0;
+	/// @brief Emit the code for a variable reference.
+	virtual void *emit (VariableExprAST *) = 0;
+	/// @brief Emit the code for a unary negation operator.
+	virtual void *emit (UnaryMinusExprAST *) = 0;
+	/// @brief Emit the code for a binary operator.
+	virtual void *emit (BinaryExprAST *) = 0;
+	/// @brief Emit the code for a function call.
+	virtual void *emit (CallExprAST *) = 0;
 };
 
 };

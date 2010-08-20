@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -47,47 +48,66 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<h1>AFormula::Private::LLVMFormula Class Reference</h1><!-- doxytag: class="AFormula::Private::LLVMFormula" --><!-- doxytag: inherits="JITFormula&lt; llvm::Value * &gt;,CodeGenerator&lt; llvm::Value * &gt;" -->
+<h1>AFormula::Private::LLVMFormula Class Reference</h1><!-- doxytag: class="AFormula::Private::LLVMFormula" --><!-- doxytag: inherits="AFormula::Private::JITFormula,AFormula::Private::CodeGenerator" -->
+<p>LLVM formula-compiling backend.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AFormula::Private::LLVMFormula:</div>
 <div class="dynsection">
 <div class="center"><img src="class_a_formula_1_1_private_1_1_l_l_v_m_formula__inherit__graph.png" border="0" usemap="#_a_formula_1_1_private_1_1_l_l_v_m_formula_inherit__map" alt="Inheritance graph"/></div>
 <map name="_a_formula_1_1_private_1_1_l_l_v_m_formula_inherit__map" id="_a_formula_1_1_private_1_1_l_l_v_m_formula_inherit__map">
-<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="AFormula::Private::JITFormula\&lt; llvm::Value * \&gt;" alt="" coords="217,5,553,35"/><area shape="rect" id="node4" href="class_a_formula_1_1_formula.html" title="AFormula::Formula" alt="" coords="5,5,152,35"/><area shape="rect" id="node6" href="class_a_formula_1_1_private_1_1_code_generator.html" title="AFormula::Private::CodeGenerator\&lt; llvm::Value * \&gt;" alt="" coords="200,59,571,88"/></map>
+<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="Base class for JIT formula compilers." alt="" coords="5,83,227,112"/><area shape="rect" id="node4" href="class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="43,5,189,35"/><area shape="rect" id="node6" href="class_a_formula_1_1_private_1_1_code_generator.html" title="Abstract interface for code generator visitor." alt="" coords="251,83,507,112"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 <div class="dynsection">
 <div class="center"><img src="class_a_formula_1_1_private_1_1_l_l_v_m_formula__coll__graph.png" border="0" usemap="#_a_formula_1_1_private_1_1_l_l_v_m_formula_coll__map" alt="Collaboration graph"/></div>
 <map name="_a_formula_1_1_private_1_1_l_l_v_m_formula_coll__map" id="_a_formula_1_1_private_1_1_l_l_v_m_formula_coll__map">
-<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="AFormula::Private::JITFormula\&lt; llvm::Value * \&gt;" alt="" coords="1100,87,1436,116"/><area shape="rect" id="node4" href="class_a_formula_1_1_formula.html" title="AFormula::Formula" alt="" coords="731,5,877,35"/><area shape="rect" id="node6" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="AFormula::Private::ExprAST\&lt; llvm::Value * \&gt;" alt="" coords="643,59,965,88"/><area shape="rect" id="node8" href="class_a_formula_1_1_private_1_1_parser.html" title="AFormula::Private::Parser\&lt; llvm::Value * \&gt;" alt="" coords="649,235,959,264"/><area shape="rect" id="node10" title="STL class." alt="" coords="336,147,427,176"/><area shape="rect" id="node12" title="STL class." alt="" coords="5,147,197,176"/><area shape="rect" id="node14" href="struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="AFormula::Private::Parser::Operator" alt="" coords="248,232,515,261"/><area shape="rect" id="node16" href="struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="AFormula::Private::Parser::Function" alt="" coords="249,285,513,315"/><area shape="rect" id="node21" href="class_a_formula_1_1_private_1_1_code_generator.html" title="AFormula::Private::CodeGenerator\&lt; llvm::Value * \&gt;" alt="" coords="1083,140,1453,169"/></map>
+<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="Base class for JIT formula compilers." alt="" coords="1541,85,1763,115"/><area shape="rect" id="node4" href="class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="1228,5,1375,35"/><area shape="rect" id="node6" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="1197,59,1405,88"/><area shape="rect" id="node8" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree." alt="" coords="1204,235,1399,264"/><area shape="rect" id="node10" title="STL class." alt="" coords="249,183,340,212"/><area shape="rect" id="node20" href="struct_a_formula_1_1_private_1_1_parser_1_1_variable.html" title="Details of a user&#45;registered variable." alt="" coords="429,235,688,264"/><area shape="rect" id="node12" title="STL class." alt="" coords="5,183,197,212"/><area shape="rect" id="node14" href="struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="Details of a hard&#45;coded binary operator." alt="" coords="816,288,1083,317"/><area shape="rect" id="node16" href="struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="Details of a hard&#45;coded function identifier." alt="" coords="817,341,1081,371"/><area shape="rect" id="node24" href="class_a_formula_1_1_private_1_1_code_generator.html" title="Abstract interface for code generator visitor." alt="" coords="1524,139,1780,168"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_a_formula_1_1_private_1_1_l_l_v_m_formula-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a62fa54b491ee9430ab0db88d8afd6a82">LLVMFormula</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a62fa54b491ee9430ab0db88d8afd6a82"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a9624146deb7985200c22d82f61a1aea8">~LLVMFormula</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual llvm::Value *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a92f6907db93b775fc4dfe86aedeca1f9">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html">NumberExprAST</a>&lt; llvm::Value * &gt; *)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual llvm::Value *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a2869524bb401c92f116aea611bdee834">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html">VariableExprAST</a>&lt; llvm::Value * &gt; *)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual llvm::Value *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a7a3c335ea5d8c2d4fad48e9cbb089aad">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">UnaryMinusExprAST</a>&lt; llvm::Value * &gt; *)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual llvm::Value *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a27e21c1510ebb875b5d75295b5c130f7">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html">BinaryExprAST</a>&lt; llvm::Value * &gt; *)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual llvm::Value *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a6e91638d09756e9b4860c39f72e69d5b">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST</a>&lt; llvm::Value * &gt; *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a9624146deb7985200c22d82f61a1aea8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a87d0a39ed6d3e757772640cb949a7601">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html">NumberExprAST</a> *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Emit the code for a constant number.  <a href="#a87d0a39ed6d3e757772640cb949a7601"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a06bea0659f8df8da6c4d69860844470f">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html">VariableExprAST</a> *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Emit the code for a variable reference.  <a href="#a06bea0659f8df8da6c4d69860844470f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a5abe6d5bc957ff187541674840eff035">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">UnaryMinusExprAST</a> *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Emit the code for a unary negation operator.  <a href="#a5abe6d5bc957ff187541674840eff035"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a4c8d30c40c06363f17832d51d52538f9">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html">BinaryExprAST</a> *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Emit the code for a binary operator.  <a href="#a4c8d30c40c06363f17832d51d52538f9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a0221c0f34d97485ccc8ab66891ca567a">emit</a> (<a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST</a> *)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Emit the code for a function call.  <a href="#a0221c0f34d97485ccc8ab66891ca567a"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a36c3a7519222f4b7affcd8c4f98ea189">buildFunction</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compile JIT code for parsed formula.  <a href="#a36c3a7519222f4b7affcd8c4f98ea189"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">llvm::Constant *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a6cc476d4c5e37e35d91096431eade274">getGlobalVariableFor</a> (double *ptr)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get an LLVM GlobalVariable which shadows the given double pointer.  <a href="#a6cc476d4c5e37e35d91096431eade274"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">llvm::Module *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a880a9f8ec5ccfb03ff83e9ee03d27d0a">theModule</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">llvm::Module *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#afe38538e9a086b617875aac19d43ec16">module</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">High-level container for all LLVM objects.  <a href="#afe38538e9a086b617875aac19d43ec16"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">llvm::ModuleProvider *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a41f80b5f99788eb4f1937c2bc0f84d95">MP</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">llvm::IRBuilder&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#ab3b423f97a64aeb06108dd43cddc96ae">builder</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pointer to an <code>llvm::ExistingModuleProvider</code> bound to <code>module</code>.  <a href="#a41f80b5f99788eb4f1937c2bc0f84d95"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">llvm::IRBuilder *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a6263141d8b59b1d655f3a9894a667331">builder</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Builder which is responsible for code insertion.  <a href="#a6263141d8b59b1d655f3a9894a667331"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">llvm::FunctionPassManager *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a52cf763a5471f260cc23b5731d2a32ff">FPM</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Function-level optimization manager.  <a href="#a52cf763a5471f260cc23b5731d2a32ff"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">llvm::ExecutionEngine *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a5e2bdb086cf9664f15407fad54ea3df8">engine</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Engine which converts LLVM IR into machine code.  <a href="#a5e2bdb086cf9664f15407fad54ea3df8"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>LLVM formula-compiling backend. </p>
+<p>This backend uses the LLVM library to compile our parsed expressions into machine code. </p>
 
-<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00037">37</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
+<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00047">47</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a62fa54b491ee9430ab0db88d8afd6a82"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::LLVMFormula" ref="a62fa54b491ee9430ab0db88d8afd6a82" args="()" -->
 <div class="memitem">
@@ -104,7 +124,10 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00050">50</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+<p>Constructor. </p>
+<p>The constructor creates all of the LLVM context necessary to compile formulas. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00076">76</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -123,19 +146,21 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00088">88</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+<p>Destructor. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00117">117</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a92f6907db93b775fc4dfe86aedeca1f9"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a92f6907db93b775fc4dfe86aedeca1f9" args="(NumberExprAST&lt; llvm::Value * &gt; *)" -->
+<a class="anchor" id="a87d0a39ed6d3e757772640cb949a7601"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a87d0a39ed6d3e757772640cb949a7601" args="(NumberExprAST *)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual llvm::Value* AFormula::Private::LLVMFormula::emit </td>
+          <td class="memname">void * AFormula::Private::LLVMFormula::emit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html">NumberExprAST</a>&lt; llvm::Value * &gt; *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html">NumberExprAST</a> *&nbsp;</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -144,16 +169,22 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
+<p>Emit the code for a constant number. </p>
+
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4">AFormula::Private::CodeGenerator</a>.</p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00162">162</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a2869524bb401c92f116aea611bdee834"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a2869524bb401c92f116aea611bdee834" args="(VariableExprAST&lt; llvm::Value * &gt; *)" -->
+<a class="anchor" id="a06bea0659f8df8da6c4d69860844470f"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a06bea0659f8df8da6c4d69860844470f" args="(VariableExprAST *)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual llvm::Value* AFormula::Private::LLVMFormula::emit </td>
+          <td class="memname">void * AFormula::Private::LLVMFormula::emit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html">VariableExprAST</a>&lt; llvm::Value * &gt; *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html">VariableExprAST</a> *&nbsp;</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -162,16 +193,22 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
+<p>Emit the code for a variable reference. </p>
+
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a044520668a6e310a473264c9dfb266ba">AFormula::Private::CodeGenerator</a>.</p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00198">198</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a7a3c335ea5d8c2d4fad48e9cbb089aad"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a7a3c335ea5d8c2d4fad48e9cbb089aad" args="(UnaryMinusExprAST&lt; llvm::Value * &gt; *)" -->
+<a class="anchor" id="a5abe6d5bc957ff187541674840eff035"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a5abe6d5bc957ff187541674840eff035" args="(UnaryMinusExprAST *)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual llvm::Value* AFormula::Private::LLVMFormula::emit </td>
+          <td class="memname">void * AFormula::Private::LLVMFormula::emit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">UnaryMinusExprAST</a>&lt; llvm::Value * &gt; *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">UnaryMinusExprAST</a> *&nbsp;</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -180,16 +217,22 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
+<p>Emit the code for a unary negation operator. </p>
+
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a8b31ff34c1627f4c0a7811291bae30fb">AFormula::Private::CodeGenerator</a>.</p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00204">204</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a27e21c1510ebb875b5d75295b5c130f7"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a27e21c1510ebb875b5d75295b5c130f7" args="(BinaryExprAST&lt; llvm::Value * &gt; *)" -->
+<a class="anchor" id="a4c8d30c40c06363f17832d51d52538f9"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a4c8d30c40c06363f17832d51d52538f9" args="(BinaryExprAST *)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual llvm::Value* AFormula::Private::LLVMFormula::emit </td>
+          <td class="memname">void * AFormula::Private::LLVMFormula::emit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html">BinaryExprAST</a>&lt; llvm::Value * &gt; *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html">BinaryExprAST</a> *&nbsp;</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -198,16 +241,22 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
+<p>Emit the code for a binary operator. </p>
+
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a1910e8ba3232ae57cdabbda44708eeb3">AFormula::Private::CodeGenerator</a>.</p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00216">216</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="a6e91638d09756e9b4860c39f72e69d5b"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a6e91638d09756e9b4860c39f72e69d5b" args="(CallExprAST&lt; llvm::Value * &gt; *)" -->
+<a class="anchor" id="a0221c0f34d97485ccc8ab66891ca567a"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::emit" ref="a0221c0f34d97485ccc8ab66891ca567a" args="(CallExprAST *)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual llvm::Value* AFormula::Private::LLVMFormula::emit </td>
+          <td class="memname">void * AFormula::Private::LLVMFormula::emit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST</a>&lt; llvm::Value * &gt; *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST</a> *&nbsp;</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [virtual]</code></td>
@@ -215,6 +264,12 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Emit the code for a function call. </p>
+
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#ab5c1c93aa30ad8e9d43f807eab81ad13">AFormula::Private::CodeGenerator</a>.</p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00294">294</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -233,9 +288,12 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#ac3f8bb2a19ce64908a7ad8419860f1fc">AFormula::Private::JITFormula&lt; llvm::Value * &gt;</a>.</p>
+<p>Compile JIT code for parsed formula. </p>
+<p>When this function is called, the <code>parseTree</code> member has been set to the root of the parsed expression. This function sets up a new compilation environment, and generates the code for the formula by double dispatch (calling <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#aa35ac8fb32acb6c6ebf33c634346dc60" title="Double-dispatch code generation method.">ExprAST::generate</a></code> which will in turn call <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">CodeGenerator::emit</a></code>). Finally, it finalizes the code and builds the function pointer to <code>func</code>. </p>
 
-<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00095">95</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#aaff7d5d04e06b82c1824e83d768e9b7d">AFormula::Private::JITFormula</a>.</p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00125">125</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -255,23 +313,27 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00137">137</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+<p>Get an LLVM GlobalVariable which shadows the given double pointer. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00167">167</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a880a9f8ec5ccfb03ff83e9ee03d27d0a"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::theModule" ref="a880a9f8ec5ccfb03ff83e9ee03d27d0a" args="" -->
+<a class="anchor" id="afe38538e9a086b617875aac19d43ec16"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::module" ref="afe38538e9a086b617875aac19d43ec16" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">llvm::Module* <a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a880a9f8ec5ccfb03ff83e9ee03d27d0a">AFormula::Private::LLVMFormula::theModule</a><code> [private]</code></td>
+          <td class="memname">llvm::Module* <a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#afe38538e9a086b617875aac19d43ec16">AFormula::Private::LLVMFormula::module</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00053">53</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
+<p>High-level container for all LLVM objects. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00070">70</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
 
 </div>
 </div>
@@ -286,22 +348,26 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00054">54</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
+<p>Pointer to an <code>llvm::ExistingModuleProvider</code> bound to <code>module</code>. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00072">72</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab3b423f97a64aeb06108dd43cddc96ae"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::builder" ref="ab3b423f97a64aeb06108dd43cddc96ae" args="" -->
+<a class="anchor" id="a6263141d8b59b1d655f3a9894a667331"></a><!-- doxytag: member="AFormula::Private::LLVMFormula::builder" ref="a6263141d8b59b1d655f3a9894a667331" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">llvm::IRBuilder <a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#ab3b423f97a64aeb06108dd43cddc96ae">AFormula::Private::LLVMFormula::builder</a><code> [private]</code></td>
+          <td class="memname">llvm::IRBuilder* <a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#a6263141d8b59b1d655f3a9894a667331">AFormula::Private::LLVMFormula::builder</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00055">55</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
+<p>Builder which is responsible for code insertion. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00074">74</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
 
 </div>
 </div>
@@ -316,7 +382,9 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00056">56</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
+<p>Function-level optimization manager. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00076">76</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
 
 </div>
 </div>
@@ -331,7 +399,9 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00057">57</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
+<p>Engine which converts LLVM IR into machine code. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8h_source.html#l00078">78</a> of file <a class="el" href="llvmformula_8h_source.html">llvmformula.h</a>.</p>
 
 </div>
 </div>
@@ -345,7 +415,7 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -354,7 +424,7 @@ Collaboration diagram for AFormula::Private::LLVMFormula:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:37 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:50 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

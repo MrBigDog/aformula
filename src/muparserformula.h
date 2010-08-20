@@ -25,12 +25,15 @@ namespace AFormula
 namespace Private
 {
 
+/// @brief muParser formula backend.
+///
+/// This class implements formula parsing and solving essentially as a
+/// pass-through to the corresponding interface elements of muParser.
 class MuParserFormula : public Formula
 {
 public:
-	MuParserFormula ();
-	virtual ~MuParserFormula ();
-		
+	virtual ~MuParserFormula () { }
+	
 	virtual bool setExpression (const std::string &str);
 	virtual std::string expression () const;
 
@@ -39,6 +42,7 @@ public:
 	virtual double evaluate ();
 
 private:
+	/// @brief muParser formula object.
 	mu::Parser muParser;
 };
 

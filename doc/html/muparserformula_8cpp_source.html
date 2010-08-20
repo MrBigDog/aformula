@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -41,7 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>muparserformula.cpp</h1><a href="muparserformula_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>muparserformula.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">  Copyright (C) 2010  Charles Pence &lt;charles@charlespence.net&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">  </span>
 <a name="l00004"></a>00004 <span class="comment">  This program is free software: you can redistribute it and/or modify</span>
@@ -57,8 +58,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00014"></a>00014 <span class="comment">  You should have received a copy of the GNU General Public License</span>
 <a name="l00015"></a>00015 <span class="comment">  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;<a class="code" href="aformula_8h.html">aformula.h</a>&gt;</span>
-<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;<a class="code" href="muparserformula_8h.html">muparserformula.h</a>&quot;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;aformula.h&gt;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;muparserformula.h&quot;</span>
 <a name="l00019"></a>00019 
 <a name="l00020"></a>00020 <span class="keyword">namespace </span>AFormula
 <a name="l00021"></a>00021 {
@@ -66,82 +67,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00023"></a>00023 <span class="keyword">namespace </span>Private
 <a name="l00024"></a>00024 {
 <a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="keyword">extern</span> std::string <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a>;
+<a name="l00026"></a>00026 <span class="keyword">extern</span> std::string <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa" title="Global storage for current error string.">errorMessage</a>;
 <a name="l00027"></a>00027 
 <a name="l00028"></a>00028 
-<a name="l00029"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a67e313efefc3309e22e56b526d7819ac">00029</a> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a67e313efefc3309e22e56b526d7819ac">MuParserFormula::MuParserFormula</a> () 
+<a name="l00029"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#ac012ab4de57c270594934bb8fb2b0f3b">00029</a> <span class="keywordtype">bool</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#ac012ab4de57c270594934bb8fb2b0f3b" title="Set and parse the mathematical formula to solve.">MuParserFormula::setExpression</a> (<span class="keyword">const</span> std::string &amp;str)
 <a name="l00030"></a>00030 {
-<a name="l00031"></a>00031 }
-<a name="l00032"></a>00032 
-<a name="l00033"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#aeb888283943f3664943096628fc2bf7e">00033</a> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#aeb888283943f3664943096628fc2bf7e">MuParserFormula::~MuParserFormula</a> ()
-<a name="l00034"></a>00034 {
-<a name="l00035"></a>00035 }
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 
-<a name="l00038"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#ac012ab4de57c270594934bb8fb2b0f3b">00038</a> <span class="keywordtype">bool</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#ac012ab4de57c270594934bb8fb2b0f3b">MuParserFormula::setExpression</a> (<span class="keyword">const</span> std::string &amp;str)
-<a name="l00039"></a>00039 {
-<a name="l00040"></a>00040     <span class="keywordflow">try</span>
-<a name="l00041"></a>00041     {
-<a name="l00042"></a>00042         <span class="comment">// Set the expression</span>
-<a name="l00043"></a>00043         <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a">muParser</a>.SetExpr (str);
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045         <span class="comment">// muParser precompiles to bytecode only on the first call to Eval,</span>
-<a name="l00046"></a>00046         <span class="comment">// while we want AFormula formulas to precompile right now.</span>
-<a name="l00047"></a>00047         <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a">muParser</a>.Eval ();
-<a name="l00048"></a>00048         
-<a name="l00049"></a>00049         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00050"></a>00050     }
-<a name="l00051"></a>00051     <span class="keywordflow">catch</span> (<span class="keyword">const</span> mu::Parser::exception_type &amp;e)
-<a name="l00052"></a>00052     {
-<a name="l00053"></a>00053         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a> = <span class="stringliteral">&quot;muParser: Error while setting expression to &quot;</span>;
-<a name="l00054"></a>00054         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a> += str;
-<a name="l00055"></a>00055         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00056"></a>00056     }
-<a name="l00057"></a>00057 }
-<a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a4a197462ef5bd1757feaa6618df42970">00059</a> std::string <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a4a197462ef5bd1757feaa6618df42970">MuParserFormula::expression</a> ()<span class="keyword"> const</span>
-<a name="l00060"></a>00060 <span class="keyword"></span>{
-<a name="l00061"></a>00061     <span class="keywordflow">return</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a">muParser</a>.GetExpr ();
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00064"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a61b4222238a85a2b4e3808786ffdf773">00064</a> <span class="keywordtype">bool</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a61b4222238a85a2b4e3808786ffdf773">MuParserFormula::setVariable</a> (<span class="keyword">const</span> std::string &amp;variable, <span class="keywordtype">double</span> *pointer)
-<a name="l00065"></a>00065 {
-<a name="l00066"></a>00066     <span class="keywordflow">try</span>
-<a name="l00067"></a>00067     {
-<a name="l00068"></a>00068         <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a">muParser</a>.DefineVar (variable, pointer);
-<a name="l00069"></a>00069         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00070"></a>00070     }
-<a name="l00071"></a>00071     <span class="keywordflow">catch</span> (<span class="keyword">const</span> mu::Parser::exception_type &amp;e)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a> = <span class="stringliteral">&quot;muParser: Error while setting variable &quot;</span>;
-<a name="l00074"></a>00074         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a> += variable;
-<a name="l00075"></a>00075         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00076"></a>00076     }
-<a name="l00077"></a>00077 }
-<a name="l00078"></a>00078 
-<a name="l00079"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a62b7ca8ee7012070ef787eb98b2d09ec">00079</a> <span class="keywordtype">double</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a62b7ca8ee7012070ef787eb98b2d09ec">MuParserFormula::evaluate</a> ()
-<a name="l00080"></a>00080 {
-<a name="l00081"></a>00081     <span class="keywordflow">try</span>
-<a name="l00082"></a>00082     {
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a">muParser</a>.Eval ();
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085     <span class="keywordflow">catch</span> (mu::Parser::exception_type &amp;e)
-<a name="l00086"></a>00086     {
-<a name="l00087"></a>00087         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a> = <span class="stringliteral">&quot;muParser: Error evaluating expression&quot;</span>;
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> 0.0f;
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092 };
-<a name="l00093"></a>00093 };
-<a name="l00094"></a>00094 
+<a name="l00031"></a>00031     <span class="keywordflow">try</span>
+<a name="l00032"></a>00032     {
+<a name="l00033"></a>00033         <span class="comment">// Set the expression</span>
+<a name="l00034"></a>00034         <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a" title="muParser formula object.">muParser</a>.SetExpr (str);
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036         <span class="comment">// muParser precompiles to bytecode only on the first call to Eval,</span>
+<a name="l00037"></a>00037         <span class="comment">// while we want AFormula formulas to precompile right now.</span>
+<a name="l00038"></a>00038         <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a" title="muParser formula object.">muParser</a>.Eval ();
+<a name="l00039"></a>00039         
+<a name="l00040"></a>00040         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00041"></a>00041     }
+<a name="l00042"></a>00042     <span class="keywordflow">catch</span> (<span class="keyword">const</span> mu::Parser::exception_type &amp;e)
+<a name="l00043"></a>00043     {
+<a name="l00044"></a>00044         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa" title="Global storage for current error string.">errorMessage</a> = <span class="stringliteral">&quot;muParser: Error while setting expression to &quot;</span>;
+<a name="l00045"></a>00045         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa" title="Global storage for current error string.">errorMessage</a> += str;
+<a name="l00046"></a>00046         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00047"></a>00047     }
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a4a197462ef5bd1757feaa6618df42970">00050</a> std::string <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a4a197462ef5bd1757feaa6618df42970" title="Get the formula currently being solved.">MuParserFormula::expression</a> ()<span class="keyword"> const</span>
+<a name="l00051"></a>00051 <span class="keyword"></span>{
+<a name="l00052"></a>00052     <span class="keywordflow">return</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a" title="muParser formula object.">muParser</a>.GetExpr ();
+<a name="l00053"></a>00053 }
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a61b4222238a85a2b4e3808786ffdf773">00055</a> <span class="keywordtype">bool</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a61b4222238a85a2b4e3808786ffdf773" title="Set a variable to a given pointer.">MuParserFormula::setVariable</a> (<span class="keyword">const</span> std::string &amp;variable, <span class="keywordtype">double</span> *pointer)
+<a name="l00056"></a>00056 {
+<a name="l00057"></a>00057     <span class="keywordflow">try</span>
+<a name="l00058"></a>00058     {
+<a name="l00059"></a>00059         <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a" title="muParser formula object.">muParser</a>.DefineVar (variable, pointer);
+<a name="l00060"></a>00060         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062     <span class="keywordflow">catch</span> (<span class="keyword">const</span> mu::Parser::exception_type &amp;e)
+<a name="l00063"></a>00063     {
+<a name="l00064"></a>00064         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa" title="Global storage for current error string.">errorMessage</a> = <span class="stringliteral">&quot;muParser: Error while setting variable &quot;</span>;
+<a name="l00065"></a>00065         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa" title="Global storage for current error string.">errorMessage</a> += variable;
+<a name="l00066"></a>00066         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00070"></a><a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a62b7ca8ee7012070ef787eb98b2d09ec">00070</a> <span class="keywordtype">double</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a62b7ca8ee7012070ef787eb98b2d09ec" title="Evaluate this formula.">MuParserFormula::evaluate</a> ()
+<a name="l00071"></a>00071 {
+<a name="l00072"></a>00072     <span class="keywordflow">try</span>
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#a5e2081883a6c387354eb150a36867e1a" title="muParser formula object.">muParser</a>.Eval ();
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076     <span class="keywordflow">catch</span> (mu::Parser::exception_type &amp;e)
+<a name="l00077"></a>00077     {
+<a name="l00078"></a>00078         <a class="code" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa" title="Global storage for current error string.">errorMessage</a> = <span class="stringliteral">&quot;muParser: Error evaluating expression&quot;</span>;
+<a name="l00079"></a>00079         <span class="keywordflow">return</span> 0.0f;
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 };
+<a name="l00084"></a>00084 };
+<a name="l00085"></a>00085 
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -150,7 +142,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:32 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:48 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

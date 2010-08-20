@@ -18,7 +18,6 @@
 #define PARSETREE_H__
 
 #include <vector>
-
 #include "codegenerator.h"
 
 namespace AFormula
@@ -27,80 +26,107 @@ namespace AFormula
 namespace Private
 {
 
-template<typename T> class CodeGenerator;
+class CodeGenerator;
 
 //
 // Thanks to the LLVM docs for this easy-to-use parser setup, which
 // I've hacked and simplified even more for our case.
 //
 
-template<typename T>
+/// @class ExprAST
+/// @brief Base class for all expressions in our syntax tree.
 class ExprAST
 {
 public:
-	virtual ~ExprAST () 
-	{
-	}
+	/// @brief Destructor.
+	virtual ~ExprAST () { }
 
-	virtual T generate (CodeGenerator<T> *) = 0;
+	/// @brief Double-dispatch code generation method.
+	///
+	/// @param[in] gen Code generator to call for emitting code.
+	/// @return Result of @c CodeGenerator::emit, see documentation
+	/// for that function for information about this pointer type.
+	///
+	/// This method is overridden to call the appropriate @c
+	/// CodeGenerator::emit method 
+	virtual void *generate (CodeGenerator *gen) = 0;
 };
 
-template<typename T>
-class NumberExprAST : public ExprAST<T>
+
+/// @class NumberExprAST
+/// @brief Syntax tree element for a constant number.
+class NumberExprAST : public ExprAST
 {
 public:
-	NumberExprAST (double d) : val (d)
-	{
-	}
+	/// @brief Constructor.
+	/// @param[in] d Number which this element represents.
+	NumberExprAST (double d) : val (d) { }
 
+	/// @brief Number which this element represents.
 	double val;
 
-	virtual T generate (CodeGenerator<T> *gen)
+	virtual void *generate (CodeGenerator *gen)
 	{ return gen->emit (this); }
 };
 
-template<typename T>
-class VariableExprAST : public ExprAST<T>
+
+/// @class VariableExprAST
+/// @brief Syntax tree element for a reference to a variable.
+class VariableExprAST : public ExprAST
 {
 public:
-	VariableExprAST (const std::string &n, double *p) : name (n), pointer (p)
-	{
-	}
+	/// @brief Constructor.
+	/// @param[in] n Name of the variable which this element represents.
+	/// @param[in] p Pointer to the double value for this variable.
+	VariableExprAST (const std::string &n, double *p) : name (n), pointer (p) { }
 
+	/// @brief Name of the variable which this element represents.
 	std::string name;
+	/// @brief Pointer to the double value for this variable.
 	double *pointer;
 	
-	virtual T generate (CodeGenerator<T> *gen)
+	virtual void *generate (CodeGenerator *gen)
 	{ return gen->emit (this); }
 };
 
-template<typename T>
-class UnaryMinusExprAST : public ExprAST<T>
+
+/// @class UnaryMinusExprAST
+/// @brief Syntax tree element for a unary minus operator.
+class UnaryMinusExprAST : public ExprAST
 {
 public:
-	UnaryMinusExprAST (ExprAST<T> *c) : child (c)
-	{
-	}
+	/// @brief Constructor.
+	/// @param[in] c Expression which this operator negates.
+	UnaryMinusExprAST (ExprAST *c) : child (c) { }
+
+	/// @brief Destructor.
 	virtual ~UnaryMinusExprAST ()
 	{
 		if (child)
 			delete child;
 	}
 
-	ExprAST<T> *child;
+	/// @brief Expression which this operator negates.
+	ExprAST *child;
 
-	virtual T generate (CodeGenerator<T> *gen)
+	virtual void *generate (CodeGenerator *gen)
 	{ return gen->emit (this); }
 };
 
-template<typename T>
-class BinaryExprAST : public ExprAST<T>
+
+/// @class BinaryExprAST
+/// @brief Syntax tree element representing a binary-operator expression.
+class BinaryExprAST : public ExprAST
 {
 public:
-	BinaryExprAST (const std::string &o, ExprAST<T> *l, ExprAST<T> *r) :
-		op (o), LHS (l), RHS (r)
-	{
-	}
+	/// @brief Constructor.
+	/// @param[in] o String for the binary operator in this expression.
+	/// @param[in] l Left-hand side of this expression.
+	/// @param[in] r Right-hand side of this expression.
+	BinaryExprAST (const std::string &o, ExprAST *l, ExprAST *r) :
+		op (o), LHS (l), RHS (r) { }
+
+	/// @brief Destructor.
 	virtual ~BinaryExprAST ()
 	{
 		if (LHS)
@@ -109,32 +135,43 @@ public:
 			delete RHS;
 	}
 
+	/// @brief String for the binary operator in this expression.
 	std::string op;
-	ExprAST<T> *LHS, *RHS;
+	/// @brief Left-hand side of this expression.
+	ExprAST *LHS;
+	/// @brief Right-hand side of this expression.
+	ExprAST *RHS;
 
-	virtual T generate (CodeGenerator<T> *gen)
+	virtual void *generate (CodeGenerator *gen)
 	{ return gen->emit (this); }
 };
 
-template<typename T>
-class CallExprAST : public ExprAST<T>
+
+/// @class CallExprAST
+/// @brief Syntax tree element representing a function call.
+class CallExprAST : public ExprAST
 {
 public:
-	CallExprAST (const std::string &fun, const std::vector<ExprAST<T> *> &a) :
-		function (fun), args (a)
-	{
-	}
+	/// @brief Constructor.
+	/// @param[in] fun Function name to be called.
+	/// @param[in] a List of function arguments.
+	CallExprAST (const std::string &fun, const std::vector<ExprAST *> &a) :
+		function (fun), args (a) { }
+	
+	/// @brief Destructor.
 	virtual ~CallExprAST ()
 	{
-		for (typename std::vector<ExprAST<T> *>::iterator iter = args.begin () ;
+		for (std::vector<ExprAST *>::iterator iter = args.begin () ;
 		     iter != args.end () ; ++iter)
 			delete (*iter);
 	}
 
+	/// @brief Function name to be called.
 	std::string function;
-	std::vector<ExprAST<T> *> args;
+	/// @brief List of function arguments.
+	std::vector<ExprAST *> args;
 
-	virtual T generate (CodeGenerator<T> *gen)
+	virtual void *generate (CodeGenerator *gen)
 	{ return gen->emit (this); }
 };
 

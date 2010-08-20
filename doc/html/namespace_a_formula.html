@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -44,75 +45,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<h1>AFormula Namespace Reference</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>AFormula Namespace Reference</h1>
+<p>Namespace enclosing all <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> code.  
+<a href="#_details">More...</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html">Private</a></td></tr>
+
+<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Namespace containing code private to the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> implementation. </p>
+<br/></td></tr>
+</p>
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_formula.html">Formula</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A mathematical formula which can be evaluated.  <a href="class_a_formula_1_1_formula.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula.html#af86fb721a7608baae99cea974b5f9db4">timerFrequency</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula.html#a2d9a9ed65454515db780a7bc04c7c40b">timerTime</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula.html#adf2fc54853c619a6b97b68e4433f6284">signal_handler</a> (int signum)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula.html#a69045ecbbbad4f45421a6a31a6af5401">signal_handler</a> (int signum)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Trap for crash signals during backend testing.  <a href="#a69045ecbbbad4f45421a6a31a6af5401"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula.html#a114f015fb38570e033e7b2bb470214a2">defaultBackend</a> = Formula::BACKEND_MUPARSER</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Current backend which will be used if <code>BACKEND_DEFAULT</code> is specified.  <a href="#a114f015fb38570e033e7b2bb470214a2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">volatile sig_atomic_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula.html#ade6b09620039807bffcc3a6fcac49e9b">errorflag</a> = 0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set to 1 if a backend has crashed.  <a href="#ade6b09620039807bffcc3a6fcac49e9b"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Namespace enclosing all <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> code. </p>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="af86fb721a7608baae99cea974b5f9db4"></a><!-- doxytag: member="AFormula::timerFrequency" ref="af86fb721a7608baae99cea974b5f9db4" args="()" -->
+<a class="anchor" id="a69045ecbbbad4f45421a6a31a6af5401"></a><!-- doxytag: member="AFormula::signal_handler" ref="a69045ecbbbad4f45421a6a31a6af5401" args="(int signum)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static double AFormula::timerFrequency </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00117">117</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2d9a9ed65454515db780a7bc04c7c40b"></a><!-- doxytag: member="AFormula::timerTime" ref="a2d9a9ed65454515db780a7bc04c7c40b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static double AFormula::timerTime </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00122">122</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adf2fc54853c619a6b97b68e4433f6284"></a><!-- doxytag: member="AFormula::signal_handler" ref="adf2fc54853c619a6b97b68e4433f6284" args="(int signum)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void AFormula::signal_handler </td>
+          <td class="memname">static void AFormula::signal_handler </td>
           <td>(</td>
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>signum</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00137">137</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Trap for crash signals during backend testing. </p>
+<p>On our speed test, it is possible that a given backend may simply crash entirely. We want to try to guard against that and insulate the user, so endeavor to catch any signals, raise a flag, and abort the testing of that module. </p>
+
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00119">119</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -128,7 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00054">54</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Current backend which will be used if <code>BACKEND_DEFAULT</code> is specified. </p>
+
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00066">66</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -143,7 +122,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00135">135</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Set to 1 if a backend has crashed. </p>
+
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00111">111</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -153,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -162,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:36 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:49 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

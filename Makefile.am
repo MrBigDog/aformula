@@ -13,4 +13,7 @@ EXTRA_DIST = $(DX_CONFIG)
 changes:
 	$(top_srcdir)/build/gitlog2changelog.py
 
-
+docs:
+	$(SHELL) ./config.status include/aformula.h
+	rm -f $(top_srcdir)/doc/aformula.tag
+	$(MAKE) doxygen-doc

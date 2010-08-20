@@ -26,15 +26,6 @@ namespace Private
 extern std::string errorMessage;
 
 
-MuParserFormula::MuParserFormula () 
-{
-}
-
-MuParserFormula::~MuParserFormula ()
-{
-}
-
-
 bool MuParserFormula::setExpression (const std::string &str)
 {
 	try

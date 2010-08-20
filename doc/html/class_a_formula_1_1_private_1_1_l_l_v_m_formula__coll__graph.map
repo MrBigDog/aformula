@@ -1,11 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="AFormula::Private::JITFormula\&lt; llvm::Value * \&gt;" alt="" coords="1100,87,1436,116"/>
-<area shape="rect" id="node4" href="$class_a_formula_1_1_formula.html" title="AFormula::Formula" alt="" coords="731,5,877,35"/>
-<area shape="rect" id="node6" href="$class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="AFormula::Private::ExprAST\&lt; llvm::Value * \&gt;" alt="" coords="643,59,965,88"/>
-<area shape="rect" id="node8" href="$class_a_formula_1_1_private_1_1_parser.html" title="AFormula::Private::Parser\&lt; llvm::Value * \&gt;" alt="" coords="649,235,959,264"/>
-<area shape="rect" id="node10" title="STL class." alt="" coords="336,147,427,176"/>
-<area shape="rect" id="node12" title="STL class." alt="" coords="5,147,197,176"/>
-<area shape="rect" id="node14" href="$struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="AFormula::Private::Parser::Operator" alt="" coords="248,232,515,261"/>
-<area shape="rect" id="node16" href="$struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="AFormula::Private::Parser::Function" alt="" coords="249,285,513,315"/>
-<area shape="rect" id="node21" href="$class_a_formula_1_1_private_1_1_code_generator.html" title="AFormula::Private::CodeGenerator\&lt; llvm::Value * \&gt;" alt="" coords="1083,140,1453,169"/>
+<area shape="rect" id="node2" href="$class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="Base class for JIT formula compilers." alt="" coords="1541,85,1763,115"/>
+<area shape="rect" id="node4" href="$class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="1228,5,1375,35"/>
+<area shape="rect" id="node6" href="$class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="1197,59,1405,88"/>
+<area shape="rect" id="node8" href="$class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree." alt="" coords="1204,235,1399,264"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="249,183,340,212"/>
+<area shape="rect" id="node20" href="$struct_a_formula_1_1_private_1_1_parser_1_1_variable.html" title="Details of a user&#45;registered variable." alt="" coords="429,235,688,264"/>
+<area shape="rect" id="node12" title="STL class." alt="" coords="5,183,197,212"/>
+<area shape="rect" id="node14" href="$struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="Details of a hard&#45;coded binary operator." alt="" coords="816,288,1083,317"/>
+<area shape="rect" id="node16" href="$struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="Details of a hard&#45;coded function identifier." alt="" coords="817,341,1081,371"/>
+<area shape="rect" id="node24" href="$class_a_formula_1_1_private_1_1_code_generator.html" title="Abstract interface for code generator visitor." alt="" coords="1524,139,1780,168"/>
 </map>

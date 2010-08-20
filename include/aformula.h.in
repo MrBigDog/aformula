@@ -18,87 +18,184 @@
 #define AFORMULA_H__
 
 #include <string>
+#include <boost/utility.hpp>
+
+/// @mainpage AFormula
+/// @author Charles Pence
+/// @date August 8, 2010
+///
+/// Welcome to the documentation for AFormula!
+///
+/// AFormula is a library designed for high-performance evaluation of
+/// mathematical formulas, especially in numerical simulation and
+/// similar applications.  It is heavily inspired by muParser, but is
+/// able to utilize multiple different formula-evaluation backends,
+/// including muParser itself, and the LLVM and libjit just-in-time
+/// compilers.  Just-in-time compilation permits much faster formula
+/// evaluation, and the LLVM library, in particular, has been ported
+/// to many CPU architectures.
+///
+/// The main class exported by AFormula is @c AFormula::Formula.  See
+/// its documentation for more information.
 
 
+/// @namespace AFormula
+/// @brief Namespace enclosing all AFormula code.
 namespace AFormula
 {
 
 
-class Formula
+/// @class Formula
+/// @brief A mathematical formula which can be evaluated.
+///
+/// This class, with a relatively simple public API, is the main point
+/// of interaction with AFormula.  It encapsulates a single
+/// mathematical formula, with a given expression and set of
+/// variables.
+class Formula : public boost::noncopyable
 {
 public:
+	/// @brief Destructor.
 	virtual ~Formula ();
 
-	
-	//
-	// Available formula-execution backends.  If some of these are surrounded
-	// by #if 0 on your platform, *do not* enable them!  They were disabled at
-	// compile-time, and *will not* work.
-	//
+
+	/// @brief Available formula-execution backends.
+	///
+	/// @note Some of these backends may be surrounded by <tt>\#if
+	/// 0</tt> preprocessor blocks on your system.  If so, do not
+	/// remove them!  These backends were disabled at compile-time on
+	/// your system, and support for them is not included in AFormula.
+	/// Enabling them will cause AFormula-based programs to crash.
+	///
+	/// If you want to enable more backend support, install LLVM
+	/// and/or libjit, and consult the @c --with-llvm and @c
+	/// --with-libjit options to the @c configure script.
 	enum
 	{
+		/// @brief Default formula backend.
+		///
+		/// Usually, muParser will be the default backend, but if you
+		/// run the @c Formula::fastestBackend benchmark, passing @c
+		/// true for the @c setAsDefault parameter, future calls using
+		/// @c BACKEND_DEFAULT will use the known-fastest backend.
 		BACKEND_DEFAULT = 0,
+
+		/// @brief muParser backend.
 		BACKEND_MUPARSER,
 #if @LLVM_DEF@
+		/// @brief LLVM backend.
 		BACKEND_LLVM,
 #endif
 #if @LIBJIT_DEF@
+		/// @brief libjit backend.
 		BACKEND_LIBJIT,
 #endif
+		/// @brief Number of available backends.
 		NUM_BACKENDS
 	};
 	
-		
-	
-	//
-	// Formula creation and backend support
-	//
-	
-	// Create a Formula using the currently-selected backend.  The returned
-	// formula should be deleted using 'delete' when it is no longer
-	// needed.
+	/// @brief Create a new formula.
+	/// 
+	/// @param[in] withBackend Backend which will evaluate formula.
+	/// @return Newly created formula.
+	///
+	/// @note The returned formula should be deleted using 'delete'
+	/// when it is no longer needed.
+	///
+	/// See the documentation for the value @c
+	/// Formula::BACKEND_DEFAULT for an explanation of how the default
+	/// formula backend is selected.
 	static Formula *createFormula (int withBackend = BACKEND_DEFAULT);
 
-	// Determine using a run-time benchmark the fastest parsing backend.
-	// Note that this is a blocking call that will take some time.  If
-	// setAsDefault is true (the default), future calls to createFormula
-	// with BACKEND_DEFAULT will use the backend that this function
-	// determines to be the fastest.
+	/// @brief Determine fastest evaluation backend.
+	///
+	/// @param[in] setAsDefault If true, set the value of @c
+	/// Formula::BACKEND_DEFAULT to the fastest available backend
+	/// @return @c BACKEND_* value of the fastest available backend
+	///
+	/// This function will run a run-time benchmark to determine which
+	/// formula evaluation backend is fastest.  Note that this is a
+	/// blocking call, and it will take some time.
+	///
+	/// As mentioned here and in the documentation for @c
+	/// Formula::BACKEND_DEFAULT, if @c setAsDefault is @c true, then
+	/// future calls to @c Formula::createFormula passing @c
+	/// BACKEND_DEFAULT will use the tested-fastest backend.
 	static int fastestBackend (bool setAsDefault = true);
 
 
-	//
-	// Error support
-	//
 
-	// FIXME: As written, this function is not thread-safe
+	/// @brief Return any current error string.
+	///
+	/// This function implements an error stack somewhat like @c
+	/// glGetError().  It will return any current error string (or the
+	/// empty string if no error state exists), and will then reset
+	/// the internal error state to the empty string if the user
+	/// wishes to recover and try again.
+	///
+	/// @todo As written, this code is not currently thread-safe.
 	std::string errorString ();
 	
 
-	//
-	// Formula evaluation, expressions, and variables
-	//
 	
-	// Set and retrieve the expression to evaluate.  Return false on
-	// error.
+	/// @brief Set and parse the mathematical formula to solve.
+	///
+	/// @param[in] str Function to evaluate.
+	/// @return True if the function could be properly parsed and set,
+	/// false otherwise.
+	///
+	/// This function not only sets the current expression, but parses
+	/// and syntax-checks this expression.  Note that all variables
+	/// must be set before calling this function!  After calling this
+	/// function, the formula will be parsed into some sort of bytecode
+	/// or machine code, so future calls to @c Formula::evaluate should
+	/// be quite fast.
 	virtual bool setExpression (const std::string &str) = 0;
+
+	/// @brief Get the formula currently being solved.
+	///
+	/// @return The formula set by the last call to @c
+	/// Formula::setExpression.
 	virtual std::string expression () const = 0;
 
-	// Set a variable to a given double-pointer
+	
+	
+	/// @brief Set a variable to a given pointer.
+	///
+	/// @param[in] variable Name of the variable to be set.
+	/// @param[in] pointer Pointer to the double value for this variable.
+	/// @return True if the variable could be properly registered, false
+	/// otherwise.
+	///
+	/// This function registers a new variable for use in a formula.
+	/// Since variables in a formula are read/write (that is, we have an
+	/// assignment operator), you must supply a pointer to a double value
+	/// which holds the current value of the given variable, and will
+	/// hold any changes to the variable which are caused by evaluating
+	/// the formula.
+	///
+	/// A variable may fail to be registered if the variable has the same
+	/// name as another variable, one of the AFormula built-in functions,
+	/// or one of the built-in mathematical constants.
 	virtual bool setVariable (const std::string &variable, double *pointer) = 0;
 
 	
-	// Evaluate the formula
+	/// @brief Evaluate this formula.
+	///
+	/// @return The result of the formula evaluation.
+	///
+	/// This will evaluate the formula as given, and return the result.
+	/// Note that if this function fails, a NaN value will be returned,
+	/// and the appropriate error will be set in @c Function::errorString.
 	virtual double evaluate () = 0;
 
 protected:
-	// Constructor is private; call the creation function above
-	Formula ();
 
-private:
-	// Not implemented; this class is not copyable
-	Formula (const Formula &rhs);
-	Formula &operator= (const Formula &rhs);
+	/// @brief Constructor.
+	///
+	/// The constructor is protected; you may only create new @c Formula
+	/// objects by calling @c Formula::createFormula.
+	Formula ();
 };
 
 };

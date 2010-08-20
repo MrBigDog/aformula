@@ -28,14 +28,18 @@ namespace AFormula
 namespace Private
 {
 
-class LibJITFormula : public JITFormula<void>, public CodeGenerator<void>
+/// @brief Formula-compiling backend using libjit.
+///
+/// This backed uses the libjit library to compile our parsed expressions
+/// into machine code.
+class LibJITFormula : public JITFormula, public CodeGenerator
 {
 public:
-	virtual void emit (NumberExprAST<void> *);
-	virtual void emit (VariableExprAST<void> *);
-	virtual void emit (UnaryMinusExprAST<void> *);
-	virtual void emit (BinaryExprAST<void> *);
-	virtual void emit (CallExprAST<void> *);
+	virtual void *emit (NumberExprAST *);
+	virtual void *emit (VariableExprAST *);
+	virtual void *emit (UnaryMinusExprAST *);
+	virtual void *emit (BinaryExprAST *);
+	virtual void *emit (CallExprAST *);
 
 protected:
 	virtual bool buildFunction ();

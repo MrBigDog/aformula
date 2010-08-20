@@ -1,8 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="AFormula::Private::ExprAST" alt="" coords="5,112,213,141"/>
-<area shape="rect" id="node3" href="$class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html" title="AFormula::Private::BinaryExprAST" alt="" coords="279,5,529,35"/>
-<area shape="rect" id="node5" href="$class_a_formula_1_1_private_1_1_call_expr_a_s_t.html" title="AFormula::Private::CallExprAST" alt="" coords="288,59,520,88"/>
-<area shape="rect" id="node7" href="$class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="AFormula::Private::NumberExprAST" alt="" coords="273,112,535,141"/>
-<area shape="rect" id="node9" href="$class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html" title="AFormula::Private::UnaryMinusExprAST" alt="" coords="263,165,545,195"/>
-<area shape="rect" id="node11" href="$class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html" title="AFormula::Private::VariableExprAST" alt="" coords="275,219,533,248"/>
+<area shape="rect" id="node1" href="$class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html" title="Initialze LLVM target data on load." alt="" coords="5,5,256,35"/>
 </map>

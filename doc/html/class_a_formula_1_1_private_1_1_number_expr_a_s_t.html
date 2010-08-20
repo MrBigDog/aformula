@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -48,33 +49,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <h1>AFormula::Private::NumberExprAST Class Reference</h1><!-- doxytag: class="AFormula::Private::NumberExprAST" --><!-- doxytag: inherits="AFormula::Private::ExprAST" -->
+<p>Syntax tree element for a constant number.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="parsetree_8h_source.html">parsetree.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AFormula::Private::NumberExprAST:</div>
 <div class="dynsection">
 <div class="center"><img src="class_a_formula_1_1_private_1_1_number_expr_a_s_t__inherit__graph.png" border="0" usemap="#_a_formula_1_1_private_1_1_number_expr_a_s_t_inherit__map" alt="Inheritance graph"/></div>
 <map name="_a_formula_1_1_private_1_1_number_expr_a_s_t_inherit__map" id="_a_formula_1_1_private_1_1_number_expr_a_s_t_inherit__map">
-<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="AFormula::Private::ExprAST" alt="" coords="32,5,240,35"/></map>
+<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="32,5,240,35"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for AFormula::Private::NumberExprAST:</div>
 <div class="dynsection">
 <div class="center"><img src="class_a_formula_1_1_private_1_1_number_expr_a_s_t__coll__graph.png" border="0" usemap="#_a_formula_1_1_private_1_1_number_expr_a_s_t_coll__map" alt="Collaboration graph"/></div>
 <map name="_a_formula_1_1_private_1_1_number_expr_a_s_t_coll__map" id="_a_formula_1_1_private_1_1_number_expr_a_s_t_coll__map">
-<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="AFormula::Private::ExprAST" alt="" coords="32,5,240,35"/></map>
+<area shape="rect" id="node2" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="32,5,240,35"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_a_formula_1_1_private_1_1_number_expr_a_s_t-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html#a868bcacf4221e4d3f158373c941faf39">NumberExprAST</a> (double d)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a868bcacf4221e4d3f158373c941faf39"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html#a1c4c9990abbcdfc506e492a590ab8e51">generate</a> (<a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html">CodeGenerator</a> *gen)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Double-dispatch code generation method.  <a href="#a1c4c9990abbcdfc506e492a590ab8e51"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html#abb140344f702ae2ef9ccdfb150b2355a">val</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Number which this element represents.  <a href="#abb140344f702ae2ef9ccdfb150b2355a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Syntax tree element for a constant number. </p>
 
-<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00045">45</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
+<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00058">58</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a868bcacf4221e4d3f158373c941faf39"></a><!-- doxytag: member="AFormula::Private::NumberExprAST::NumberExprAST" ref="a868bcacf4221e4d3f158373c941faf39" args="(double d)" -->
 <div class="memitem">
@@ -92,7 +100,15 @@ Collaboration diagram for AFormula::Private::NumberExprAST:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00048">48</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
+<p>Constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>d</em>&nbsp;</td><td>Number which this element represents. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00063">63</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
 
 </div>
 </div>
@@ -113,9 +129,19 @@ Collaboration diagram for AFormula::Private::NumberExprAST:</div>
 </div>
 <div class="memdoc">
 
-<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#ad075e22328e4c06a4c309a175163917b">AFormula::Private::ExprAST</a>.</p>
+<p>Double-dispatch code generation method. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"><tt>[in]</tt>&nbsp;</td><td valign="top"><em>gen</em>&nbsp;</td><td>Code generator to call for emitting code. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Result of <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">CodeGenerator::emit</a></code>, see documentation for that function for information about this pointer type.</dd></dl>
+<p>This method is overridden to call the appropriate <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">CodeGenerator::emit</a></code> method </p>
 
-<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00052">52</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
+<p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#aa35ac8fb32acb6c6ebf33c634346dc60">AFormula::Private::ExprAST</a>.</p>
+
+<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00068">68</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
 
 </div>
 </div>
@@ -131,7 +157,9 @@ Collaboration diagram for AFormula::Private::NumberExprAST:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00050">50</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
+<p>Number which this element represents. </p>
+
+<p>Definition at line <a class="el" href="parsetree_8h_source.html#l00066">66</a> of file <a class="el" href="parsetree_8h_source.html">parsetree.h</a>.</p>
 
 </div>
 </div>
@@ -144,7 +172,7 @@ Collaboration diagram for AFormula::Private::NumberExprAST:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -153,7 +181,7 @@ Collaboration diagram for AFormula::Private::NumberExprAST:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:38 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:51 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

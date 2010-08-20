@@ -14,14 +14,12 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifdef _WIN32
-#include <windows.h>
-#endif
 
 #include <aformula.h>
 #include <config.h>
 #include <csignal>
-#include <sys/time.h>
+
+#include "timer.h"
 #include "muparserformula.h"
 
 #ifdef HAVE_LLVM
@@ -34,14 +32,25 @@
 namespace AFormula
 {
 
-//
-// Error message support
-//
+/// @namespace AFormula::Private
+/// @brief Namespace containing code private to the AFormula implementation.
+///
+/// No code in the Private namespace should be visible to users of the
+/// AFormula library, nor should it be usable.
 namespace Private
 {
+/// @brief Global storage for current error string.
+///
+/// Our library code sets error messages in this variable.  It is returned and
+/// then cleared by Formula::errorString().
+///
+/// @todo This is not currently thread-safe!
 std::string errorMessage;
 };
 
+//
+// Error message support
+//
 std::string Formula::errorString ()
 {
 	std::string copy (Private::errorMessage);
@@ -52,8 +61,11 @@ std::string Formula::errorString ()
 
 
 //
-// Backend Selection
+// Backend selection
 //
+
+/// @brief Current backend which will be used if @c BACKEND_DEFAULT
+/// is specified.
 static int defaultBackend = Formula::BACKEND_MUPARSER;
 
 Formula *Formula::createFormula (int withBackend)
@@ -95,49 +107,19 @@ Formula *Formula::createFormula (int withBackend)
 }
 
 
-//
-// I hate this platform-specific hackery, but we have to get a sufficiently
-// high-resolution timer on Win32, and this is the only way.
-//
-#ifdef _WIN32
-
-static double timerFrequency ()
-{
-	LARGE_INTEGER ticksPerSecond;
-	QueryPerformanceFrequency (&ticksPerSecond);
-	return 1.0 / (double)ticksPerSecond.QuadPart;
-}
-
-static double timerTime ()
-{
-	LARGE_INTEGER ticks;
-	QueryPerformanceCounter (&ticks);
-	return (double)ticks.QuadPart;
-}
-
-#else
-
-static double timerFrequency ()
-{
-	return 1e-6;
-}
-
-static double timerTime ()
-{
-	struct timeval tp;
-	if (gettimeofday (&tp, NULL) != 0)
-		return 0.0f;
-	
-	return tp.tv_sec * 1000000.0 + tp.tv_usec;
-}
-
-#endif
 
 extern "C"
 {
+	/// @brief Set to 1 if a backend has crashed.
 	volatile sig_atomic_t errorflag = 0;
-	
-	void signal_handler (int signum)
+
+	/// @brief Trap for crash signals during backend testing.
+	///
+	/// On our speed test, it is possible that a given backend may simply crash
+	/// entirely.  We want to try to guard against that and insulate the user,
+	/// so endeavor to catch any signals, raise a flag, and abort the testing of
+	/// that module.
+	static void signal_handler (int signum)
 	{
 		// One of the backends went down, let everybody know
 		errorflag = 1;
@@ -147,7 +129,7 @@ extern "C"
 int Formula::fastestBackend (bool setAsDefault)
 {
 	int bestBackend = BACKEND_MUPARSER;
-	double bestBackendTime = 9999999.0;
+	uint64_t bestBackendTime = UINT64_MAX;
 
 	// Trap SIGABRT, SIGFPE, SIGILL, SIGSEGV, and don't let a rogue
 	// backend bring down the entire system
@@ -161,7 +143,7 @@ int Formula::fastestBackend (bool setAsDefault)
 		// Reset the signal error flag
 		errorflag = 0;
 		
-		double timeStart = timerTime ();
+		uint64_t timeStart = Private::timerTime ();
 		
 		Formula *formula = Formula::createFormula (backend);
 		if (!formula || errorflag)
@@ -189,12 +171,15 @@ int Formula::fastestBackend (bool setAsDefault)
 			}
 		}
 
+		// We leak memory here on purpose, because we don't know whether
+		// the crash has broken state in such a way that deleting the formula
+		// variable will cause another crash.
 		if (errorflag)
 			continue;
 		
 		delete formula;
 		
-		double timeEnd = timerTime ();
+		uint64_t timeEnd = Private::timerTime ();
 
 		if (timeEnd - timeStart < bestBackendTime)
 		{

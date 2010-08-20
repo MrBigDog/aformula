@@ -1,194 +1,9 @@
 <?xml version='1.0' encoding='ISO-8859-1' standalone='yes' ?>
 <tagfile>
-  <compound kind="file">
-    <name>aformula.h</name>
-    <path>/Users/cpence/Development/aformula/include/</path>
-    <filename>aformula_8h</filename>
-    <class kind="class">AFormula::Formula</class>
-    <namespace>AFormula</namespace>
-  </compound>
-  <compound kind="file">
-    <name>codegenerator.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>codegenerator_8h</filename>
-    <class kind="class">AFormula::Private::CodeGenerator</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>formula.cpp</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>formula_8cpp</filename>
-    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
-    <includes id="formula_8cpp" name="formula.cpp" local="no" imported="no">config.h</includes>
-    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
-    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-    <member kind="function" static="yes">
-      <type>static double</type>
-      <name>timerFrequency</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>af86fb721a7608baae99cea974b5f9db4</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static double</type>
-      <name>timerTime</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>a2d9a9ed65454515db780a7bc04c7c40b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>signal_handler</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>adf2fc54853c619a6b97b68e4433f6284</anchor>
-      <arglist>(int signum)</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::string</type>
-      <name>errorMessage</name>
-      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>ac938af24f2ad5efc3153d39d0470e7aa</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static int</type>
-      <name>defaultBackend</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>a114f015fb38570e033e7b2bb470214a2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>volatile sig_atomic_t</type>
-      <name>errorflag</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>ade6b09620039807bffcc3a6fcac49e9b</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>jitformula.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>jitformula_8h</filename>
-    <includes id="parser_8h" name="parser.h" local="yes" imported="no">parser.h</includes>
-    <class kind="class">AFormula::Private::JITFormula</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>libjitformula.cpp</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>libjitformula_8cpp</filename>
-    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
-    <includes id="libjitformula_8h" name="libjitformula.h" local="yes" imported="no">libjitformula.h</includes>
-    <includes id="libjitformula_8cpp" name="libjitformula.cpp" local="yes" imported="no">parsetree.h</includes>
-    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>libjitformula.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>libjitformula_8h</filename>
-    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
-    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
-    <class kind="class">AFormula::Private::LibJITFormula</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>llvmformula.cpp</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>llvmformula_8cpp</filename>
-    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
-    <includes id="llvmformula_8h" name="llvmformula.h" local="yes" imported="no">llvmformula.h</includes>
-    <includes id="parsetree_8h" name="parsetree.h" local="yes" imported="no">parsetree.h</includes>
-    <class kind="class">AFormula::Private::LLVMInitializer</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-    <member kind="variable">
-      <type>LLVMInitializer</type>
-      <name>llvmInitializer</name>
-      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>af18dc43e3908720ae81abaf1b19376b2</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>llvmformula.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>llvmformula_8h</filename>
-    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
-    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
-    <class kind="class">AFormula::Private::LLVMFormula</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>muparserformula.cpp</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>muparserformula_8cpp</filename>
-    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
-    <includes id="muparserformula_8h" name="muparserformula.h" local="yes" imported="no">muparserformula.h</includes>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>muparserformula.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>muparserformula_8h</filename>
-    <class kind="class">AFormula::Private::MuParserFormula</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>parser.cpp</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>parser_8cpp</filename>
-    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-    <member kind="function">
-      <type>void</type>
-      <name>clearVariables</name>
-      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>a86eb95b49c0c0ceb0263bac304dd113f</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>setVariable</name>
-      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>aafa829130cf8d4c2939f63652447e11b</anchor>
-      <arglist>(const std::string &amp;name, double *pointer)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>parser.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>parser_8h</filename>
-    <class kind="class">AFormula::Private::Parser</class>
-    <class kind="struct">AFormula::Private::Parser::Function</class>
-    <class kind="struct">AFormula::Private::Parser::Operator</class>
-    <class kind="struct">AFormula::Private::Parser::Variable</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
-  </compound>
-  <compound kind="file">
-    <name>parsetree.h</name>
-    <path>/Users/cpence/Development/aformula/src/</path>
-    <filename>parsetree_8h</filename>
-    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
-    <class kind="class">AFormula::Private::ExprAST</class>
-    <class kind="class">AFormula::Private::NumberExprAST</class>
-    <class kind="class">AFormula::Private::VariableExprAST</class>
-    <class kind="class">AFormula::Private::UnaryMinusExprAST</class>
-    <class kind="class">AFormula::Private::BinaryExprAST</class>
-    <class kind="class">AFormula::Private::CallExprAST</class>
-    <namespace>AFormula</namespace>
-    <namespace>AFormula::Private</namespace>
+  <compound kind="page">
+    <name>index</name>
+    <title>AFormula</title>
+    <filename>index</filename>
   </compound>
   <compound kind="namespace">
     <name>AFormula</name>
@@ -196,24 +11,10 @@
     <namespace>AFormula::Private</namespace>
     <class kind="class">AFormula::Formula</class>
     <member kind="function" static="yes">
-      <type>static double</type>
-      <name>timerFrequency</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>af86fb721a7608baae99cea974b5f9db4</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" static="yes">
-      <type>static double</type>
-      <name>timerTime</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>a2d9a9ed65454515db780a7bc04c7c40b</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
+      <type>static void</type>
       <name>signal_handler</name>
       <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>adf2fc54853c619a6b97b68e4433f6284</anchor>
+      <anchor>a69045ecbbbad4f45421a6a31a6af5401</anchor>
       <arglist>(int signum)</arglist>
     </member>
     <member kind="variable" static="yes">
@@ -327,20 +128,6 @@
       <anchor>a8e6d50fc848b5a6ff5070f18b4d5934d</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" protection="private">
-      <type></type>
-      <name>Formula</name>
-      <anchorfile>class_a_formula_1_1_formula.html</anchorfile>
-      <anchor>a6fdad711314eac734a586852de60c501</anchor>
-      <arglist>(const Formula &amp;rhs)</arglist>
-    </member>
-    <member kind="function" protection="private">
-      <type>Formula &amp;</type>
-      <name>operator=</name>
-      <anchorfile>class_a_formula_1_1_formula.html</anchorfile>
-      <anchor>aced2ad07beb88adb78f2288346ab3a93</anchor>
-      <arglist>(const Formula &amp;rhs)</arglist>
-    </member>
   </compound>
   <compound kind="namespace">
     <name>AFormula::Private</name>
@@ -358,19 +145,19 @@
     <class kind="class">AFormula::Private::UnaryMinusExprAST</class>
     <class kind="class">AFormula::Private::BinaryExprAST</class>
     <class kind="class">AFormula::Private::CallExprAST</class>
-    <member kind="function">
-      <type>void</type>
-      <name>clearVariables</name>
+    <member kind="function" static="yes">
+      <type>static uint64_t</type>
+      <name>timerFrequency</name>
       <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>a86eb95b49c0c0ceb0263bac304dd113f</anchor>
+      <anchor>a91c5f14e2808cc7d2a497a737e7d2202</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function">
-      <type>bool</type>
-      <name>setVariable</name>
+    <member kind="function" static="yes">
+      <type>static uint64_t</type>
+      <name>timerTime</name>
       <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>aafa829130cf8d4c2939f63652447e11b</anchor>
-      <arglist>(const std::string &amp;name, double *pointer)</arglist>
+      <anchor>a6d9ae09aee8886a3994bf565b21105a7</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="variable">
       <type>std::string</type>
@@ -436,132 +223,131 @@
   <compound kind="class">
     <name>AFormula::Private::JITFormula</name>
     <filename>class_a_formula_1_1_private_1_1_j_i_t_formula.html</filename>
-    <templarg>T</templarg>
     <base>AFormula::Formula</base>
     <member kind="function">
       <type></type>
       <name>JITFormula</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>ac836b704f8e3ec9857334dd2e387b48c</anchor>
+      <anchor>a063c0acb77ec9c2a9ae5109885606cb4</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~JITFormula</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>afdeb1f712f114d3957a2b3e28036d27b</anchor>
+      <anchor>a0cd558d354fd19d077ba5cd3167e6d29</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>setExpression</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>a156ce32261f1864e012b33bcd66c6686</anchor>
+      <anchor>a0f12b39760a1c1b3f6cd81f4446f146c</anchor>
       <arglist>(const std::string &amp;str)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual std::string</type>
       <name>expression</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>a2afb8ab1cbf3d72d8f9908ae5a135c76</anchor>
+      <anchor>ac1d196d30652798c19a5a2e29969d128</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>setVariable</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>a7e71e5a4214d7d52321d0de622393819</anchor>
+      <anchor>a555f26e3d4c7b9312a5aada5ff4d8adc</anchor>
       <arglist>(const std::string &amp;variable, double *pointer)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual double</type>
       <name>evaluate</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>acdfc6e402414d8ee6f7791f20bc20fc3</anchor>
+      <anchor>ab866da7b27d8baa4f1c87990db67bb7f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="typedef" protection="protected">
       <type>double(*</type>
       <name>FunctionPointer</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>ac8fec2c1c012d5b4f0a70b1dbfce1dc3</anchor>
+      <anchor>ae1f13bd7b7d202feca4b0720368ce7e6</anchor>
       <arglist>)(void)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual bool</type>
       <name>buildFunction</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>ac3f8bb2a19ce64908a7ad8419860f1fc</anchor>
+      <anchor>aaff7d5d04e06b82c1824e83d768e9b7d</anchor>
       <arglist>()=0</arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>FunctionPointer</type>
       <name>func</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>a82f677d0dd24b095fe0c2952dc622429</anchor>
+      <anchor>afb5e6cd855800c3a8eb6050c2f7d54f8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
       <type>std::string</type>
       <name>expr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>aed13c8ae98b80b8fd2e0c639057935ad</anchor>
+      <anchor>a7b795456e3b59e179a02a893c7ff43f3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>Parser&lt; T &gt; *</type>
+      <type>Parser</type>
       <name>parser</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>a9964690dd57fa923a235bd4af4db4f90</anchor>
+      <anchor>ab277cbcbe433bedca24d673e6ce1d328</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseTree</name>
       <anchorfile>class_a_formula_1_1_private_1_1_j_i_t_formula.html</anchorfile>
-      <anchor>a3e00d707b1fe50ad1bb7761cac9443fc</anchor>
+      <anchor>a2ef9682a054ecea451fe4d615bb7c962</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>AFormula::Private::LibJITFormula</name>
     <filename>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</filename>
-    <base>JITFormula&lt; void &gt;</base>
-    <base>CodeGenerator&lt; void &gt;</base>
+    <base>AFormula::Private::JITFormula</base>
+    <base>AFormula::Private::CodeGenerator</base>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
-      <anchor>ad90d6067bdfb9f72aaef80828a7606df</anchor>
-      <arglist>(NumberExprAST&lt; void &gt; *)</arglist>
+      <anchor>aad8dfcc35e634e44cfa4dd4f7746e9bf</anchor>
+      <arglist>(NumberExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
-      <anchor>a12c991c065bb1d5b026e27f53cc1d1e8</anchor>
-      <arglist>(VariableExprAST&lt; void &gt; *)</arglist>
+      <anchor>a1770eacbdea19f31561a62a2cec0b3bb</anchor>
+      <arglist>(VariableExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
-      <anchor>a9f5505ad182a8ded4651af6f14238718</anchor>
-      <arglist>(UnaryMinusExprAST&lt; void &gt; *)</arglist>
+      <anchor>a2c92745634f473b335c0821c0dc60d08</anchor>
+      <arglist>(UnaryMinusExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
-      <anchor>a82249f5163a8438ab011dc5042b3c40f</anchor>
-      <arglist>(BinaryExprAST&lt; void &gt; *)</arglist>
+      <anchor>a0c98d3305a18ab65e8150069aa21120a</anchor>
+      <arglist>(BinaryExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual void</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
-      <anchor>aeca9ab8096915ab720737f372fa05a41</anchor>
-      <arglist>(CallExprAST&lt; void &gt; *)</arglist>
+      <anchor>a61b67fe0727ae23c6757db0145e91301</anchor>
+      <arglist>(CallExprAST *)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
@@ -585,8 +371,8 @@
   <compound kind="class">
     <name>AFormula::Private::LLVMFormula</name>
     <filename>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</filename>
-    <base>JITFormula&lt; llvm::Value * &gt;</base>
-    <base>CodeGenerator&lt; llvm::Value * &gt;</base>
+    <base>AFormula::Private::JITFormula</base>
+    <base>AFormula::Private::CodeGenerator</base>
     <member kind="function">
       <type></type>
       <name>LLVMFormula</name>
@@ -602,39 +388,39 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual llvm::Value *</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>a92f6907db93b775fc4dfe86aedeca1f9</anchor>
-      <arglist>(NumberExprAST&lt; llvm::Value * &gt; *)</arglist>
+      <anchor>a87d0a39ed6d3e757772640cb949a7601</anchor>
+      <arglist>(NumberExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual llvm::Value *</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>a2869524bb401c92f116aea611bdee834</anchor>
-      <arglist>(VariableExprAST&lt; llvm::Value * &gt; *)</arglist>
+      <anchor>a06bea0659f8df8da6c4d69860844470f</anchor>
+      <arglist>(VariableExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual llvm::Value *</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>a7a3c335ea5d8c2d4fad48e9cbb089aad</anchor>
-      <arglist>(UnaryMinusExprAST&lt; llvm::Value * &gt; *)</arglist>
+      <anchor>a5abe6d5bc957ff187541674840eff035</anchor>
+      <arglist>(UnaryMinusExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual llvm::Value *</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>a27e21c1510ebb875b5d75295b5c130f7</anchor>
-      <arglist>(BinaryExprAST&lt; llvm::Value * &gt; *)</arglist>
+      <anchor>a4c8d30c40c06363f17832d51d52538f9</anchor>
+      <arglist>(BinaryExprAST *)</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual llvm::Value *</type>
+      <type>virtual void *</type>
       <name>emit</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>a6e91638d09756e9b4860c39f72e69d5b</anchor>
-      <arglist>(CallExprAST&lt; llvm::Value * &gt; *)</arglist>
+      <anchor>a0221c0f34d97485ccc8ab66891ca567a</anchor>
+      <arglist>(CallExprAST *)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
@@ -652,9 +438,9 @@
     </member>
     <member kind="variable" protection="private">
       <type>llvm::Module *</type>
-      <name>theModule</name>
+      <name>module</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>a880a9f8ec5ccfb03ff83e9ee03d27d0a</anchor>
+      <anchor>afe38538e9a086b617875aac19d43ec16</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -665,10 +451,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
-      <type>llvm::IRBuilder</type>
+      <type>llvm::IRBuilder *</type>
       <name>builder</name>
       <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_formula.html</anchorfile>
-      <anchor>ab3b423f97a64aeb06108dd43cddc96ae</anchor>
+      <anchor>a6263141d8b59b1d655f3a9894a667331</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private">
@@ -690,20 +476,6 @@
     <name>AFormula::Private::MuParserFormula</name>
     <filename>class_a_formula_1_1_private_1_1_mu_parser_formula.html</filename>
     <base>AFormula::Formula</base>
-    <member kind="function">
-      <type></type>
-      <name>MuParserFormula</name>
-      <anchorfile>class_a_formula_1_1_private_1_1_mu_parser_formula.html</anchorfile>
-      <anchor>a67e313efefc3309e22e56b526d7819ac</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function" virtualness="virtual">
-      <type>virtual</type>
-      <name>~MuParserFormula</name>
-      <anchorfile>class_a_formula_1_1_private_1_1_mu_parser_formula.html</anchorfile>
-      <anchor>aeb888283943f3664943096628fc2bf7e</anchor>
-      <arglist>()</arglist>
-    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>setExpression</name>
@@ -761,10 +533,10 @@
       <arglist>(const std::string &amp;name, double *pointer)</arglist>
     </member>
     <member kind="function">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseString</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>aabcc23a09b93872c31ff5b1a3f5cfe9c</anchor>
+      <anchor>aa7eb721fb01832a11f798c2b4a0e41fb</anchor>
       <arglist>(const std::string &amp;f)</arglist>
     </member>
     <member kind="enumvalue">
@@ -870,66 +642,66 @@
       <arglist>(const std::string &amp;ident) const </arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseNumberExpr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>ae331f3dbb39c9f59626e40b19f78f93f</anchor>
+      <anchor>ade79ac44b79a92c15f897f710166be75</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseOpenParenExpr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>a22be19ed4cae088f04fed52073ecb1f0</anchor>
+      <anchor>ac5a6f2ea6ea62c8fd2ea13840414d732</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseFunctionIdentifierExpr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>ac9edb89a684334ab5331079557c5e492</anchor>
+      <anchor>a0a8005aa748fff7e4cf6d1bc9996e6e7</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseConstantIdentifierExpr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>ace90cb5c77dfaa3729d77af542581ab2</anchor>
+      <anchor>a1f1fce560248993e274d4e078245101f</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseVariableIdentifierExpr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>a31ed870754a5a98e528a3b8f47c70b46</anchor>
+      <anchor>a6304b4e4cd703819a59819dd9f2a0daf</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseUnaryMinusExpr</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>a0fc6ffa906a5a927bfd7094407cd43e8</anchor>
+      <anchor>a7ace9cfa72dbb8f1875985f732d411db</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parsePrimary</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>acfeadc0303e5421b505667466956b279</anchor>
+      <anchor>acb1666c91a10b817fb94819a0f856042</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseBinOpRHS</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>a8fecdda1a6584a6a1718d4976625357a</anchor>
-      <arglist>(int exprPrecedence, ExprAST&lt; T &gt; *LHS)</arglist>
+      <anchor>a729da38c31ffe513a35981bf005ea48e</anchor>
+      <arglist>(int exprPrecedence, ExprAST *LHS)</arglist>
     </member>
     <member kind="function" protection="private">
-      <type>ExprAST&lt; T &gt; *</type>
+      <type>ExprAST *</type>
       <name>parseExpression</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>aea6dcea2460b3e5e307a853113ef764c</anchor>
+      <anchor>ab74a5794a994f76cbbf6e6afed7aa006</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
@@ -975,13 +747,6 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
-      <type>static const char *</type>
-      <name>tokenStrings</name>
-      <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>ab9c5d3bb266367641afe7a94dcf9ac74</anchor>
-      <arglist>[]</arglist>
-    </member>
-    <member kind="variable" protection="private" static="yes">
       <type>static const int</type>
       <name>NUM_FUNCTIONS</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
@@ -992,7 +757,7 @@
       <type>static const Function</type>
       <name>functions</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>adf71d3768a4e80050ee88e6f13099813</anchor>
+      <anchor>aae107b95a9b2899f049ef2bce8efb5ed</anchor>
       <arglist>[NUM_FUNCTIONS]</arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
@@ -1013,7 +778,7 @@
       <type>static const Operator</type>
       <name>operators</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>ac96962ae509c90e81a759eebc4d9ab4d</anchor>
+      <anchor>a42642a3527fc35248d0b8f2bc2bce995</anchor>
       <arglist>[NUM_OPERATORS]</arglist>
     </member>
   </compound>
@@ -1085,8 +850,8 @@
       <type>virtual void *</type>
       <name>generate</name>
       <anchorfile>class_a_formula_1_1_private_1_1_expr_a_s_t.html</anchorfile>
-      <anchor>ad075e22328e4c06a4c309a175163917b</anchor>
-      <arglist>(CodeGenerator *)=0</arglist>
+      <anchor>aa35ac8fb32acb6c6ebf33c634346dc60</anchor>
+      <arglist>(CodeGenerator *gen)=0</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -1224,7 +989,7 @@
       <type>ExprAST *</type>
       <name>RHS</name>
       <anchorfile>class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html</anchorfile>
-      <anchor>a6486c908e52a4f41389ed3cc54fe4212</anchor>
+      <anchor>ae21aeb1fcdfabfd5696f490d75a1c4d6</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -1247,10 +1012,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
-      <type>virtual T</type>
+      <type>virtual void *</type>
       <name>generate</name>
       <anchorfile>class_a_formula_1_1_private_1_1_call_expr_a_s_t.html</anchorfile>
-      <anchor>a036c08e0a9928120125e8574b86d7472</anchor>
+      <anchor>af97315aeb12d5ab238511c50ed8108db</anchor>
       <arglist>(CodeGenerator *gen)</arglist>
     </member>
     <member kind="variable">

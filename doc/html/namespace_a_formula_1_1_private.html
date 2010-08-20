@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -46,74 +47,91 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<h1>AFormula::Private Namespace Reference</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>AFormula::Private Namespace Reference</h1>
+<p>Namespace containing code private to the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> implementation.  
+<a href="#_details">More...</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html">CodeGenerator</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Abstract interface for code generator visitor.  <a href="class_a_formula_1_1_private_1_1_code_generator.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html">JITFormula</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base class for JIT formula compilers.  <a href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html">LibJITFormula</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Formula-compiling backend using libjit.  <a href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html">LLVMInitializer</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialze LLVM target data on load.  <a href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html">LLVMFormula</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">LLVM formula-compiling backend.  <a href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html">MuParserFormula</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">muParser formula backend.  <a href="class_a_formula_1_1_private_1_1_mu_parser_formula.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_parser.html">Parser</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class which parses a string formula into an abstract syntax tree.  <a href="class_a_formula_1_1_private_1_1_parser.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html">ExprAST</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base class for all expressions in our syntax tree.  <a href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html">NumberExprAST</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syntax tree element for a constant number.  <a href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html">VariableExprAST</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syntax tree element for a reference to a variable.  <a href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">UnaryMinusExprAST</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syntax tree element for a unary minus operator.  <a href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html">BinaryExprAST</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syntax tree element representing a binary-operator expression.  <a href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syntax tree element representing a function call.  <a href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#a86eb95b49c0c0ceb0263bac304dd113f">clearVariables</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#aafa829130cf8d4c2939f63652447e11b">setVariable</a> (const std::string &amp;name, double *pointer)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static uint64_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#a91c5f14e2808cc7d2a497a737e7d2202">timerFrequency</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return frequency of high-resolution native timer.  <a href="#a91c5f14e2808cc7d2a497a737e7d2202"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static uint64_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#a6d9ae09aee8886a3994bf565b21105a7">timerTime</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return current high-resolution system time.  <a href="#a6d9ae09aee8886a3994bf565b21105a7"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#ac938af24f2ad5efc3153d39d0470e7aa">errorMessage</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Global storage for current error string.  <a href="#ac938af24f2ad5efc3153d39d0470e7aa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html">LLVMInitializer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#af18dc43e3908720ae81abaf1b19376b2">llvmInitializer</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Global object to initialize LLVM.  <a href="#af18dc43e3908720ae81abaf1b19376b2"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Namespace containing code private to the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> implementation. </p>
+<p>No code in the <a class="el" href="namespace_a_formula_1_1_private.html" title="Namespace containing code private to the AFormula implementation.">Private</a> namespace should be visible to users of the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> library, nor should it be usable. </p>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a86eb95b49c0c0ceb0263bac304dd113f"></a><!-- doxytag: member="AFormula::Private::clearVariables" ref="a86eb95b49c0c0ceb0263bac304dd113f" args="()" -->
+<a class="anchor" id="a91c5f14e2808cc7d2a497a737e7d2202"></a><!-- doxytag: member="AFormula::Private::timerFrequency" ref="a91c5f14e2808cc7d2a497a737e7d2202" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void AFormula::Private::clearVariables </td>
+          <td class="memname">uint64_t AFormula::Private::timerFrequency </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00028">28</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Return frequency of high-resolution native timer. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Frequency of timer, in seconds.</dd></dl>
+<p>We need a platform-specific, high-resolution timer in order to test which formula-compilation backend performs the fastest at runtime. This function returns that timer's frequency, in Hz. (Execute <code><a class="el" href="namespace_a_formula_1_1_private.html#a6d9ae09aee8886a3994bf565b21105a7" title="Return current high-resolution system time.">timerTime()</a> / <a class="el" href="namespace_a_formula_1_1_private.html#a91c5f14e2808cc7d2a497a737e7d2202" title="Return frequency of high-resolution native timer.">timerFrequency()</a></code> to get the elapsed time in seconds.) </p>
 
 </div>
 </div>
-<a class="anchor" id="aafa829130cf8d4c2939f63652447e11b"></a><!-- doxytag: member="AFormula::Private::setVariable" ref="aafa829130cf8d4c2939f63652447e11b" args="(const std::string &amp;name, double *pointer)" -->
+<a class="anchor" id="a6d9ae09aee8886a3994bf565b21105a7"></a><!-- doxytag: member="AFormula::Private::timerTime" ref="a6d9ae09aee8886a3994bf565b21105a7" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool AFormula::Private::setVariable </td>
+          <td class="memname">uint64_t AFormula::Private::timerTime </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&nbsp;</td>
-          <td class="paramname"> <em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&nbsp;</td>
-          <td class="paramname"> <em>pointer</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00033">33</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Return current high-resolution system time. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Elapsed time from arbitrary basis, in units of <code>timerFrequency</code>.</dd></dl>
+<p>This function returns a system-dependent, high-precision elapsed time value in units of <code>timerFrequency</code>. </p>
 
 </div>
 </div>
@@ -129,7 +147,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00033">33</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Global storage for current error string. </p>
+<p>Our library code sets error messages in this variable. It is returned and then cleared by <a class="el" href="class_a_formula_1_1_formula.html#a391a1154676be8c8529d58267ace65d8" title="Return any current error string.">Formula::errorString()</a>.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>This is not currently thread-safe! </dd></dl>
+
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00045">45</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -144,7 +166,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00047">47</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+<p>Global object to initialize LLVM. </p>
+
+<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00073">73</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -154,7 +178,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -163,7 +187,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:36 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:49 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

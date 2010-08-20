@@ -2,9 +2,10 @@ lib_LTLIBRARIES = libaformula.la
 
 noinst_HEADERS = jitformula.h libjitformula.h llvmformula.h muparserformula.h parser.h
 
-libaformula_la_SOURCES = formula.cpp muparserformula.cpp
-libaformula_la_CPPFLAGS = -I@top_srcdir@/include -I@top_srcdir@/lib/muparser
-libaformula_la_LDFLAGS =
+libaformula_la_SOURCES = formula.cpp jitformula.cpp libjitformula.cpp llvmformula.cpp \
+	muparserformula.cpp parser.cpp timer.cpp
+libaformula_la_CPPFLAGS = -I@top_srcdir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@
+libaformula_la_LDFLAGS = @BOOST_LDFLAGS@
 
 if LLVM
 libaformula_la_SOURCES += llvmformula.cpp

@@ -18,6 +18,21 @@
 #include "llvmformula.h"
 #include "parsetree.h"
 
+// LLVM imports its config.h into the global namespace, which means we have to do this
+// (naughty LLVM!)
+#undef PACKAGE_BUGREPORT
+#undef PACKAGE_NAME
+#undef PACKAGE_STRING
+#undef PACKAGE_TARNAME
+#undef PACKAGE_VERSION
+
+#include <llvm/DerivedTypes.h>
+#include <llvm/Module.h>
+#include <llvm/Support/IRBuilder.h>
+#include <llvm/Value.h>
+#include <llvm/ExecutionEngine/ExecutionEngine.h>
+#include <llvm/ExecutionEngine/JIT.h>
+#include <llvm/PassManager.h>
 #include <llvm/GlobalVariable.h>
 #include <llvm/ModuleProvider.h>
 #include <llvm/Analysis/Verifier.h>
@@ -36,24 +51,35 @@ namespace AFormula
 namespace Private
 {
 
+/// @class LLVMInitializer
+/// @brief Initialze LLVM target data on load.
+///
+/// We need to initialize the LLVM native-target data, but we need to do so
+/// only once per library load.  Do that here in the constructor of a global
+/// object.
 class LLVMInitializer
 {
 public:
+	/// @brief Constructor.
+	///
+	/// Call @c llvm::InitializeNativeTarget().
 	LLVMInitializer ()
 	{
 		InitializeNativeTarget ();
 	}
 };
+
+/// @brief Global object to initialize LLVM.
 LLVMInitializer llvmInitializer;
 
 
-LLVMFormula::LLVMFormula () : builder (getGlobalContext ())
+LLVMFormula::LLVMFormula ()
 {
 	// Build a module and a JIT engine
-	theModule = new Module ("AFormula JIT", getGlobalContext ());
-	MP = new ExistingModuleProvider (theModule);
+	module = new Module ("AFormula JIT", getGlobalContext ());
+	MP = new ExistingModuleProvider (module);
 
-	// The Engine is going to take control of this MP and theModule,
+	// The Engine is going to take control of this MP and module,
 	// don't delete them later.
 	std::string errorString;
 	engine = EngineBuilder (MP).setErrorStr (&errorString).create ();
@@ -62,12 +88,15 @@ LLVMFormula::LLVMFormula () : builder (getGlobalContext ())
 		errorMessage = "LLVM Error: " + errorString;
 		throw std::runtime_error ("holycrap exceptions?");
 	}
-	
+
+	// Create an IRBuilder
+	builder = new IRBuilder<> (getGlobalContext ());
+		
 	// Build an optimizer.  These default JIT optimizer settings are taken from
 	// the folks at unladen-swallow.
 	FPM = new FunctionPassManager (MP);
 	
-	FPM->add (new TargetData(*engine->getTargetData ()));
+	FPM->add (new TargetData (*engine->getTargetData ()));
 	FPM->add (createCFGSimplificationPass ());
 	FPM->add (createJumpThreadingPass ());
 	FPM->add (createPromoteMemoryToRegisterPass ());
@@ -88,6 +117,7 @@ LLVMFormula::LLVMFormula () : builder (getGlobalContext ())
 LLVMFormula::~LLVMFormula ()
 {
 	delete FPM;
+	delete builder;
 	delete engine;
 }
 
@@ -98,14 +128,14 @@ bool LLVMFormula::buildFunction ()
 	FunctionType *FT = FunctionType::get (Type::getDoubleTy (getGlobalContext ()), false);
 
 	// Make a function
-	Function *F = Function::Create (FT, Function::ExternalLinkage, "", theModule);
+	Function *F = Function::Create (FT, Function::ExternalLinkage, "", module);
 
 	// Make a basic block to start insertion into
 	BasicBlock *BB = BasicBlock::Create (getGlobalContext (), "entry", F);
-	builder.SetInsertPoint (BB);
+	builder->SetInsertPoint (BB);
 
 	// And spit the body into it
-	Value *val = parseTree->generate (this);
+	Value *val = (Value *)parseTree->generate (this);
 	if (val == NULL)
 	{
 		// Clean up and bail
@@ -114,13 +144,10 @@ bool LLVMFormula::buildFunction ()
 	}
 	
 	// Create a return statement, and check that the function makes sense
-	builder.CreateRet (val);
+	builder->CreateRet (val);
 
 	// Optimize and verify
 	FPM->run (*F);
-
-	// Dump the optimized code
-	F->dump ();
 
 	void *fptr = engine->getPointerToFunction (F);
 	func = (FunctionPointer)(intptr_t)fptr;
@@ -129,7 +156,7 @@ bool LLVMFormula::buildFunction ()
 }
 
 
-Value *LLVMFormula::emit (NumberExprAST<Value *> *expr)
+void *LLVMFormula::emit (NumberExprAST *expr)
 {
 	return ConstantFP::get (getGlobalContext (), APFloat (expr->val));
 }
@@ -150,7 +177,7 @@ Constant *LLVMFormula::getGlobalVariableFor (double *ptr)
 	if (result == NULL)
 	{
 		// Make a global variable
-		result = new GlobalVariable (*theModule, initializer->getType (),
+		result = new GlobalVariable (*module, initializer->getType (),
 		                             false, GlobalVariable::InternalLinkage,
 		                             NULL, "");
 		
@@ -165,133 +192,133 @@ Constant *LLVMFormula::getGlobalVariableFor (double *ptr)
 	return result;
 }
 
-Value *LLVMFormula::emit (VariableExprAST<Value *> *expr)
+void *LLVMFormula::emit (VariableExprAST *expr)
 {
 	// This is just "dereference expr->pointer"
-	return builder.CreateLoad (getGlobalVariableFor (expr->pointer));
+	return builder->CreateLoad (getGlobalVariableFor (expr->pointer));
 }
 
-Value *LLVMFormula::emit (UnaryMinusExprAST<Value *> *expr)
+void *LLVMFormula::emit (UnaryMinusExprAST *expr)
 {
 	// Get a constant -1
 	Value *minusOne = ConstantFP::get (getGlobalContext (), APFloat (-1.0));
 
 	// Emit a multiply
-	Value *C = expr->child->generate (this);
+	Value *C = (Value *)expr->child->generate (this);
 	if (C == NULL) return NULL;
 	
-	return builder.CreateFMul (minusOne, C, "mulnegtmp");
+	return builder->CreateFMul (minusOne, C, "mulnegtmp");
 }
 
-Value *LLVMFormula::emit (BinaryExprAST<Value *> *expr)
+void *LLVMFormula::emit (BinaryExprAST *expr)
 {
 	if (expr->op == "=")
 	{
 		// The assign function has to be dealt with specially, we *do not*
 		// want to emit the LHS code (the load-from-memory instruction)!
-		VariableExprAST<Value *> *var = dynamic_cast<VariableExprAST<Value *> *>(expr->LHS);
+		VariableExprAST *var = dynamic_cast<VariableExprAST *>(expr->LHS);
 		if (!var) return NULL;
 				
-		Value *val = expr->RHS->generate (this);
+		Value *val = (Value *)expr->RHS->generate (this);
 		if (!val) return NULL;
 		
 		// Emit a store-to-pointer instruction
-		builder.CreateStore (val, getGlobalVariableFor (var->pointer), "storetmp");
+		builder->CreateStore (val, getGlobalVariableFor (var->pointer), "storetmp");
 		return val;
 	}
 
 	// The rest of the operators function normally
-	Value *L = expr->LHS->generate (this);
-	Value *R = expr->RHS->generate (this);
+	Value *L = (Value *)expr->LHS->generate (this);
+	Value *R = (Value *)expr->RHS->generate (this);
 	if (L == NULL || R == NULL) return NULL;
 
 	if (expr->op == "<=")
 	{
-		L = builder.CreateFCmpULE (L, R, "letmp");
-		return builder.CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
-		                             "booltmp");
+		L = builder->CreateFCmpULE (L, R, "letmp");
+		return builder->CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
+		                              "booltmp");
 	}
 	else if (expr->op == ">=")
 	{
-		L = builder.CreateFCmpUGE (L, R, "getmp");
-		return builder.CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
-		                             "booltmp");
+		L = builder->CreateFCmpUGE (L, R, "getmp");
+		return builder->CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
+		                              "booltmp");
 	}
 	else if (expr->op == "!=")
 	{
-		L = builder.CreateFCmpUNE (L, R, "neqtmp");
-		return builder.CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
-		                             "booltmp");
+		L = builder->CreateFCmpUNE (L, R, "neqtmp");
+		return builder->CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
+		                              "booltmp");
 	}
 	else if (expr->op == "==")
 	{
-		L = builder.CreateFCmpUEQ (L, R, "eqtmp");
-		return builder.CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
-		                             "booltmp");
+		L = builder->CreateFCmpUEQ (L, R, "eqtmp");
+		return builder->CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
+		                              "booltmp");
 	}
 	else if (expr->op == "<")
 	{
-		L = builder.CreateFCmpULT (L, R, "lttmp");
-		return builder.CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
-		                             "booltmp");
+		L = builder->CreateFCmpULT (L, R, "lttmp");
+		return builder->CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
+		                              "booltmp");
 	}
 	else if (expr->op == ">")
 	{
-		L = builder.CreateFCmpUGT (L, R, "gttmp");
-		return builder.CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
-		                             "booltmp");
+		L = builder->CreateFCmpUGT (L, R, "gttmp");
+		return builder->CreateUIToFP (L, Type::getDoubleTy (getGlobalContext ()),
+		                              "booltmp");
 	}
 	else if (expr->op == "+")
-		return builder.CreateFAdd (L, R, "addtmp");
+		return builder->CreateFAdd (L, R, "addtmp");
 	else if (expr->op == "-")
-		return builder.CreateFSub (L, R, "subtmp");
+		return builder->CreateFSub (L, R, "subtmp");
 	else if (expr->op == "*")
-		return builder.CreateFMul (L, R, "multmp");
+		return builder->CreateFMul (L, R, "multmp");
 	else if (expr->op == "/")
-		return builder.CreateFDiv (L, R, "divtmp");
+		return builder->CreateFDiv (L, R, "divtmp");
 	else if (expr->op == "^")
 	{
 		// The floating-point intrinsics are overloaded for multiple types
 		const Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
 		
-		Value *func = Intrinsic::getDeclaration (theModule, Intrinsic::pow, types, 1);
-		return builder.CreateCall2 (func, L, R, "pow");
+		Value *func = Intrinsic::getDeclaration (module, Intrinsic::pow, types, 1);
+		return builder->CreateCall2 (func, L, R, "pow");
 	}
 	else
 		return NULL;
 }
 
-Value *LLVMFormula::emit (CallExprAST<Value *> *expr)
+void *LLVMFormula::emit (CallExprAST *expr)
 {
 	// Deal with the if-instruction first, specially
 	if (expr->function == "if")
 	{
-		Value *cond = expr->args[0]->generate (this);
-		Value *t = expr->args[1]->generate (this);
-		Value *f = expr->args[2]->generate (this);
+		Value *cond = (Value *)expr->args[0]->generate (this);
+		Value *t = (Value *)expr->args[1]->generate (this);
+		Value *f = (Value *)expr->args[2]->generate (this);
 		if (cond == NULL || t == NULL || f == NULL) return NULL;
 		
 		Value *one = ConstantFP::get (getGlobalContext (), APFloat (1.0));
-		Value *cmp = builder.CreateFCmpOEQ (cond, one, "ifcmptmp");
+		Value *cmp = builder->CreateFCmpOEQ (cond, one, "ifcmptmp");
 
-		return builder.CreateSelect (cmp, t, f, "ifelsetmp");
+		return builder->CreateSelect (cmp, t, f, "ifelsetmp");
 	}
 
 	// Sign isn't a standard-library function, implement it with a compare
 	if (expr->function == "sign")
 	{
-		Value *v = expr->args[0]->generate (this);
+		Value *v = (Value *)expr->args[0]->generate (this);
 		if (!v) return NULL;
 		
 		Value *zero = ConstantFP::get (getGlobalContext (), APFloat (0.0));
 		Value *one = ConstantFP::get (getGlobalContext (), APFloat (1.0));
 		Value *none = ConstantFP::get (getGlobalContext (), APFloat (-1.0));
 
-		Value *cmpgzero = builder.CreateFCmpOGT (v, zero, "sgncmpgzero");
-		Value *cmplzero = builder.CreateFCmpOLT (v, zero, "sgncmplzero");
+		Value *cmpgzero = builder->CreateFCmpOGT (v, zero, "sgncmpgzero");
+		Value *cmplzero = builder->CreateFCmpOLT (v, zero, "sgncmplzero");
 
-		Value *fselect = builder.CreateSelect (cmplzero, none, zero, "sgnsellzero");
-		return builder.CreateSelect (cmpgzero, one, fselect, "sgnselgzero");
+		Value *fselect = builder->CreateSelect (cmplzero, none, zero, "sgnsellzero");
+		return builder->CreateSelect (cmpgzero, one, fselect, "sgnselgzero");
 	}
 
 	//
@@ -330,26 +357,26 @@ Value *LLVMFormula::emit (CallExprAST<Value *> *expr)
 		// Most of the floating-point intrinsics are overloaded for multiple types
 		const Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
 		
-		Value *arg = expr->args[0]->generate (this);
+		Value *arg = (Value *)expr->args[0]->generate (this);
 		if (!arg) return NULL;
 
-		Value *func = Intrinsic::getDeclaration (theModule, intrinsicID, types, 1);
-		return builder.CreateCall (func, arg, expr->function);
+		Value *func = Intrinsic::getDeclaration (module, intrinsicID, types, 1);
+		return builder->CreateCall (func, arg, expr->function);
 	}
 	
 	// The rest of these are calls to stdlib floating point math
 	// functions.
 	
 	// Emit a call to function (arg)
-	Value *arg = expr->args[0]->generate (this);
+	Value *arg = (Value *)expr->args[0]->generate (this);
 	if (!arg) return NULL;
 	
-	Module *M = builder.GetInsertBlock ()->getParent ()->getParent ();
+	Module *M = builder->GetInsertBlock ()->getParent ()->getParent ();
 	Value *Callee = M->getOrInsertFunction (expr->function,
 	                                        Type::getDoubleTy (getGlobalContext ()),
 	                                        Type::getDoubleTy (getGlobalContext ()),
 	                                        NULL);
-	return builder.CreateCall (Callee, arg, expr->function);
+	return builder->CreateCall (Callee, arg, expr->function);
 }
 
 

@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="AFormula::Private::ExprAST" alt="" coords="5,85,213,115"/>
+<area shape="rect" id="node2" href="$class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="5,85,213,115"/>
 <area shape="rect" id="node4" title="STL class." alt="" coords="237,85,328,115"/>
 <area shape="rect" id="node6" title="STL class." alt="" coords="187,5,379,35"/>
 </map>

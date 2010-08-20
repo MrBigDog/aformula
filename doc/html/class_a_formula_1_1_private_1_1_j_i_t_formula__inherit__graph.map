@@ -1,3 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$class_a_formula_1_1_formula.html" title="AFormula::Formula" alt="" coords="61,5,208,35"/>
+<area shape="rect" id="node5" href="$class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html" title="Formula&#45;compiling backend using libjit." alt="" coords="5,160,245,189"/>
+<area shape="rect" id="node7" href="$class_a_formula_1_1_private_1_1_l_l_v_m_formula.html" title="LLVM formula&#45;compiling backend." alt="" coords="269,160,512,189"/>
+<area shape="rect" id="node2" href="$class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="184,5,331,35"/>
 </map>

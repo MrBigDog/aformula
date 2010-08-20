@@ -20,13 +20,19 @@
 #include "jitformula.h"
 #include "codegenerator.h"
 
-#include <llvm/DerivedTypes.h>
-#include <llvm/Module.h>
+// Forward declarations for LLVM
+namespace llvm
+{
+class Module;
+class ModuleProvider;
+class FunctionPassManager;
+class ExecutionEngine;
+class Constant;
+};
+
+// Can't forward-declare this one, it's a template
 #include <llvm/Support/IRBuilder.h>
-#include <llvm/Value.h>
-#include <llvm/ExecutionEngine/ExecutionEngine.h>
-#include <llvm/ExecutionEngine/JIT.h>
-#include <llvm/PassManager.h>
+
 
 namespace AFormula
 {
@@ -34,28 +40,45 @@ namespace AFormula
 namespace Private
 {
 
-class LLVMFormula : public JITFormula<llvm::Value *>, public CodeGenerator<llvm::Value *>
+/// @brief LLVM formula-compiling backend.
+///
+/// This backend uses the LLVM library to compile our parsed expressions
+/// into machine code.
+class LLVMFormula : public JITFormula, public CodeGenerator
 {
 public:
+	/// @brief Constructor.
+	///
+	/// The constructor creates all of the LLVM context necessary to
+	/// compile formulas.
 	LLVMFormula ();
+
+	/// @brief Destructor.
 	virtual ~LLVMFormula ();
-	
-	virtual llvm::Value *emit (NumberExprAST<llvm::Value *> *);
-	virtual llvm::Value *emit (VariableExprAST<llvm::Value *> *);
-	virtual llvm::Value *emit (UnaryMinusExprAST<llvm::Value *> *);
-	virtual llvm::Value *emit (BinaryExprAST<llvm::Value *> *);
-	virtual llvm::Value *emit (CallExprAST<llvm::Value *> *);
+
+	virtual void *emit (NumberExprAST *);
+	virtual void *emit (VariableExprAST *);
+	virtual void *emit (UnaryMinusExprAST *);
+	virtual void *emit (BinaryExprAST *);
+	virtual void *emit (CallExprAST *);
 	
 protected:
 	virtual bool buildFunction ();
 
 private:
-	llvm::Module *theModule;
+	/// @brief High-level container for all LLVM objects.
+	llvm::Module *module;
+	/// @brief Pointer to an @c llvm::ExistingModuleProvider bound to @c module.
  	llvm::ModuleProvider *MP;
-	llvm::IRBuilder<> builder;
+	/// @brief Builder which is responsible for code insertion.
+	llvm::IRBuilder<> *builder;
+	/// @brief Function-level optimization manager.
 	llvm::FunctionPassManager *FPM;
+	/// @brief Engine which converts LLVM IR into machine code.
 	llvm::ExecutionEngine *engine;
-	
+
+	/// @brief Get an LLVM GlobalVariable which shadows the given double
+	/// pointer.
 	llvm::Constant *getGlobalVariableFor (double *ptr);
 };
 

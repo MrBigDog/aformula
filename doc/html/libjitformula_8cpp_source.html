@@ -18,6 +18,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -41,7 +42,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>libjitformula.cpp</h1><a href="libjitformula_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<h1>libjitformula.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
 <a name="l00002"></a>00002 <span class="comment">  Copyright (C) 2010  Charles Pence &lt;charles@charlespence.net&gt;</span>
 <a name="l00003"></a>00003 <span class="comment">  </span>
 <a name="l00004"></a>00004 <span class="comment">  This program is free software: you can redistribute it and/or modify</span>
@@ -57,42 +58,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00014"></a>00014 <span class="comment">  You should have received a copy of the GNU General Public License</span>
 <a name="l00015"></a>00015 <span class="comment">  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;<a class="code" href="aformula_8h.html">aformula.h</a>&gt;</span>
-<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;<a class="code" href="libjitformula_8h.html">libjitformula.h</a>&quot;</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="parsetree_8h.html">parsetree.h</a>&quot;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;aformula.h&gt;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &quot;libjitformula.h&quot;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;parsetree.h&quot;</span>
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
-<a name="l00022"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#ad90d6067bdfb9f72aaef80828a7606df">00022</a> <span class="keyword">namespace </span>AFormula
+<a name="l00022"></a>00022 <span class="keyword">namespace </span>AFormula
 <a name="l00023"></a>00023 {
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025 <span class="keyword">namespace </span>Private
-<a name="l00026"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a12c991c065bb1d5b026e27f53cc1d1e8">00026</a> {
+<a name="l00026"></a>00026 {
 <a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <span class="keywordtype">void</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#ad90d6067bdfb9f72aaef80828a7606df">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html">NumberExprAST&lt;void&gt;</a> *)
+<a name="l00028"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aad8dfcc35e634e44cfa4dd4f7746e9bf">00028</a> <span class="keywordtype">void</span> *<a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aad8dfcc35e634e44cfa4dd4f7746e9bf" title="Emit the code for a constant number.">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a> *)
 <a name="l00029"></a>00029 {
-<a name="l00030"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a9f5505ad182a8ded4651af6f14238718">00030</a> }
+<a name="l00030"></a>00030 }
 <a name="l00031"></a>00031 
-<a name="l00032"></a>00032 <span class="keywordtype">void</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#ad90d6067bdfb9f72aaef80828a7606df">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html">VariableExprAST&lt;void&gt;</a> *)
+<a name="l00032"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a1770eacbdea19f31561a62a2cec0b3bb">00032</a> <span class="keywordtype">void</span> *<a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aad8dfcc35e634e44cfa4dd4f7746e9bf" title="Emit the code for a constant number.">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html" title="Syntax tree element for a reference to a variable.">VariableExprAST</a> *)
 <a name="l00033"></a>00033 {
-<a name="l00034"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a82249f5163a8438ab011dc5042b3c40f">00034</a> }
+<a name="l00034"></a>00034 }
 <a name="l00035"></a>00035 
-<a name="l00036"></a>00036 <span class="keywordtype">void</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#ad90d6067bdfb9f72aaef80828a7606df">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">UnaryMinusExprAST&lt;void&gt;</a> *)
+<a name="l00036"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a2c92745634f473b335c0821c0dc60d08">00036</a> <span class="keywordtype">void</span> *<a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aad8dfcc35e634e44cfa4dd4f7746e9bf" title="Emit the code for a constant number.">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html" title="Syntax tree element for a unary minus operator.">UnaryMinusExprAST</a> *)
 <a name="l00037"></a>00037 {
-<a name="l00038"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aeca9ab8096915ab720737f372fa05a41">00038</a> }
+<a name="l00038"></a>00038 }
 <a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="keywordtype">void</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#ad90d6067bdfb9f72aaef80828a7606df">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html">BinaryExprAST&lt;void&gt;</a> *)
+<a name="l00040"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a0c98d3305a18ab65e8150069aa21120a">00040</a> <span class="keywordtype">void</span> *<a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aad8dfcc35e634e44cfa4dd4f7746e9bf" title="Emit the code for a constant number.">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html" title="Syntax tree element representing a binary-operator expression.">BinaryExprAST</a> *)
 <a name="l00041"></a>00041 {
 <a name="l00042"></a>00042 }
-<a name="l00043"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a693601ea399d8fb840b6a741d7bf7318">00043</a> 
-<a name="l00044"></a>00044 <span class="keywordtype">void</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#ad90d6067bdfb9f72aaef80828a7606df">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST&lt;void&gt;</a> *)
+<a name="l00043"></a>00043 
+<a name="l00044"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a61b67fe0727ae23c6757db0145e91301">00044</a> <span class="keywordtype">void</span> *<a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#aad8dfcc35e634e44cfa4dd4f7746e9bf" title="Emit the code for a constant number.">LibJITFormula::emit</a> (<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html" title="Syntax tree element representing a function call.">CallExprAST</a> *)
 <a name="l00045"></a>00045 {
 <a name="l00046"></a>00046 }
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="keywordtype">bool</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a693601ea399d8fb840b6a741d7bf7318">LibJITFormula::buildFunction</a> ()
+<a name="l00049"></a><a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a693601ea399d8fb840b6a741d7bf7318">00049</a> <span class="keywordtype">bool</span> <a class="code" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a693601ea399d8fb840b6a741d7bf7318" title="Compile JIT code for parsed formula.">LibJITFormula::buildFunction</a> ()
 <a name="l00050"></a>00050 {
 <a name="l00051"></a>00051     <span class="comment">// not yet</span>
-<a name="l00052"></a>00052     <a class="code" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#a82f677d0dd24b095fe0c2952dc622429">func</a> = NULL;
+<a name="l00052"></a>00052     <a class="code" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#afb5e6cd855800c3a8eb6050c2f7d54f8" title="Compiled function pointer.">func</a> = NULL;
 <a name="l00053"></a>00053     
 <a name="l00054"></a>00054     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00055"></a>00055 }
@@ -106,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Aug 8 18:34:32 2010 for aformula by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:48 2010 for aformula by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
