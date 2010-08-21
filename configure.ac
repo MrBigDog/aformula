@@ -1,6 +1,6 @@
 # Initialize Autoconf, Automake
 ###############################
-AC_INIT([aformula],[0.8],[charles@charlespence.net],[aformula],[http://wiki.github.com/cpence/aformula/])
+AC_INIT([aformula],[0.8],[charles@charlespence.net],[aformula],[http://cpence.github.com/aformula/])
 AC_CONFIG_SRCDIR([src/formula.cpp])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/m4])
