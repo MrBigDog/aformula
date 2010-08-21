@@ -369,7 +369,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The token type (<code>TOKEN_*</code>).</dd></dl>
 <p>This function is not called directly -- we use <code>getNextToken</code> to store the results into the <code>currentToken</code> variable. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00168">168</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00171">171</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +393,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>This function updates <code>currentToken</code>, <code>strToken</code>, and <code>numToken</code> to the next token in the parsing stream.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Call this instead of <code><a class="el" href="class_a_formula_1_1_private_1_1_parser.html#af0efe8ba9cbfdee50bcffb9e17247e41" title="Get a token from the parse buffer.">getToken()</a>!</code> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00272">272</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00269">269</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -423,7 +423,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The identifer type (<code>TOKEN_IDENT_*</code>) or <code>TOKEN_BAD</code>.</dd></dl>
 <p>This function classifies a generic string identifier into the <code>TOKEN_IDENT_*</code> categories. If the identifier doesn't match any of the registered variables, functions, constants, or operators, <code>TOKEN_BAD</code> is returned. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00278">278</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00275">275</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -445,7 +445,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>Parse a constant number into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a></code> corresponding to <code>numToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00309">309</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00306">306</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +467,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>Parse an open parenthesis into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code> corresponding to the contents of the parenthesis-expression, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00319">319</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00316">316</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>Parse a function identifier into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html" title="Syntax tree element representing a function call.">CallExprAST</a></code> corresponding to the correct function call, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00343">343</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00340">340</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -511,7 +511,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>Parse a constant-identifier into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a></code> corresponding to the constant identifier in <code>strToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00404">404</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00401">401</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -533,7 +533,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>Parse a variable-identifier into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html" title="Syntax tree element for a reference to a variable.">VariableExprAST</a></code> corresponding to the variable identifier in <code>strToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00423">423</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00420">420</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -555,7 +555,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>Parse a constant number into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a></code> corresponding to <code>numToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00453">453</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00450">450</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -578,7 +578,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code> corresponding to a primary expression, or <code>NULL</code> on failure.</dd></dl>
 <p>A "primary expression" is anything which could be the left-hand side of a binary operator. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00462">462</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00470">470</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -611,7 +611,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html" title="Syntax tree element representing a binary-operator expression.">BinaryExprAST</a></code> corresponding to the current binary expression, or <code>NULL</code> on failure.</dd></dl>
 <p>This function is called when we have already parsed a primary expression (the left-hand side of the operator), and <code>currentToken</code> is <code>TOKEN_OPERATOR</code>. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00490">490</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00498">498</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +634,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code> corresponding to a complete expression, or <code>NULL</code> on failure.</dd></dl>
 <p>A complete expression is an LHS (a primary expression), optionally followed by a binary operator and a bin-op RHS. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00565">565</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00573">573</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -659,7 +659,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <p>This function parses a complete formula into an expression tree. This is the primary entry point for the <code><a class="el" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree.">Parser</a></code> class.</p>
 <p>If a <code>NULL</code> value is returned, the function did not parse. A fairly informative error message will be stored in <code><a class="el" href="class_a_formula_1_1_formula.html#a391a1154676be8c8529d58267ace65d8" title="Return any current error string.">Formula::errorString</a></code>, suitable for display to the user. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00574">574</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00582">582</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -775,11 +775,14 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 <div class="memdoc">
 <b>Initial value:</b><div class="fragment"><pre class="fragment">
 {
-    { <span class="stringliteral">&quot;=&quot;</span>, 1 },
+    
+    
+    
     { <span class="stringliteral">&quot;&lt;=&quot;</span>, 10 },
     { <span class="stringliteral">&quot;&gt;=&quot;</span>, 10 },
     { <span class="stringliteral">&quot;!=&quot;</span>, 10 },
     { <span class="stringliteral">&quot;==&quot;</span>, 10 },
+    { <span class="stringliteral">&quot;=&quot;</span>, 1 },
     { <span class="stringliteral">&quot;&lt;&quot;</span>, 10 },
     { <span class="stringliteral">&quot;&gt;&quot;</span>, 10 },
     { <span class="stringliteral">&quot;+&quot;</span>, 20 },
@@ -919,8 +922,7 @@ Collaboration diagram for AFormula::Private::Parser:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:51 2010 for aformula by&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+<hr class="footer"/><address style="text-align: right;"><small>
+Generated by&nbsp;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3</small></address>
 </body>
 </html>
