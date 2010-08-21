@@ -94,11 +94,54 @@ AFormula::Formula *makeFormula (int backend)
 }
 
 
+void muParserFunctionChecks ()
+{
+	x = 1.0;
+	y = 2.0;
+	z = 3.0;
+
+	// These are all lifted straight from muParser; thanks!
+	CHECK_FORMULA ("1+2-3*4/5^6", 2.99923);
+	CHECK_FORMULA ("1^2/3*4-5+6", 2.3333);
+	CHECK_FORMULA ("1+2*3", 7);
+	CHECK_FORMULA ("1+2*3", 7);
+	CHECK_FORMULA ("(1+2)*3", 9);
+	CHECK_FORMULA ("(1+2)*(-3)", -9);
+	CHECK_FORMULA ("2/4", 0.5);
+	
+	CHECK_FORMULA ("exp(ln(7))", 7);
+	CHECK_FORMULA ("e^ln(7)", 7);
+	CHECK_FORMULA ("e^(ln(7))", 7);
+	CHECK_FORMULA ("(e^(ln(7)))", 7);
+	CHECK_FORMULA ("1-(e^(ln(7)))", -6);
+	CHECK_FORMULA ("2*(e^(ln(7)))", 14);
+	CHECK_FORMULA ("10^log(5)", 5);
+	CHECK_FORMULA ("10^log10(5)", 5);
+	CHECK_FORMULA ("2^log2(4)", 4);
+	CHECK_FORMULA ("-(sin(0)+1)", -1);
+	CHECK_FORMULA ("-(2^1.1)", -2.14354692);
+	
+	CHECK_FORMULA ("(cos(2.41)/y)", -0.372056);
+	
+	CHECK_FORMULA ("(((-9))-e/(((((((pi-(((-7)+(-3)/4/e))))/(((-5))-2)-((pi+(-0))*(sqrt((e+e))*(-8))*(((-pi)+(-pi)-(-9)*(6*5))"
+	               "/(-e)-e))/2)/((((sqrt(2/(-e)+6)-(4-2))+((5/(-2))/(1*(-pi)+3))/8)*pi*((pi/((-2)/(-6)*1*(-1))*(-6)+(-e)))))/"
+	               "((e+(-2)+(-e)*((((-3)*9+(-e)))+(-9)))))))-((((e-7+(((5/pi-(3/1+pi)))))/e)/(-5))/(sqrt((((((1+(-7))))+((((-"
+	               "e)*(-e)))-8))*(-5)/((-e)))*(-6)-((((((-2)-(-9)-(-e)-1)/3))))/(sqrt((8+(e-((-6))+(9*(-9))))*(((3+2-8))*(7+6"
+	               "+(-5))+((0/(-e)*(-pi))+7)))+(((((-e)/e/e)+((-6)*5)*e+(3+(-5)/pi))))+pi))/sqrt((((9))+((((pi))-8+2))+pi))/e"
+	               "*4)*((-5)/(((-pi))*(sqrt(e)))))-(((((((-e)*(e)-pi))/4+(pi)*(-9)))))))+(-pi)", -12.23016549);
+	
+	CHECK_FORMULA ("(atan(sin((((((((((((((((pi/cos((x/((((0.53-y)-pi)*e)/y))))+2.51)+x)-0.54)/0.98)+y)*y)+e)/x)+y)+x)+y)+pi)/e"
+	               ")+x)))*2.77)", -2.16995656);
+	
+	CHECK_FORMULA ("1+2-3*4/5^6*(2*(1-5+(3*7^9)*(4+6*7-3)))+12", -7995810.09926);
+}
+
+
 int main (int argc, char *argv[])
 {
 	for (int i = 1 ; i < AFormula::Formula::NUM_BACKENDS ; i++)
 	{
-		fprintf (stdout, "Begin testing backend number %d\n\n", i);
+		fprintf (stdout, "\n\nBegin testing backend number %d\n\n", i);
 
 		f = makeFormula (i);
 		
@@ -121,7 +164,21 @@ int main (int argc, char *argv[])
 		CHECK_VARIABLE (x, 6.0);
 		CHECK_FORMULA ("x = 6 / 6.0", 1.0);
 		CHECK_VARIABLE (x, 1.0);
-		
+
+		// Unary minus
+		CHECK_FORMULA ("-1", -1.0);
+		CHECK_FORMULA ("-(-1)", 1.0);
+		CHECK_FORMULA ("-(-1)*2", 2.0);
+		CHECK_FORMULA ("-(-2)*sqrt(4)", 4.0);
+		CHECK_FORMULA ("-x", -1.0);
+		CHECK_FORMULA ("-(x)", -1.0);
+		CHECK_FORMULA ("-(-x)", 1.0);
+		CHECK_FORMULA ("-(-x)*2", 2.0);
+		CHECK_FORMULA ("-(8)", -8.0);
+		CHECK_FORMULA ("-(2+1)", -3.0);
+		CHECK_FORMULA ("-sin(8)", -0.989358);
+		CHECK_FORMULA ("3-(-x)", 4);
+				
 		// Comparison
 		CHECK_FORMULA ("1.0 < 2.0", 1);
 		CHECK_FORMULA ("1.0 < 0.5", 0);
@@ -166,7 +223,12 @@ int main (int argc, char *argv[])
 		CHECK_FORMULA ("(1 + 2) * 3", 9.0);
 		CHECK_FORMULA ("z = 1 + x^2", 2.0);
 		CHECK_FORMULA ("y^2/4", 1.0);
-
+		CHECK_FORMULA ("-2^2", -4.0);
+		CHECK_FORMULA ("-(x+y)^2", -9.0);
+		CHECK_FORMULA ("(-3)^2", 9.0);
+		CHECK_FORMULA ("-(-2^2)", 4.0);
+		CHECK_FORMULA ("3+-3^2", -6.0);
+		
 		// Functions
 		CHECK_FORMULA ("sin(pi)", 0.0);
 		CHECK_FORMULA ("sin(pi/2)", 1.0);
@@ -196,7 +258,9 @@ int main (int argc, char *argv[])
 		CHECK_FORMULA ("sign(-13.0)", -1.0);
 		CHECK_FORMULA ("rint(1.5)", 2.0);
 		CHECK_FORMULA ("if(y == 2.0,3.5,1.2)", 3.5);
-				
+
+		muParserFunctionChecks ();
+						
 		delete f;
 	}
 	

@@ -205,11 +205,14 @@ void *LibJITFormula::emit (CallExprAST *expr)
 	// by jit_insn_call_native, because the intrinsic instructions seem to
 	// give the wrong answers.
 	if (expr->function == "sin")
-		return jit_insn_sin (function, arg);
+		return jit_insn_call_native (function, "sin", (void *)sin, signature,
+		                             &arg, 1, 0);
 	else if (expr->function == "cos")
-		return jit_insn_cos (function, arg);
+		return jit_insn_call_native (function, "cos", (void *)cos, signature,
+		                             &arg, 1, 0);
 	else if (expr->function == "tan")
-		return jit_insn_tan (function, arg);
+		return jit_insn_call_native (function, "tan", (void *)tan, signature,
+		                             &arg, 1, 0);
 	else if (expr->function == "asin")
 		return jit_insn_call_native (function, "asin", (void *)asin, signature,
 		                             &arg, 1, 0);

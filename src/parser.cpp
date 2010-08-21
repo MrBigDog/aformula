@@ -151,11 +151,14 @@ const char *Parser::constantNames[] =
 
 const Parser::Operator Parser::operators[NUM_OPERATORS] =
 {
-	{ "=", 1 },
+	// Note!  Sort the two-character operators to the top of this list,
+	// so they get found first when we step through checking against the
+	// parse buffer.
 	{ "<=", 10 },
 	{ ">=", 10 },
 	{ "!=", 10 },
 	{ "==", 10 },
+	{ "=", 1 },
 	{ "<", 10 },
 	{ ">", 10 },
 	{ "+", 20 },
@@ -173,28 +176,22 @@ int Parser::getToken ()
 	// Eat whitespace
 	while (isspace (parseBuffer[0]))
 		parseBuffer.erase (0, 1);
-		
-	// If the next thing is in <>=!+-*/^, it's an operator
-	static const std::string operatorChars ("<>=!+-*/^");
-	if (operatorChars.find_first_of (parseBuffer[0]) != std::string::npos)
+
+	// See if the first part of the parseBuffer is an operator string
+	for (int i = 0 ; i < NUM_OPERATORS ; i++)
 	{
-		strToken.erase ();
-			
-		while (parseBuffer.length () &&
-		       operatorChars.find_first_of (parseBuffer[0]) != std::string::npos)
+		if (parseBuffer.compare (0, strlen (operators[i].name), operators[i].name) == 0)
 		{
-			strToken += parseBuffer[0];
-			parseBuffer.erase (0,1);
-		}
+			// Indeed, an operator is here
+			strToken.erase ();
+
+			strToken = operators[i].name;
+			parseBuffer.erase (0, strlen (operators[i].name));
 			
-		for (int i = 0 ; i < NUM_OPERATORS ; i++)
-		{
-			if (strToken == operators[i].name)
-				return TOKEN_OPERATOR;
+			return TOKEN_OPERATOR;
 		}
-		return TOKEN_BAD;
 	}
-		
+	
 	// If the next thing begins with a letter, it's some kind of
 	// identifier
 	if (isalpha (parseBuffer[0]))
@@ -452,8 +449,19 @@ ExprAST *Parser::parseVariableIdentifierExpr ()
 	
 ExprAST *Parser::parseUnaryMinusExpr ()
 {
+	// Eat the unary minus
 	getNextToken ();
-	ExprAST *child = parsePrimary ();
+
+	// Another unary minus can't immediately follow a unary minus
+	// (the only such restriction)
+	if (currentToken == TOKEN_OPERATOR && strToken == "-")
+	{
+		error ("Two unary minus operators cannot be in immediate succession.  "
+		       "If this is what you intend, use parentheses.");
+		return NULL;
+	}
+			
+	ExprAST *child = parseExpression ();
 	if (!child)
 		return NULL;
 	return new UnaryMinusExprAST (child);
