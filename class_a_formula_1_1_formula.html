@@ -18,7 +18,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -160,7 +159,7 @@ Inheritance diagram for AFormula::Formula:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00208">208</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00211">211</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -182,7 +181,7 @@ Inheritance diagram for AFormula::Formula:</div>
 <p>Constructor. </p>
 <p>The constructor is protected; you may only create new <code><a class="el" href="class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated.">Formula</a></code> objects by calling <code><a class="el" href="class_a_formula_1_1_formula.html#a080245c4cdf6211826c763d9e814b112" title="Create a new formula.">Formula::createFormula</a></code>. </p>
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00203">203</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00206">206</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +213,7 @@ Inheritance diagram for AFormula::Formula:</div>
 <dl class="note"><dt><b>Note:</b></dt><dd>The returned formula should be deleted using 'delete' when it is no longer needed.</dd></dl>
 <p>See the documentation for the value <code><a class="el" href="class_a_formula_1_1_formula.html#a37115887bbd8a788ce61356febaf0b35a8d8b83347fdd34c44a34c47453f81bb4" title="Default formula backend.">Formula::BACKEND_DEFAULT</a></code> for an explanation of how the default formula backend is selected. </p>
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00068">68</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00071">71</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,7 +244,7 @@ Inheritance diagram for AFormula::Formula:</div>
 <p>This function will run a run-time benchmark to determine which formula evaluation backend is fastest. Note that this is a blocking call, and it will take some time.</p>
 <p>As mentioned here and in the documentation for <code><a class="el" href="class_a_formula_1_1_formula.html#a37115887bbd8a788ce61356febaf0b35a8d8b83347fdd34c44a34c47453f81bb4" title="Default formula backend.">Formula::BACKEND_DEFAULT</a></code>, if <code>setAsDefault</code> is <code>true</code>, then future calls to <code><a class="el" href="class_a_formula_1_1_formula.html#a080245c4cdf6211826c763d9e814b112" title="Create a new formula.">Formula::createFormula</a></code> passing <code>BACKEND_DEFAULT</code> will use the tested-fastest backend. </p>
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00126">126</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00129">129</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>
@@ -265,8 +264,7 @@ Inheritance diagram for AFormula::Formula:</div>
 <div class="memdoc">
 
 <p>Return any current error string. </p>
-<p>This function implements an error stack somewhat like <code>glGetError()</code>. It will return any current error string (or the empty string if no error state exists), and will then reset the internal error state to the empty string if the user wishes to recover and try again.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>As written, this code is not currently thread-safe. </dd></dl>
+<p>This function implements an error stack somewhat like <code>glGetError()</code>. It will return any current error string (or the empty string if no error state exists), and will then reset the internal error state to the empty string if the user wishes to recover and try again. </p>
 
 <p>Definition at line <a class="el" href="formula_8cpp_source.html#l00051">51</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 

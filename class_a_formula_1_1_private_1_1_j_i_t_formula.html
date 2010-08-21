@@ -18,7 +18,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -65,7 +64,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 <div class="dynsection">
 <div class="center"><img src="class_a_formula_1_1_private_1_1_j_i_t_formula__coll__graph.png" border="0" usemap="#_a_formula_1_1_private_1_1_j_i_t_formula_coll__map" alt="Collaboration graph"/></div>
 <map name="_a_formula_1_1_private_1_1_j_i_t_formula_coll__map" id="_a_formula_1_1_private_1_1_j_i_t_formula_coll__map">
-<area shape="rect" id="node2" href="class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="1228,5,1375,35"/><area shape="rect" id="node4" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="1197,59,1405,88"/><area shape="rect" id="node6" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree." alt="" coords="1204,235,1399,264"/><area shape="rect" id="node8" title="STL class." alt="" coords="249,183,340,212"/><area shape="rect" id="node18" href="struct_a_formula_1_1_private_1_1_parser_1_1_variable.html" title="Details of a user&#45;registered variable." alt="" coords="429,235,688,264"/><area shape="rect" id="node10" title="STL class." alt="" coords="5,183,197,212"/><area shape="rect" id="node12" href="struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="Details of a hard&#45;coded binary operator." alt="" coords="816,288,1083,317"/><area shape="rect" id="node14" href="struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="Details of a hard&#45;coded function identifier." alt="" coords="817,341,1081,371"/></map>
+<area shape="rect" id="node2" href="class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated." alt="" coords="1233,5,1380,35"/><area shape="rect" id="node4" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree." alt="" coords="1203,59,1411,88"/><area shape="rect" id="node6" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree." alt="" coords="1209,263,1404,292"/><area shape="rect" id="node8" title="STL class." alt="" coords="249,183,340,212"/><area shape="rect" id="node20" href="struct_a_formula_1_1_private_1_1_parser_1_1_variable.html" title="Details of a user&#45;registered variable." alt="" coords="429,235,688,264"/><area shape="rect" id="node10" title="STL class." alt="" coords="5,183,197,212"/><area shape="rect" id="node12" href="struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="Details of a hard&#45;coded binary operator." alt="" coords="817,288,1084,317"/><area shape="rect" id="node14" href="struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="Details of a hard&#45;coded function identifier." alt="" coords="819,341,1083,371"/><area shape="rect" id="node16" href="struct_a_formula_1_1_private_1_1_parser_1_1_constant.html" title="Details of a hard&#45;coded mathematical constant." alt="" coords="816,395,1085,424"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_a_formula_1_1_private_1_1_j_i_t_formula-members.html">List of all members.</a></p>
@@ -103,7 +102,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 <p>Base class for JIT formula compilers. </p>
 <p>This class implements the basic parsing infrastructure for all JIT compiling formula classes. Any specific generator class needs to implement the <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html" title="Abstract interface for code generator visitor.">CodeGenerator</a></code> interface and then override the <code>buildFunction</code> method. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00036">36</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00034">34</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
 <a class="anchor" id="ae1f13bd7b7d202feca4b0720368ce7e6"></a><!-- doxytag: member="AFormula::Private::JITFormula::FunctionPointer" ref="ae1f13bd7b7d202feca4b0720368ce7e6" args=")(void)" -->
 <div class="memitem">
@@ -118,7 +117,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Function type for compiled function. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00074">74</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00072">72</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
 
 </div>
 </div>
@@ -140,7 +139,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00023">23</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00026">26</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -161,7 +160,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00026">26</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00029">29</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,7 +193,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_formula.html#ab444548983e200013dc7c9b6d45072de">AFormula::Formula</a>.</p>
 
-<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00033">33</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00036">36</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -218,7 +217,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_formula.html#a9854670c506947363b886c213fbffb32">AFormula::Formula</a>.</p>
 
-<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00054">54</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00057">57</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -261,7 +260,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_formula.html#a42f3fe0cc07731ebfbb55b83bd241fd3">AFormula::Formula</a>.</p>
 
-<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00059">59</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00062">62</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,7 +285,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_formula.html#a6a7111f86c5ca24ec033ed516f795075">AFormula::Formula</a>.</p>
 
-<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00064">64</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8cpp_source.html#l00067">67</a> of file <a class="el" href="jitformula_8cpp_source.html">jitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +326,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 <p>Compiled function pointer. </p>
 <p>After <code>buildFunction</code> is called, this variable will point to the compiled machine code function. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00080">80</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00078">78</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
 
 </div>
 </div>
@@ -344,7 +343,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>String-format formula to be evaluated. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00084">84</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00082">82</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +361,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 <p><a class="el" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree.">Parser</a> object. </p>
 <p>This parser is kept in order to keep track of registered variables. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00090">90</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00088">88</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
 
 </div>
 </div>
@@ -379,7 +378,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 
 <p>Root node of parsed formula. </p>
 
-<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00093">93</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
+<p>Definition at line <a class="el" href="jitformula_8h_source.html#l00091">91</a> of file <a class="el" href="jitformula_8h_source.html">jitformula.h</a>.</p>
 
 </div>
 </div>
