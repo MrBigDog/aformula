@@ -4,6 +4,9 @@
     <name>index</name>
     <title>AFormula</title>
     <filename>index</filename>
+    <docanchor file="index">Requirements</docanchor>
+    <docanchor file="index">Thanks</docanchor>
+    <docanchor file="index">Interface</docanchor>
   </compound>
   <compound kind="namespace">
     <name>AFormula</name>
@@ -145,15 +148,15 @@
     <class kind="class">AFormula::Private::UnaryMinusExprAST</class>
     <class kind="class">AFormula::Private::BinaryExprAST</class>
     <class kind="class">AFormula::Private::CallExprAST</class>
-    <member kind="function" static="yes">
-      <type>static uint64_t</type>
+    <member kind="function">
+      <type>uint64_t</type>
       <name>timerFrequency</name>
       <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
       <anchor>a91c5f14e2808cc7d2a497a737e7d2202</anchor>
       <arglist>()</arglist>
     </member>
-    <member kind="function" static="yes">
-      <type>static uint64_t</type>
+    <member kind="function">
+      <type>uint64_t</type>
       <name>timerTime</name>
       <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
       <anchor>a6d9ae09aee8886a3994bf565b21105a7</anchor>
@@ -355,6 +358,13 @@
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
       <anchor>a693601ea399d8fb840b6a741d7bf7318</anchor>
       <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>jit_function_t</type>
+      <name>function</name>
+      <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
+      <anchor>a6e3c8892220a37da0d56644a1c4d7a3b</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">

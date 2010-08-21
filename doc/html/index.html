@@ -39,10 +39,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="contents">
-<h1><a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> </h1><h3 class="version">0.1 </h3><dl class="author"><dt><b>Author:</b></dt><dd>Charles Pence </dd></dl>
+<h1><a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> </h1><h3 class="version">0.8 </h3><dl class="author"><dt><b>Author:</b></dt><dd>Charles Pence </dd></dl>
 <dl class="date"><dt><b>Date:</b></dt><dd>August 8, 2010</dd></dl>
 <p>Welcome to the documentation for AFormula!</p>
 <p><a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> is a library designed for high-performance evaluation of mathematical formulas, especially in numerical simulation and similar applications. It is heavily inspired by muParser, but is able to utilize multiple different formula-evaluation backends, including muParser itself, and the LLVM and libjit just-in-time compilers. Just-in-time compilation permits much faster formula evaluation, and the LLVM library, in particular, has been ported to many CPU architectures.</p>
+<p>Support is included for all the standard arithmetic and comparative operators, including <code>&lt;=</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>^</code> (exponentiation). Arbitrary variables may be defined (as pointers to double-values), and the assignment operator, <code>=</code>, may be used to assign values to them. A full suite of builtin functions is supported:</p>
+<ul>
+<li>Trigonometry (sin, cos, tan, asin, acos, atan) </li>
+<li>Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh) </li>
+<li>Logarithms (log2, log10 [= log], ln, exp, sqrt) </li>
+<li>Miscellaneous (sign, rint, abs) </li>
+<li>Logical control: if(x,if-true,if-false)</li>
+</ul>
+<p>Finally, the constants <code>pi</code> and <code>e</code> are supported.</p>
+<p>The order of operations is:</p>
+<ul>
+<li>= (assignment, lowest) </li>
+<li>&lt;=, &gt;=, !=, ==, &lt;, &gt; (comparisons) </li>
+<li>+, - (addition/subtraction) </li>
+<li>*, / (multiplication/division) </li>
+<li>^ (exponentiation)</li>
+</ul>
+<p><a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> is designed to be quite robust to invalid formulas, and is careful to return appropriate errors when necessary.</p>
+<p>There are two JIT backends which <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> can use in order to compile functions on the fly: LLVM and libjit. In general, both should provide roughly the same performance, though there is a performance test included which will benchmark the library and permit selection at runtime.</p>
+<h2><a class="anchor" id="Requirements">
+Requirements</a></h2>
+<p>The Boost C++ Libraries &lt;<a href="http://www.boost.org">http://www.boost.org</a>&gt; are required to build <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a>.</p>
+<p>If you want either of the dynamic-compilation backends to be built, you will need to install either LLVM &lt;<a href="http://www.llvm.org">http://www.llvm.org</a>&gt;, or libjit &lt;<a href="http://freshmeat.net/projects/libjit/">http://freshmeat.net/projects/libjit/</a>&gt;. Note that at the time of this writing I was not able to get libjit to compile without a fair bit of hacking around on its source code.</p>
+<p>Neither of these libraries are necessary (the included muParser backend will be built regardless), but they will provide a large speed boost.</p>
+<h2><a class="anchor" id="Thanks">
+Thanks</a></h2>
+<p>Thanks are most obviously due to the author of muParser, Ingo Berg. Without muParser having been written, I never would have been able to start on the project that produced the need for <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a>. muParser, which is licensed under the MIT license, is Copyright (C) 2004-2006 Ingo Berg.</p>
+<p>Also, thanks is due to the pair of massively cross-platform JIT compilation libraries, LLVM and libjit, without which a JIT-compilation backend (for something like an order of magnitude of performance) would be impossible.</p>
+<h2><a class="anchor" id="Interface">
+Interface</a></h2>
 <p>The main class exported by <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> is <code><a class="el" href="class_a_formula_1_1_formula.html" title="A mathematical formula which can be evaluated.">AFormula::Formula</a></code>. See its documentation for more information. </p>
 </div>
 <!--- window showing the filter options -->
@@ -59,8 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:48 2010 for aformula by&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+<hr class="footer"/><address style="text-align: right;"><small>
+Generated by&nbsp;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3</small></address>
 </body>
 </html>

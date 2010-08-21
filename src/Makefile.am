@@ -1,22 +1,26 @@
-lib_LTLIBRARIES = libaformula.la
+lib_LTLIBRARIES = libaformula-@AFORMULA_API_VERSION@.la
 
-noinst_HEADERS = jitformula.h libjitformula.h llvmformula.h muparserformula.h parser.h
+noinst_HEADERS = codegenerator.h jitformula.h libjitformula.h llvmformula.h \
+	muparserformula.h parser.h parsetree.h timer.h
 
-libaformula_la_SOURCES = formula.cpp jitformula.cpp libjitformula.cpp llvmformula.cpp \
-	muparserformula.cpp parser.cpp timer.cpp
-libaformula_la_CPPFLAGS = -I@top_srcdir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@
-libaformula_la_LDFLAGS = @BOOST_LDFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_SOURCES = \
+	formula.cpp jitformula.cpp muparserformula.cpp parser.cpp timer.cpp
+
+libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS = \
+	-I@top_srcdir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@
+
+libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS = -version-info @AFORMULA_SO_VERSION@ @BOOST_LDFLAGS@
 
 if LLVM
-libaformula_la_SOURCES += llvmformula.cpp
-libaformula_la_CPPFLAGS += @LLVM_CPPFLAGS@
-libaformula_la_LDFLAGS += @LLVM_LDFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_SOURCES += llvmformula.cpp
+libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS += @LLVM_CPPFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS += @LLVM_LDFLAGS@
 endif
 
 if LIBJIT
-libaformula_la_SOURCES += libjitformula.cpp
-libaformula_la_CPPFLAGS += @LIBJIT_CPPFLAGS@
-libaformula_la_LDFLAGS += @LIBJIT_LDFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_SOURCES += libjitformula.cpp
+libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS += @LIBJIT_CPPFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS += @LIBJIT_LDFLAGS@
 endif
 
-libaformula_la_LIBADD = @top_builddir@/lib/muparser/libmuparser.la
+libaformula_@AFORMULA_API_VERSION@_la_LIBADD = @top_builddir@/lib/muparser/libmuparser.la

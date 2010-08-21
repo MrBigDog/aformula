@@ -1,11 +1,14 @@
 # Initialize Autoconf, Automake
 ###############################
-AC_INIT([aformula],[0.1],[charles@charlespence.net],[aformula],[http://wiki.github.com/cpence/aformula/])
+AC_INIT([aformula],[0.8],[charles@charlespence.net],[aformula],[http://wiki.github.com/cpence/aformula/])
 AC_CONFIG_SRCDIR([src/formula.cpp])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/m4])
 
 AM_INIT_AUTOMAKE([-Wall -Werror gnits 1.9.6])
+
+AC_SUBST([AFORMULA_SO_VERSION], [1:0:0])
+AC_SUBST([AFORMULA_API_VERSION], [1.0])
 
 
 # Program Tests
@@ -19,7 +22,7 @@ AC_PROG_LN_S
 AC_PROG_AWK
 
 LT_PREREQ([2.2.10])
-LT_INIT([disable-shared])
+LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
 
@@ -68,6 +71,7 @@ DX_INIT_DOXYGEN([aformula], [doxygen.cfg], [doc])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
   Makefile
+  aformula-1.0.pc
     include/Makefile
       include/aformula.h
     lib/Makefile

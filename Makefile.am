@@ -10,6 +10,9 @@ include build/doxygen.am
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
 EXTRA_DIST = $(DX_CONFIG)
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = aformula-$(AFORMULA_API_VERSION).pc
+
 changes:
 	$(top_srcdir)/build/gitlog2changelog.py
 

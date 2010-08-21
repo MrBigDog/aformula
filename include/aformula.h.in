@@ -35,6 +35,67 @@
 /// evaluation, and the LLVM library, in particular, has been ported
 /// to many CPU architectures.
 ///
+/// Support is included for all the standard arithmetic and
+/// comparative operators, including @c <=, @c >=, @c !=, @c ==,
+/// @c <, @c >, @c +, @c -, @c *, @c /, and @c ^ (exponentiation).
+/// Arbitrary variables may be defined (as pointers to double-values),
+/// and the assignment operator, @c =, may be used to assign values to
+/// them.  A full suite of builtin functions is supported:
+///
+/// @li Trigonometry (sin, cos, tan, asin, acos, atan)
+/// @li Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
+/// @li Logarithms (log2, log10 [= log], ln, exp, sqrt)
+/// @li Miscellaneous (sign, rint, abs)
+/// @li Logical control: if(x,if-true,if-false)
+///
+/// Finally, the constants @c pi and @c e are supported.
+///
+/// The order of operations is:
+///
+/// @li = (assignment, lowest)
+/// @li <=, >=, !=, ==, <, > (comparisons)
+/// @li +, - (addition/subtraction)
+/// @li *, / (multiplication/division)
+/// @li ^ (exponentiation)
+///
+/// AFormula is designed to be quite robust to invalid formulas, and is
+/// careful to return appropriate errors when necessary.
+///
+/// There are two JIT backends which AFormula can use in order to compile
+/// functions on the fly: LLVM and libjit.  In general, both should provide
+/// roughly the same performance, though there is a performance test
+/// included which will benchmark the library and permit selection at
+/// runtime.
+///
+/// @section Requirements
+///
+/// The Boost C++ Libraries <http://www.boost.org> are required to build
+/// AFormula.
+///
+/// If you want either of the dynamic-compilation backends to be built,
+/// you will need to install either LLVM <http://www.llvm.org>, or libjit 
+/// <http://freshmeat.net/projects/libjit/>.  Note that at the time of this
+/// writing I was not able to get libjit to compile without a fair bit of
+/// hacking around on its source code.
+///
+/// Neither of these libraries are necessary (the included muParser backend
+/// will be built regardless), but they will provide a large speed boost.
+///
+/// @section Thanks
+///
+/// Thanks are most obviously due to the author of muParser, Ingo Berg.
+/// Without muParser having been written, I never would have been able to
+/// start on the project that produced the need for AFormula.  muParser,
+/// which is licensed under the MIT license, is Copyright (C) 2004-2006 Ingo
+/// Berg.
+///
+/// Also, thanks is due to the pair of massively cross-platform JIT
+/// compilation libraries, LLVM and libjit, without which a JIT-compilation
+/// backend (for something like an order of magnitude of performance) would
+/// be impossible.
+///
+/// @section Interface
+///
 /// The main class exported by AFormula is @c AFormula::Formula.  See
 /// its documentation for more information.
 

@@ -84,6 +84,9 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a693601ea399d8fb840b6a741d7bf7318">buildFunction</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compile JIT code for parsed formula.  <a href="#a693601ea399d8fb840b6a741d7bf7318"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">jit_function_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a6e3c8892220a37da0d56644a1c4d7a3b">function</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The libjit function pointer where we build our function.  <a href="#a6e3c8892220a37da0d56644a1c4d7a3b"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Formula-compiling backend using libjit. </p>
@@ -111,7 +114,7 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4">AFormula::Private::CodeGenerator</a>.</p>
 
-<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00028">28</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00029">29</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -135,7 +138,7 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a044520668a6e310a473264c9dfb266ba">AFormula::Private::CodeGenerator</a>.</p>
 
-<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00032">32</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00035">35</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -159,7 +162,7 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a8b31ff34c1627f4c0a7811291bae30fb">AFormula::Private::CodeGenerator</a>.</p>
 
-<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00036">36</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00045">45</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -183,7 +186,7 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a1910e8ba3232ae57cdabbda44708eeb3">AFormula::Private::CodeGenerator</a>.</p>
 
-<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00040">40</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00054">54</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -207,7 +210,7 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#ab5c1c93aa30ad8e9d43f807eab81ad13">AFormula::Private::CodeGenerator</a>.</p>
 
-<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00044">44</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00121">121</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
 
 </div>
 </div>
@@ -231,7 +234,25 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#aaff7d5d04e06b82c1824e83d768e9b7d">AFormula::Private::JITFormula</a>.</p>
 
-<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00049">49</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="libjitformula_8cpp_source.html#l00267">267</a> of file <a class="el" href="libjitformula_8cpp_source.html">libjitformula.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a6e3c8892220a37da0d56644a1c4d7a3b"></a><!-- doxytag: member="AFormula::Private::LibJITFormula::function" ref="a6e3c8892220a37da0d56644a1c4d7a3b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">jit_function_t <a class="el" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#a6e3c8892220a37da0d56644a1c4d7a3b">AFormula::Private::LibJITFormula::function</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The libjit function pointer where we build our function. </p>
+
+<p>Definition at line <a class="el" href="libjitformula_8h_source.html#l00049">49</a> of file <a class="el" href="libjitformula_8h_source.html">libjitformula.h</a>.</p>
 
 </div>
 </div>
@@ -254,8 +275,7 @@ Collaboration diagram for AFormula::Private::LibJITFormula:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Aug 20 11:20:50 2010 for aformula by&nbsp;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
+<hr class="footer"/><address style="text-align: right;"><small>
+Generated by&nbsp;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3</small></address>
 </body>
 </html>

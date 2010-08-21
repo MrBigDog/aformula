@@ -9,3 +9,5 @@ config.status
 config.h
 libtool
 stamp-h1
+aformula-*.pc
+*.gz
