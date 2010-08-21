@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>aformula: Member List</title>
+<title>aformula: AFormula::Private::Parser::Constant Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -43,15 +43,66 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
+  <div class="navpath"><a class="el" href="namespace_a_formula.html">AFormula</a>::<a class="el" href="namespace_a_formula_1_1_private.html">Private</a>::<a class="el" href="class_a_formula_1_1_private_1_1_parser.html">Parser</a>::<a class="el" href="struct_a_formula_1_1_private_1_1_parser_1_1_constant.html">Constant</a>
+  </div>
 </div>
 <div class="contents">
-<h1>AFormula::Private::UnaryMinusExprAST Member List</h1>This is the complete list of members for <a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">AFormula::Private::UnaryMinusExprAST</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#adbdd5b74ac9a88f1f97d30037f5d4f4c">child</a></td><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">AFormula::Private::UnaryMinusExprAST</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#ad465d8d645321b61af15feedab97a3a5">generate</a>(CodeGenerator *gen)</td><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">AFormula::Private::UnaryMinusExprAST</a></td><td><code> [inline, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#a1063836d8140dcacac624130e0be2a0d">UnaryMinusExprAST</a>(ExprAST *c)</td><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">AFormula::Private::UnaryMinusExprAST</a></td><td><code> [inline]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html#ab6d33a252d3fc16a85f93ee4165d6d31">~ExprAST</a>()</td><td><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html">AFormula::Private::ExprAST</a></td><td><code> [inline, virtual]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html#aa434550bff4e0f85dd66c70600c4df40">~UnaryMinusExprAST</a>()</td><td><a class="el" href="class_a_formula_1_1_private_1_1_unary_minus_expr_a_s_t.html">AFormula::Private::UnaryMinusExprAST</a></td><td><code> [inline, virtual]</code></td></tr>
-</table></div>
+<h1>AFormula::Private::Parser::Constant Struct Reference</h1><!-- doxytag: class="AFormula::Private::Parser::Constant" -->
+<p>Details of a hard-coded mathematical constant.  
+<a href="#_details">More...</a></p>
+
+<p><a href="struct_a_formula_1_1_private_1_1_parser_1_1_constant-members.html">List of all members.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_a_formula_1_1_private_1_1_parser_1_1_constant.html#aee70e79f2d7d88feb43706587b5a3226">name</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Name of this constant.  <a href="#aee70e79f2d7d88feb43706587b5a3226"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_a_formula_1_1_private_1_1_parser_1_1_constant.html#aaebf77969081305cbc86ef498ed7c096">val</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The mathematical constant.  <a href="#aaebf77969081305cbc86ef498ed7c096"></a><br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Details of a hard-coded mathematical constant. </p>
+<p>Our accepted mathematical constants are hard-coded at compile-time as a constant array of these structures. </p>
+
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00114">114</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aee70e79f2d7d88feb43706587b5a3226"></a><!-- doxytag: member="AFormula::Private::Parser::Constant::name" ref="aee70e79f2d7d88feb43706587b5a3226" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* <a class="el" href="struct_a_formula_1_1_private_1_1_parser_1_1_constant.html#aee70e79f2d7d88feb43706587b5a3226">AFormula::Private::Parser::Constant::name</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Name of this constant. </p>
+
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00117">117</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaebf77969081305cbc86ef498ed7c096"></a><!-- doxytag: member="AFormula::Private::Parser::Constant::val" ref="aaebf77969081305cbc86ef498ed7c096" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="struct_a_formula_1_1_private_1_1_parser_1_1_constant.html#aaebf77969081305cbc86ef498ed7c096">AFormula::Private::Parser::Constant::val</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The mathematical constant. </p>
+
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00119">119</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li><a class="el" href="parser_8h_source.html">parser.h</a></li>
+</ul>
+</div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"

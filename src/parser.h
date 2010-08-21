@@ -106,15 +106,24 @@ private:
 	/// @brief List of hard-coded functions.
 	static const Function functions[NUM_FUNCTIONS];
 
-	/// @brief Names of mathematical constants
+	/// @struct Constant
+	/// @brief Details of a hard-coded mathematical constant.
 	///
-	/// Currently, we only accept @c "pi" and @c "e", and these are
-	/// dealt with specially.
-	///
-	/// @todo Make this a proper structure like @c Function or
-	/// @c Operator, so it's more extensible.
-	static const char *constantNames[];
-
+	/// Our accepted mathematical constants are hard-coded at
+	/// compile-time as a constant array of these structures.
+	struct Constant
+	{
+		/// @brief Name of this constant.
+		const char *name;
+		/// @brief The mathematical constant.
+		double val;
+	};
+	
+	/// @brief Number of constants.
+	static const int NUM_CONSTANTS = 2;
+	/// @brief List of hard-coded constants.
+	static const Constant constants[NUM_CONSTANTS];
+	
 	/// @struct Operator
 	/// @brief Details of a hard-coded binary operator.
 	///

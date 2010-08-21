@@ -163,10 +163,10 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable">
-      <type>std::string</type>
+      <type>boost::thread_specific_ptr&lt; std::string &gt;</type>
       <name>errorMessage</name>
       <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>ac938af24f2ad5efc3153d39d0470e7aa</anchor>
+      <anchor>affd7c9333c4c9b4943f5640287ff88d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -525,6 +525,7 @@
   <compound kind="class">
     <name>AFormula::Private::Parser</name>
     <filename>class_a_formula_1_1_private_1_1_parser.html</filename>
+    <class kind="struct">AFormula::Private::Parser::Constant</class>
     <class kind="struct">AFormula::Private::Parser::Function</class>
     <class kind="struct">AFormula::Private::Parser::Operator</class>
     <class kind="struct">AFormula::Private::Parser::Variable</class>
@@ -771,11 +772,18 @@
       <arglist>[NUM_FUNCTIONS]</arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
-      <type>static const char *</type>
-      <name>constantNames</name>
+      <type>static const int</type>
+      <name>NUM_CONSTANTS</name>
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
-      <anchor>a22bbc8c69ba64a230d6e2bcea4efc4cf</anchor>
-      <arglist>[]</arglist>
+      <anchor>a303d6b7b668d0ddcb420e6a70c214b2a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="private" static="yes">
+      <type>static const Constant</type>
+      <name>constants</name>
+      <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
+      <anchor>af6886358347c7d582228d85b2cda0feb</anchor>
+      <arglist>[NUM_CONSTANTS]</arglist>
     </member>
     <member kind="variable" protection="private" static="yes">
       <type>static const int</type>
@@ -790,6 +798,24 @@
       <anchorfile>class_a_formula_1_1_private_1_1_parser.html</anchorfile>
       <anchor>a42642a3527fc35248d0b8f2bc2bce995</anchor>
       <arglist>[NUM_OPERATORS]</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>AFormula::Private::Parser::Constant</name>
+    <filename>struct_a_formula_1_1_private_1_1_parser_1_1_constant.html</filename>
+    <member kind="variable">
+      <type>const char *</type>
+      <name>name</name>
+      <anchorfile>struct_a_formula_1_1_private_1_1_parser_1_1_constant.html</anchorfile>
+      <anchor>aee70e79f2d7d88feb43706587b5a3226</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>val</name>
+      <anchorfile>struct_a_formula_1_1_private_1_1_parser_1_1_constant.html</anchorfile>
+      <anchor>aaebf77969081305cbc86ef498ed7c096</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">

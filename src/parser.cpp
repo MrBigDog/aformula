@@ -144,9 +144,10 @@ const Parser::Function Parser::functions[NUM_FUNCTIONS] =
 	{"if", 3}
 };
 
-const char *Parser::constantNames[] =
+const Parser::Constant Parser::constants[NUM_CONSTANTS] =
 {
-	"pi", "e", NULL
+	{"pi", M_PI},
+	{"e", M_E}
 };
 
 const Parser::Operator Parser::operators[NUM_OPERATORS] =
@@ -279,15 +280,13 @@ int Parser::getIdentifierType (const std::string &ident) const
 		if (ident == functions[i].name)
 			return TOKEN_IDENTIFIER_FUNCTION;
 	}
-		
-	const char **ptr = constantNames;
-	while (*ptr)
+
+	for (int i = 0 ; i < NUM_CONSTANTS ; i++)
 	{
-		if (ident == *ptr)
+		if (ident == constants[i].name)
 			return TOKEN_IDENTIFIER_CONSTANT;
-		++ptr;
 	}
-		
+	
 	std::vector<Variable>::const_iterator iter;
 	for (iter = variables.begin () ; iter != variables.end () ; ++iter)
 	{
@@ -402,19 +401,18 @@ ExprAST *Parser::parseConstantIdentifierExpr ()
 {
 	std::string name (strToken);
 	getNextToken ();
-		
-	if (name == "pi")
-		return new NumberExprAST (M_PI);
-	else if (name == "e")
-		return new NumberExprAST (M_E);
-	else
+
+	for (int i = 0 ; i < NUM_CONSTANTS ; i++)
 	{
-		error (boost::format ("Internal Error: Attempted to treat %1% "
-		                      "as a constant, though it is not.  "
-		                      "Report this as a bug to <" PACKAGE_BUGREPORT ">!")
-		       % name);
-		return NULL;
+		if (name == constants[i].name)
+			return new NumberExprAST (constants[i].val);
 	}
+	
+	error (boost::format ("Internal Error: Attempted to treat %1% "
+	                      "as a constant, though it is not.  "
+	                      "Report this as a bug to <" PACKAGE_BUGREPORT ">!")
+	       % name);
+	return NULL;
 }
 	
 ExprAST *Parser::parseVariableIdentifierExpr ()
