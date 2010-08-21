@@ -9,7 +9,8 @@ libaformula_@AFORMULA_API_VERSION@_la_SOURCES = \
 libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS = \
 	-I@top_srcdir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@
 
-libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS = -version-info @AFORMULA_SO_VERSION@ @BOOST_LDFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS = -version-info @AFORMULA_SO_VERSION@ \
+	@BOOST_LDFLAGS@
 
 if LLVM
 libaformula_@AFORMULA_API_VERSION@_la_SOURCES += llvmformula.cpp
@@ -23,4 +24,6 @@ libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS += @LIBJIT_CPPFLAGS@
 libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS += @LIBJIT_LDFLAGS@
 endif
 
-libaformula_@AFORMULA_API_VERSION@_la_LIBADD = @top_builddir@/lib/muparser/libmuparser.la
+libaformula_@AFORMULA_API_VERSION@_la_LIBADD = \
+	@top_builddir@/lib/muparser/libmuparser.la \
+	@BOOST_THREAD_LIB@

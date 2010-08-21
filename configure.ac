@@ -34,6 +34,7 @@ AC_LANG(C++)
 # Libraries
 ###################
 AX_BOOST_BASE([1.29.0])
+AX_BOOST_THREAD
 
 AX_LLVM([core jit target native])
 AF_LIBJIT

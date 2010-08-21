@@ -15,6 +15,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <aformula.h>
+#include <boost/thread/tss.hpp>
+
 #include "llvmformula.h"
 #include "parsetree.h"
 
@@ -50,6 +52,7 @@ namespace AFormula
 
 namespace Private
 {
+extern boost::thread_specific_ptr<std::string> errorMessage;
 
 /// @class LLVMInitializer
 /// @brief Initialze LLVM target data on load.
@@ -85,8 +88,9 @@ LLVMFormula::LLVMFormula ()
 	engine = EngineBuilder (MP).setErrorStr (&errorString).create ();
 	if (!engine)
 	{
-		errorMessage = "LLVM Error: " + errorString;
-		throw std::runtime_error ("holycrap exceptions?");
+		// We won't let you call buildFunction if you catch this error
+		errorMessage.reset (new std::string ("LLVM Error: " + errorString));
+		return;
 	}
 
 	// Create an IRBuilder
@@ -124,6 +128,9 @@ LLVMFormula::~LLVMFormula ()
 
 bool LLVMFormula::buildFunction ()
 {
+	if (!engine)
+		return false;
+		
 	// First, build a prototype for the nullary function we're about to define.
 	FunctionType *FT = FunctionType::get (Type::getDoubleTy (getGlobalContext ()), false);
 

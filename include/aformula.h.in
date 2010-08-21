@@ -193,8 +193,6 @@ public:
 	/// empty string if no error state exists), and will then reset
 	/// the internal error state to the empty string if the user
 	/// wishes to recover and try again.
-	///
-	/// @todo As written, this code is not currently thread-safe.
 	std::string errorString ();
 	
 

@@ -14,8 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <config.h>
 #include <aformula.h>
+#include <config.h>
+#include <boost/thread/tss.hpp>
 #include "parser.h"
 #include "parsetree.h"
 
@@ -24,8 +25,7 @@ namespace AFormula
 
 namespace Private
 {
-
-extern std::string errorMessage;
+extern boost::thread_specific_ptr<std::string> errorMessage;
 
 
 void Parser::clearVariables ()
@@ -82,7 +82,7 @@ void Parser::error (const std::string &err) const
 	else
 		message = boost::str (boost::format ("Parser Error: %1%") % err);
 	
-	errorMessage = message;
+	errorMessage.reset (new std::string (message));
 }
 
 std::string Parser::formatToken () const

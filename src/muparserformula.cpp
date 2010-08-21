@@ -15,6 +15,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <aformula.h>
+#include <boost/thread/tss.hpp>
 #include "muparserformula.h"
 
 namespace AFormula
@@ -22,8 +23,7 @@ namespace AFormula
 
 namespace Private
 {
-
-extern std::string errorMessage;
+extern boost::thread_specific_ptr<std::string> errorMessage;
 
 
 bool MuParserFormula::setExpression (const std::string &str)
@@ -41,8 +41,7 @@ bool MuParserFormula::setExpression (const std::string &str)
 	}
 	catch (const mu::Parser::exception_type &e)
 	{
-		errorMessage = "muParser: Error while setting expression to ";
-		errorMessage += str;
+		errorMessage.reset (new std::string ("muParser: Error while setting expression to " + str));
 		return false;
 	}
 }
@@ -61,8 +60,7 @@ bool MuParserFormula::setVariable (const std::string &variable, double *pointer)
 	}
 	catch (const mu::Parser::exception_type &e)
 	{
-		errorMessage = "muParser: Error while setting variable ";
-		errorMessage += variable;
+		errorMessage.reset (new std::string ("muParser: Error while setting variable " + variable));
 		return false;
 	}
 }
@@ -75,7 +73,7 @@ double MuParserFormula::evaluate ()
 	}
 	catch (mu::Parser::exception_type &e)
 	{
-		errorMessage = "muParser: Error evaluating expression";
+		errorMessage.reset (new std::string ("muParser: Error evaluating expression"));
 		return 0.0f;
 	}
 }

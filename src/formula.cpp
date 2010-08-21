@@ -17,7 +17,9 @@
 
 #include <aformula.h>
 #include <config.h>
+
 #include <csignal>
+#include <boost/thread/tss.hpp>
 
 #include "timer.h"
 #include "muparserformula.h"
@@ -43,9 +45,7 @@ namespace Private
 ///
 /// Our library code sets error messages in this variable.  It is returned and
 /// then cleared by Formula::errorString().
-///
-/// @todo This is not currently thread-safe!
-std::string errorMessage;
+boost::thread_specific_ptr<std::string> errorMessage;
 };
 
 //
@@ -53,8 +53,11 @@ std::string errorMessage;
 //
 std::string Formula::errorString ()
 {
-	std::string copy (Private::errorMessage);
-	Private::errorMessage.clear ();
+	if (!Private::errorMessage.get ())
+		return std::string ("");
+		
+	std::string copy (*Private::errorMessage);
+	Private::errorMessage.reset ();
 	
 	return copy;
 }
@@ -73,7 +76,7 @@ Formula *Formula::createFormula (int withBackend)
 	// Check input
 	if (withBackend < 0 || withBackend > NUM_BACKENDS)
 	{
-		Private::errorMessage = "Formula::createFormula: Invalid backend requested";
+		Private::errorMessage.reset (new std::string ("Formula::createFormula: Invalid backend requested"));
 		return NULL;
 	}
 	

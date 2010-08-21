@@ -24,8 +24,6 @@ namespace AFormula
 
 namespace Private
 {
-extern std::string errorMessage;
-
 
 /// @brief Base class for JIT formula compilers.
 ///

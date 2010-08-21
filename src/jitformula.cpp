@@ -15,6 +15,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <aformula.h>
+#include <boost/thread/tss.hpp>
+
 #include "jitformula.h"
 #include "parsetree.h"
 
@@ -23,6 +25,7 @@ namespace AFormula
 
 namespace Private
 {
+extern boost::thread_specific_ptr<std::string> errorMessage;
 
 
 JITFormula::JITFormula () : func (NULL), parseTree (NULL)
@@ -70,7 +73,7 @@ double JITFormula::evaluate ()
 {
 	if (!func)
 	{
-		errorMessage = "JITFormula: Could not build function for formula";
+		errorMessage.reset (new std::string ("JITFormula: attempted to evaluate a function before compiling it successfully!"));
 		return std::numeric_limits<double>::quiet_NaN ();
 	}
 	
