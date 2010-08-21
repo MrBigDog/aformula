@@ -20,7 +20,7 @@
 #include "jitformula.h"
 #include "codegenerator.h"
 
-#include <jit/jit.h>
+typedef struct _jit_function *jit_function_t;
 
 namespace AFormula
 {
@@ -45,7 +45,8 @@ protected:
 	virtual bool buildFunction ();
 
 private:
-	// yadda
+	/// @brief The libjit function pointer where we build our function.
+	jit_function_t function;
 };
 
 };
