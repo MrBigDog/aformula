@@ -14,90 +14,116 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file aformula.h
+/// @brief Main include file for AFormula.
+
 #ifndef AFORMULA_H__
 #define AFORMULA_H__
 
 #include <string>
 #include <boost/utility.hpp>
 
-/// @mainpage AFormula
-/// @author Charles Pence
-/// @date August 8, 2010
-///
-/// Welcome to the documentation for AFormula!
-///
-/// AFormula is a library designed for high-performance evaluation of
-/// mathematical formulas, especially in numerical simulation and
-/// similar applications.  It is heavily inspired by muParser, but is
-/// able to utilize multiple different formula-evaluation backends,
-/// including muParser itself, and the LLVM and libjit just-in-time
-/// compilers.  Just-in-time compilation permits much faster formula
-/// evaluation, and the LLVM library, in particular, has been ported
-/// to many CPU architectures.
-///
-/// Support is included for all the standard arithmetic and
-/// comparative operators, including @c <=, @c >=, @c !=, @c ==,
-/// @c <, @c >, @c +, @c -, @c *, @c /, and @c ^ (exponentiation).
-/// Arbitrary variables may be defined (as pointers to double-values),
-/// and the assignment operator, @c =, may be used to assign values to
-/// them.  A full suite of builtin functions is supported:
-///
-/// @li Trigonometry (sin, cos, tan, asin, acos, atan)
-/// @li Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
-/// @li Logarithms (log2, log10 [= log], ln, exp, sqrt)
-/// @li Miscellaneous (sign, rint, abs)
-/// @li Logical control: if(x,if-true,if-false)
-///
-/// Finally, the constants @c pi and @c e are supported.
-///
-/// The order of operations is:
-///
-/// @li = (assignment, lowest)
-/// @li <=, >=, !=, ==, <, > (comparisons)
-/// @li +, - (addition/subtraction)
-/// @li *, / (multiplication/division)
-/// @li ^ (exponentiation)
-///
-/// AFormula is designed to be quite robust to invalid formulas, and is
-/// careful to return appropriate errors when necessary.
-///
-/// There are two JIT backends which AFormula can use in order to compile
-/// functions on the fly: LLVM and libjit.  In general, both should provide
-/// roughly the same performance, though there is a performance test
-/// included which will benchmark the library and permit selection at
-/// runtime.
-///
-/// @section Requirements
-///
-/// The Boost C++ Libraries <http://www.boost.org> are required to build
-/// AFormula.
-///
-/// If you want either of the dynamic-compilation backends to be built,
-/// you will need to install either LLVM <http://www.llvm.org>, or libjit 
-/// <http://freshmeat.net/projects/libjit/>.  Note that at the time of this
-/// writing I was not able to get libjit to compile without a fair bit of
-/// hacking around on its source code.
-///
-/// Neither of these libraries are necessary (the included muParser backend
-/// will be built regardless), but they will provide a large speed boost.
-///
-/// @section Thanks
-///
-/// Thanks are most obviously due to the author of muParser, Ingo Berg.
-/// Without muParser having been written, I never would have been able to
-/// start on the project that produced the need for AFormula.  muParser,
-/// which is licensed under the MIT license, is Copyright (C) 2004-2006 Ingo
-/// Berg.
-///
-/// Also, thanks is due to the pair of massively cross-platform JIT
-/// compilation libraries, LLVM and libjit, without which a JIT-compilation
-/// backend (for something like an order of magnitude of performance) would
-/// be impossible.
-///
-/// @section Interface
-///
-/// The main class exported by AFormula is @c AFormula::Formula.  See
-/// its documentation for more information.
+/**
+@mainpage AFormula
+@author Charles Pence
+@date August 8, 2010
+
+Welcome to the documentation for AFormula!
+
+AFormula is a library designed for high-performance evaluation of
+mathematical formulas, especially in numerical simulation and
+similar applications.  It is heavily inspired by muParser, but is
+able to utilize multiple different formula-evaluation backends,
+including muParser itself, and the LLVM and libjit just-in-time
+compilers.  Just-in-time compilation permits much faster formula
+evaluation, and the LLVM library, in particular, has been ported
+to many CPU architectures.
+
+Support is included for all the standard arithmetic and
+comparative operators, including @c <=, @c >=, @c !=, @c ==,
+@c <, @c >, @c +, @c -, @c *, @c /, and @c ^ (exponentiation).
+Arbitrary variables may be defined (as pointers to double-values),
+and the assignment operator, @c =, may be used to assign values to
+them.  A full suite of builtin functions is supported:
+
+@li Trigonometry (sin, cos, tan, asin, acos, atan)
+@li Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
+@li Logarithms (log2, log10 [= log], ln, exp, sqrt)
+@li Miscellaneous (sign, rint, abs)
+@li Logical control: if(x,if-true,if-false)
+
+Finally, the constants @c pi and @c e are supported.
+
+The order of operations is:
+
+@li = (assignment, lowest)
+@li <=, >=, !=, ==, <, > (comparisons)
+@li +, - (addition/subtraction)
+@li *, / (multiplication/division)
+@li ^ (exponentiation)
+
+AFormula is designed to be quite robust to invalid formulas, and is
+careful to return appropriate errors when necessary.
+
+There are two JIT backends which AFormula can use in order to compile
+functions on the fly: LLVM and libjit.  In general, both should provide
+roughly the same performance, though there is a performance test
+included which will benchmark the library and permit selection at
+runtime.
+
+@section Performance
+
+AFormula provides very high performance, even in many cases surpassing
+what can be achieved by precompiled, native C++ code.  Here are the 
+results of a sample, representative benchmark:
+
+@verbatim
+Backend benchmark:
+
+Backend 1 (muParser): 0.417541 seconds (417541 ticks)
+Backend 2 (LLVM): 0.233151 seconds (233151 ticks)
+Backend 3 (libjit): 0.232719 seconds (232719 ticks)
+Compiled C++ (comparison): 0.235764 seconds (235764 ticks)
+@endverbatim
+
+Note that both the JIT compilers, LLVM and libjit, perform about twice
+as fast as the byte-compiled muParser code, and both JIT compilers 
+even perform 2-3% faster than the native, precompiled C++ version 
+(g++ -O3) of the same code.  Which of LLVM or libjit performs faster
+in a given scenario, for simple formulas, is usually a matter of 
+chance.
+
+@section Requirements
+
+The Boost C++ Libraries <http://www.boost.org> are required to build
+AFormula.
+
+If you want either of the dynamic-compilation backends to be built,
+you will need to install either LLVM <http://www.llvm.org>, or libjit 
+<http://freshmeat.net/projects/libjit/>.  Note that at the time of this
+writing I was not able to get libjit to compile without a fair bit of
+hacking around on its source code.
+
+Neither of these libraries are necessary (the included muParser backend
+will be built regardless), but they will provide a large speed boost.
+
+@section Thanks
+
+Thanks are most obviously due to the author of muParser, Ingo Berg.
+Without muParser having been written, I never would have been able to
+start on the project that produced the need for AFormula.  muParser,
+which is licensed under the MIT license, is Copyright (C) 2004-2006 Ingo
+Berg.
+
+Also, thanks is due to the pair of massively cross-platform JIT
+compilation libraries, LLVM and libjit, without which a JIT-compilation
+backend would be impossible
+
+@section Interface
+
+The main class exported by AFormula is @c AFormula::Formula.  See
+its documentation for more information.
+*/
 
 
 /// @namespace AFormula

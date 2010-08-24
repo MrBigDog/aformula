@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file parser.h
+/// @brief Definition of the @c Parser class.
+
 #ifndef PARSER_H__
 #define PARSER_H__
 

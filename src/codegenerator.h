@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file codegenerator.h
+/// @brief Definition of the @c CodeGenerator interface.
+
 #ifndef CODEGENERATOR_H__
 #define CODEGENERATOR_H__
 

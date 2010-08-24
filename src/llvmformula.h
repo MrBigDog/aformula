@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file llvmformula.h
+/// @brief Definition of the @c LLVMFormula class.
+
 #ifndef LLVMFORMULA_H__
 #define LLVMFORMULA_H__
 

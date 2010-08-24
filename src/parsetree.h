@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file parsetree.h
+/// @brief Definition of the various @c ExprAST classes.
+
 #ifndef PARSETREE_H__
 #define PARSETREE_H__
 

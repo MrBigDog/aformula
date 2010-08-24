@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file muparserformula.cpp
+/// @brief Implementation of the @c MuParserFormula class.
+
 #include <aformula.h>
 #include <boost/thread/tss.hpp>
 #include "muparserformula.h"

@@ -7,6 +7,233 @@
     <docanchor file="index">Requirements</docanchor>
     <docanchor file="index">Thanks</docanchor>
     <docanchor file="index">Interface</docanchor>
+    <docanchor file="index">Performance</docanchor>
+  </compound>
+  <compound kind="file">
+    <name>aformula.h</name>
+    <path>/Users/cpence/Development/aformula/master/include/</path>
+    <filename>aformula_8h</filename>
+    <class kind="class">AFormula::Formula</class>
+    <namespace>AFormula</namespace>
+  </compound>
+  <compound kind="file">
+    <name>benchmark.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>benchmark_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="benchmark_8cpp" name="benchmark.cpp" local="no" imported="no">config.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>compiledCppBenchmark</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>aa73b6a7b06e3a6e8c5dcc5398053bc17</anchor>
+      <arglist>(float x, float y)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void</type>
+      <name>signal_handler</name>
+      <anchorfile>namespace_a_formula.html</anchorfile>
+      <anchor>a69045ecbbbad4f45421a6a31a6af5401</anchor>
+      <arglist>(int signum)</arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>defaultBackend</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>a079a9cbe9433b8deb2498befbd3bcbe4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>volatile sig_atomic_t</type>
+      <name>errorflag</name>
+      <anchorfile>namespace_a_formula.html</anchorfile>
+      <anchor>ade6b09620039807bffcc3a6fcac49e9b</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>codegenerator.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>codegenerator_8h</filename>
+    <class kind="class">AFormula::Private::CodeGenerator</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>formula.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>formula_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="formula_8cpp" name="formula.cpp" local="yes" imported="no">muparserformula.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+    <member kind="variable">
+      <type>boost::thread_specific_ptr&lt; std::string &gt;</type>
+      <name>errorMessage</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>affd7c9333c4c9b4943f5640287ff88d8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>jitformula.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>jitformula_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="jitformula_8cpp" name="jitformula.cpp" local="yes" imported="no">jitformula.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>jitformula.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>jitformula_8h</filename>
+    <includes id="parser_8h" name="parser.h" local="yes" imported="no">parser.h</includes>
+    <class kind="class">AFormula::Private::JITFormula</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>libjitformula.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>libjitformula_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="libjitformula_8cpp" name="libjitformula.cpp" local="yes" imported="no">libjitformula.h</includes>
+    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
+    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
+    <includes id="parsetree_8h" name="parsetree.h" local="yes" imported="no">parsetree.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>libjitformula.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>libjitformula_8h</filename>
+    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
+    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
+    <class kind="class">AFormula::Private::LibJITFormula</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>llvmformula.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>llvmformula_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="llvmformula_8cpp" name="llvmformula.cpp" local="yes" imported="no">llvmformula.h</includes>
+    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
+    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
+    <includes id="parsetree_8h" name="parsetree.h" local="yes" imported="no">parsetree.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>llvmformula.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>llvmformula_8h</filename>
+    <includes id="jitformula_8h" name="jitformula.h" local="yes" imported="no">jitformula.h</includes>
+    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
+    <class kind="class">AFormula::Private::LLVMFormula</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>muparserformula.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>muparserformula_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="muparserformula_8h" name="muparserformula.h" local="yes" imported="no">muparserformula.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>muparserformula.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>muparserformula_8h</filename>
+    <class kind="class">AFormula::Private::MuParserFormula</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>parser.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>parser_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <includes id="parser_8h" name="parser.h" local="yes" imported="no">parser.h</includes>
+    <includes id="parsetree_8h" name="parsetree.h" local="yes" imported="no">parsetree.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>parser.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>parser_8h</filename>
+    <class kind="class">AFormula::Private::Parser</class>
+    <class kind="struct">AFormula::Private::Parser::Function</class>
+    <class kind="struct">AFormula::Private::Parser::Constant</class>
+    <class kind="struct">AFormula::Private::Parser::Operator</class>
+    <class kind="struct">AFormula::Private::Parser::Variable</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>parsetree.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>parsetree_8h</filename>
+    <includes id="codegenerator_8h" name="codegenerator.h" local="yes" imported="no">codegenerator.h</includes>
+    <class kind="class">AFormula::Private::ExprAST</class>
+    <class kind="class">AFormula::Private::NumberExprAST</class>
+    <class kind="class">AFormula::Private::VariableExprAST</class>
+    <class kind="class">AFormula::Private::UnaryMinusExprAST</class>
+    <class kind="class">AFormula::Private::BinaryExprAST</class>
+    <class kind="class">AFormula::Private::CallExprAST</class>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+  </compound>
+  <compound kind="file">
+    <name>timer.cpp</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>timer_8cpp</filename>
+    <includes id="aformula_8h" name="aformula.h" local="no" imported="no">aformula.h</includes>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+    <member kind="function">
+      <type>uint64_t</type>
+      <name>timerFrequency</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>a91c5f14e2808cc7d2a497a737e7d2202</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>uint64_t</type>
+      <name>timerTime</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>a6d9ae09aee8886a3994bf565b21105a7</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>timer.h</name>
+    <path>/Users/cpence/Development/aformula/master/src/</path>
+    <filename>timer_8h</filename>
+    <namespace>AFormula</namespace>
+    <namespace>AFormula::Private</namespace>
+    <member kind="function">
+      <type>uint64_t</type>
+      <name>timerFrequency</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>a91c5f14e2808cc7d2a497a737e7d2202</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>uint64_t</type>
+      <name>timerTime</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>a6d9ae09aee8886a3994bf565b21105a7</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="namespace">
     <name>AFormula</name>

@@ -14,6 +14,8 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file formula.cpp
+/// @brief Implementation of the @c Formula class.
 
 #include <aformula.h>
 #include <config.h>

@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file benchmark.cpp
+/// @brief Implementation of @c Formula::fastestBackend and related utilities.
+
 #include <aformula.h>
 #include <config.h>
 #include <boost/format.hpp>

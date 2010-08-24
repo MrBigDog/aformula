@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file jitformula.cpp
+/// @brief Implementation of the @c JITFormula class.
+
 #include <aformula.h>
 #include <boost/thread/tss.hpp>
 

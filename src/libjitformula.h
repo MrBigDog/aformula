@@ -14,13 +14,18 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file libjitformula.h
+/// @brief Definition of the @c LibJITFormula class.
+
 #ifndef LIBJITFORMULA_H__
 #define LIBJITFORMULA_H__
 
 #include "jitformula.h"
 #include "codegenerator.h"
 
+/// @cond
 typedef struct _jit_function *jit_function_t;
+/// @endcond
 
 namespace AFormula
 {

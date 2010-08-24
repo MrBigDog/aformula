@@ -14,6 +14,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/// @file timer.cpp
+/// @brief Implementation of private timer functions.
+
 #include <aformula.h>
 
 #ifdef _WIN32
