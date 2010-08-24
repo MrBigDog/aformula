@@ -81,7 +81,7 @@ Inheritance diagram for AFormula::Private::CodeGenerator:</div>
 <p>We implement a visitor pattern (with double-dispatch) for just-in-time code compilation with any compiler. The parser creates a recursive-descent parsing tree, and the JIT formula classes implement this pattern, overriding the various <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">emit()</a></code> methods to produce appropriate code.</p>
 <p>All of the <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html#a0a29273cebbbb490c4940f397d4a74b4" title="Emit the code for a constant number.">emit()</a></code> methods are defined to return <code>void*</code> pointers. These will in fact be whatever the appropriate class for the JIT compiler at issue is. For <code><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html" title="LLVM formula-compiling backend.">LLVMFormula</a></code> class, this is an <code>LLVM::Value*</code> pointer, and for the <code><a class="el" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html" title="Formula-compiling backend using libjit.">LibJITFormula</a></code> class, this is a <code>jit_value_t</code> pointer. The ponters are defined generically here to prevent the entire <code><a class="el" href="class_a_formula_1_1_private_1_1_code_generator.html" title="Abstract interface for code generator visitor.">CodeGenerator</a></code>, <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>, and <code><a class="el" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree.">Parser</a></code> class structure from being template classes. </p>
 
-<p>Definition at line <a class="el" href="codegenerator_8h_source.html#l00049">49</a> of file <a class="el" href="codegenerator_8h_source.html">codegenerator.h</a>.</p>
+<p>Definition at line <a class="el" href="codegenerator_8h_source.html#l00052">52</a> of file <a class="el" href="codegenerator_8h_source.html">codegenerator.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5a222b715085b474308a18837f13f383"></a><!-- doxytag: member="AFormula::Private::CodeGenerator::~CodeGenerator" ref="a5a222b715085b474308a18837f13f383" args="()" -->
 <div class="memitem">
@@ -100,7 +100,7 @@ Inheritance diagram for AFormula::Private::CodeGenerator:</div>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="codegenerator_8h_source.html#l00053">53</a> of file <a class="el" href="codegenerator_8h_source.html">codegenerator.h</a>.</p>
+<p>Definition at line <a class="el" href="codegenerator_8h_source.html#l00056">56</a> of file <a class="el" href="codegenerator_8h_source.html">codegenerator.h</a>.</p>
 
 </div>
 </div>
@@ -224,7 +224,7 @@ Inheritance diagram for AFormula::Private::CodeGenerator:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
