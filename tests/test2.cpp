@@ -36,8 +36,7 @@ void CHECK_EQUATION(const char *formula, bool pass)
 		if (error)
 		{
 			fprintf (stderr, "FAIL (fail, expected pass): %s does not parse\n", formula);
-			fprintf (stderr, "%s\n", f->errorString ().c_str ());
-			
+			fprintf (stderr, "%s\n", f->errorString ().c_str ());			
 			exit (1);
 		}
 		else
@@ -54,7 +53,6 @@ void CHECK_EQUATION(const char *formula, bool pass)
 		else
 		{
 			fprintf (stdout, "FAIL (fail, expected fail): %s does not parse\n", formula);
-			fprintf (stdout, "%s\n", f->errorString ().c_str ());
 		}
 	}
 }
@@ -65,8 +63,8 @@ int main (int argc, char *argv[])
 	for (int i = 1 ; i < AFormula::Formula::NUM_BACKENDS ; i++)
 	{
 		double a = 1.0;
-				
-		fprintf (stdout, "Begin testing backend number %d\n\n", i);
+
+		fprintf (stdout, "\n*** Begin testing backend number %d:\n\n", i);
 
 		f = AFormula::Formula::createFormula (i);
 		if (!f)

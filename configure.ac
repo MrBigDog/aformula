@@ -5,7 +5,7 @@ AC_CONFIG_SRCDIR([src/formula.cpp])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/m4])
 
-AM_INIT_AUTOMAKE([-Wall -Werror gnits 1.9.6])
+AM_INIT_AUTOMAKE([-Wall -Werror gnits 1.9.6 dist-bzip2])
 
 AC_SUBST([AFORMULA_SO_VERSION], [1:0:0])
 AC_SUBST([AFORMULA_API_VERSION], [1.0])

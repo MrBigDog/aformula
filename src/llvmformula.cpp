@@ -54,30 +54,18 @@ namespace Private
 {
 extern boost::thread_specific_ptr<std::string> errorMessage;
 
-/// @class LLVMInitializer
-/// @brief Initialze LLVM target data on load.
-///
-/// We need to initialize the LLVM native-target data, but we need to do so
-/// only once per library load.  Do that here in the constructor of a global
-/// object.
-class LLVMInitializer
-{
-public:
-	/// @brief Constructor.
-	///
-	/// Call @c llvm::InitializeNativeTarget().
-	LLVMInitializer ()
-	{
-		InitializeNativeTarget ();
-	}
-};
-
-/// @brief Global object to initialize LLVM.
-LLVMInitializer llvmInitializer;
 
 
 LLVMFormula::LLVMFormula ()
 {
+	// We need to initialize the native target info, once.
+	static bool initializeNative = false;
+	if (!initializeNative)
+	{
+		InitializeNativeTarget ();
+		initializeNative = true;
+	}
+		
 	// Build a module and a JIT engine
 	module = new Module ("AFormula JIT", getGlobalContext ());
 	MP = new ExistingModuleProvider (module);

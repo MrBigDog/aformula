@@ -172,6 +172,8 @@ public:
 	///
 	/// @param[in] setAsDefault If true, set the value of @c
 	/// Formula::BACKEND_DEFAULT to the fastest available backend
+	/// @param[in] printTimings If true, print the results of the
+	/// benchmark to @c stdout.
 	/// @return @c BACKEND_* value of the fastest available backend
 	///
 	/// This function will run a run-time benchmark to determine which
@@ -182,7 +184,7 @@ public:
 	/// Formula::BACKEND_DEFAULT, if @c setAsDefault is @c true, then
 	/// future calls to @c Formula::createFormula passing @c
 	/// BACKEND_DEFAULT will use the tested-fastest backend.
-	static int fastestBackend (bool setAsDefault = true);
+	static int fastestBackend (bool setAsDefault = true, bool printTimings = false);
 
 
 
@@ -232,6 +234,11 @@ public:
 	/// which holds the current value of the given variable, and will
 	/// hold any changes to the variable which are caused by evaluating
 	/// the formula.
+	///
+	/// @note The pointer passed in here @b must be a pointer to a static
+	/// (or global) double!  The various JIT compilers are @b not able to
+	/// access the stack space of other functions.  To repeat: you must
+	/// declare any double passed in as a pointer here as @b static.
 	///
 	/// A variable may fail to be registered if the variable has the same
 	/// name as another variable, one of the AFormula built-in functions,

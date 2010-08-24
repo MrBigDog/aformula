@@ -256,6 +256,7 @@ Collaboration diagram for AFormula::Private::JITFormula:</div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if the variable could be properly registered, false otherwise.</dd></dl>
 <p>This function registers a new variable for use in a formula. Since variables in a formula are read/write (that is, we have an assignment operator), you must supply a pointer to a double value which holds the current value of the given variable, and will hold any changes to the variable which are caused by evaluating the formula.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>The pointer passed in here <b>must</b> be a pointer to a static (or global) double! The various JIT compilers are <b>not</b> able to access the stack space of other functions. To repeat: you must declare any double passed in as a pointer here as <b>static</b>.</dd></dl>
 <p>A variable may fail to be registered if the variable has the same name as another variable, one of the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> built-in functions, or one of the built-in mathematical constants. </p>
 
 <p>Implements <a class="el" href="class_a_formula_1_1_formula.html#a42f3fe0cc07731ebfbb55b83bd241fd3">AFormula::Formula</a>.</p>

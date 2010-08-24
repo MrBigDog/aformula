@@ -21,7 +21,6 @@
 #include <csignal>
 #include <boost/thread/tss.hpp>
 
-#include "timer.h"
 #include "muparserformula.h"
 
 #ifdef HAVE_LLVM
@@ -46,6 +45,10 @@ namespace Private
 /// Our library code sets error messages in this variable.  It is returned and
 /// then cleared by Formula::errorString().
 boost::thread_specific_ptr<std::string> errorMessage;
+
+/// @brief Current backend which will be used if @c BACKEND_DEFAULT
+/// is specified.
+int defaultBackend = Formula::BACKEND_MUPARSER;
 };
 
 //
@@ -67,10 +70,6 @@ std::string Formula::errorString ()
 // Backend selection
 //
 
-/// @brief Current backend which will be used if @c BACKEND_DEFAULT
-/// is specified.
-static int defaultBackend = Formula::BACKEND_MUPARSER;
-
 Formula *Formula::createFormula (int withBackend)
 {
 	// Check input
@@ -82,7 +81,7 @@ Formula *Formula::createFormula (int withBackend)
 	
 	// Take the default backend if requested
 	if (withBackend == BACKEND_DEFAULT)
-		withBackend = defaultBackend;
+		withBackend = Private::defaultBackend;
 
 	Formula *formula = NULL;
 	
@@ -107,97 +106,6 @@ Formula *Formula::createFormula (int withBackend)
 	};
 	
 	return formula;
-}
-
-
-
-extern "C"
-{
-	/// @brief Set to 1 if a backend has crashed.
-	volatile sig_atomic_t errorflag = 0;
-
-	/// @brief Trap for crash signals during backend testing.
-	///
-	/// On our speed test, it is possible that a given backend may simply crash
-	/// entirely.  We want to try to guard against that and insulate the user,
-	/// so endeavor to catch any signals, raise a flag, and abort the testing of
-	/// that module.
-	static void signal_handler (int signum)
-	{
-		// One of the backends went down, let everybody know
-		errorflag = 1;
-	}
-};
-
-int Formula::fastestBackend (bool setAsDefault)
-{
-	int bestBackend = BACKEND_MUPARSER;
-	uint64_t bestBackendTime = UINT64_MAX;
-
-	// Trap SIGABRT, SIGFPE, SIGILL, SIGSEGV, and don't let a rogue
-	// backend bring down the entire system
-	signal (SIGABRT, signal_handler);
-	signal (SIGFPE, signal_handler);
-	signal (SIGILL, signal_handler);
-	signal (SIGSEGV, signal_handler);
-
-	for (int backend = 1 ; backend < NUM_BACKENDS ; backend++)
-	{
-		// Reset the signal error flag
-		errorflag = 0;
-		
-		uint64_t timeStart = Private::timerTime ();
-		
-		Formula *formula = Formula::createFormula (backend);
-		if (!formula || errorflag)
-			continue;
-
-		double x;
-		formula->setVariable ("x", &x);
-		if (errorflag)
-			continue;
-
-		formula->setExpression ("x*x + 4");
-		if (errorflag)
-			continue;
-
-		for (int i = 0 ; i < 1000 ; i++)
-		{
-			x = i;
-			double ret = formula->evaluate ();
-			if (errorflag)
-				break;
-			if (ret != i * i + 4)
-			{
-				errorflag = 1;
-				break;
-			}
-		}
-
-		// We leak memory here on purpose, because we don't know whether
-		// the crash has broken state in such a way that deleting the formula
-		// variable will cause another crash.
-		if (errorflag)
-			continue;
-		
-		delete formula;
-		
-		uint64_t timeEnd = Private::timerTime ();
-
-		if (timeEnd - timeStart < bestBackendTime)
-		{
-			bestBackendTime = timeEnd - timeStart;
-			bestBackend = backend;
-		}
-	}
-
-	// Release the signals
-	signal (SIGABRT, SIG_DFL);
-	signal (SIGFPE, SIG_DFL);
-	signal (SIGILL, SIG_DFL);
-	signal (SIGSEGV, SIG_DFL);
-
-	return bestBackend;
 }
 
 

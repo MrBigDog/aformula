@@ -57,8 +57,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base class for JIT formula compilers.  <a href="class_a_formula_1_1_private_1_1_j_i_t_formula.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html">LibJITFormula</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Formula-compiling backend using libjit.  <a href="class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html">LLVMInitializer</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialze LLVM target data on load.  <a href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html">LLVMFormula</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">LLVM formula-compiling backend.  <a href="class_a_formula_1_1_private_1_1_l_l_v_m_formula.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_mu_parser_formula.html">MuParserFormula</a></td></tr>
@@ -78,21 +76,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html">CallExprAST</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Syntax tree element representing a function call.  <a href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#aa73b6a7b06e3a6e8c5dcc5398053bc17">compiledCppBenchmark</a> (float x, float y)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compiled-C++ version of our fastestBackend benchmark, for comparison testing.  <a href="#aa73b6a7b06e3a6e8c5dcc5398053bc17"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">uint64_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#a91c5f14e2808cc7d2a497a737e7d2202">timerFrequency</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return frequency of high-resolution native timer.  <a href="#a91c5f14e2808cc7d2a497a737e7d2202"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">uint64_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#a6d9ae09aee8886a3994bf565b21105a7">timerTime</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return current high-resolution system time.  <a href="#a6d9ae09aee8886a3994bf565b21105a7"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#a079a9cbe9433b8deb2498befbd3bcbe4">defaultBackend</a> = Formula::BACKEND_MUPARSER</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Current backend which will be used if <code>BACKEND_DEFAULT</code> is specified.  <a href="#a079a9cbe9433b8deb2498befbd3bcbe4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">boost::thread_specific_ptr<br class="typebreak"/>
 &lt; std::string &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#affd7c9333c4c9b4943f5640287ff88d8">errorMessage</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Global storage for current error string.  <a href="#affd7c9333c4c9b4943f5640287ff88d8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html">LLVMInitializer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_a_formula_1_1_private.html#af18dc43e3908720ae81abaf1b19376b2">llvmInitializer</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Global object to initialize LLVM.  <a href="#af18dc43e3908720ae81abaf1b19376b2"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Namespace containing code private to the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> implementation. </p>
 <p>No code in the <a class="el" href="namespace_a_formula_1_1_private.html" title="Namespace containing code private to the AFormula implementation.">Private</a> namespace should be visible to users of the <a class="el" href="namespace_a_formula.html" title="Namespace enclosing all AFormula code.">AFormula</a> library, nor should it be usable. </p>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="aa73b6a7b06e3a6e8c5dcc5398053bc17"></a><!-- doxytag: member="AFormula::Private::compiledCppBenchmark" ref="aa73b6a7b06e3a6e8c5dcc5398053bc17" args="(float x, float y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double AFormula::Private::compiledCppBenchmark </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compiled-C++ version of our fastestBackend benchmark, for comparison testing. </p>
+
+<p>Definition at line <a class="el" href="benchmark_8cpp_source.html#l00029">29</a> of file <a class="el" href="benchmark_8cpp_source.html">benchmark.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a91c5f14e2808cc7d2a497a737e7d2202"></a><!-- doxytag: member="AFormula::Private::timerFrequency" ref="a91c5f14e2808cc7d2a497a737e7d2202" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -136,6 +167,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div>
 <hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a079a9cbe9433b8deb2498befbd3bcbe4"></a><!-- doxytag: member="AFormula::Private::defaultBackend" ref="a079a9cbe9433b8deb2498befbd3bcbe4" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="namespace_a_formula_1_1_private.html#a079a9cbe9433b8deb2498befbd3bcbe4">AFormula::Private::defaultBackend</a> = Formula::BACKEND_MUPARSER</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Current backend which will be used if <code>BACKEND_DEFAULT</code> is specified. </p>
+
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00042">42</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="affd7c9333c4c9b4943f5640287ff88d8"></a><!-- doxytag: member="AFormula::Private::errorMessage" ref="affd7c9333c4c9b4943f5640287ff88d8" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -150,24 +198,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Global storage for current error string. </p>
 <p>Our library code sets error messages in this variable. It is returned and then cleared by <a class="el" href="class_a_formula_1_1_formula.html#a391a1154676be8c8529d58267ace65d8" title="Return any current error string.">Formula::errorString()</a>. </p>
 
-<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00045">45</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af18dc43e3908720ae81abaf1b19376b2"></a><!-- doxytag: member="AFormula::Private::llvmInitializer" ref="af18dc43e3908720ae81abaf1b19376b2" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html">LLVMInitializer</a> <a class="el" href="namespace_a_formula_1_1_private.html#af18dc43e3908720ae81abaf1b19376b2">AFormula::Private::llvmInitializer</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Global object to initialize LLVM. </p>
-
-<p>Definition at line <a class="el" href="llvmformula_8cpp_source.html#l00076">76</a> of file <a class="el" href="llvmformula_8cpp_source.html">llvmformula.cpp</a>.</p>
+<p>Definition at line <a class="el" href="formula_8cpp_source.html#l00038">38</a> of file <a class="el" href="formula_8cpp_source.html">formula.cpp</a>.</p>
 
 </div>
 </div>

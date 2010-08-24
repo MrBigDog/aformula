@@ -20,13 +20,6 @@
       <anchor>a69045ecbbbad4f45421a6a31a6af5401</anchor>
       <arglist>(int signum)</arglist>
     </member>
-    <member kind="variable" static="yes">
-      <type>static int</type>
-      <name>defaultBackend</name>
-      <anchorfile>namespace_a_formula.html</anchorfile>
-      <anchor>a114f015fb38570e033e7b2bb470214a2</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable">
       <type>volatile sig_atomic_t</type>
       <name>errorflag</name>
@@ -121,8 +114,8 @@
       <type>static int</type>
       <name>fastestBackend</name>
       <anchorfile>class_a_formula_1_1_formula.html</anchorfile>
-      <anchor>afa83275c5418bc9b4ccf5595bdc6cc74</anchor>
-      <arglist>(bool setAsDefault=true)</arglist>
+      <anchor>aec665ae41ef8a72dcb5ddec2bfa46335</anchor>
+      <arglist>(bool setAsDefault=true, bool printTimings=false)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type></type>
@@ -138,7 +131,6 @@
     <class kind="class">AFormula::Private::CodeGenerator</class>
     <class kind="class">AFormula::Private::JITFormula</class>
     <class kind="class">AFormula::Private::LibJITFormula</class>
-    <class kind="class">AFormula::Private::LLVMInitializer</class>
     <class kind="class">AFormula::Private::LLVMFormula</class>
     <class kind="class">AFormula::Private::MuParserFormula</class>
     <class kind="class">AFormula::Private::Parser</class>
@@ -148,6 +140,13 @@
     <class kind="class">AFormula::Private::UnaryMinusExprAST</class>
     <class kind="class">AFormula::Private::BinaryExprAST</class>
     <class kind="class">AFormula::Private::CallExprAST</class>
+    <member kind="function" static="yes">
+      <type>static double</type>
+      <name>compiledCppBenchmark</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>aa73b6a7b06e3a6e8c5dcc5398053bc17</anchor>
+      <arglist>(float x, float y)</arglist>
+    </member>
     <member kind="function">
       <type>uint64_t</type>
       <name>timerFrequency</name>
@@ -163,17 +162,17 @@
       <arglist>()</arglist>
     </member>
     <member kind="variable">
+      <type>int</type>
+      <name>defaultBackend</name>
+      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
+      <anchor>a079a9cbe9433b8deb2498befbd3bcbe4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>boost::thread_specific_ptr&lt; std::string &gt;</type>
       <name>errorMessage</name>
       <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
       <anchor>affd7c9333c4c9b4943f5640287ff88d8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>LLVMInitializer</type>
-      <name>llvmInitializer</name>
-      <anchorfile>namespace_a_formula_1_1_private.html</anchorfile>
-      <anchor>af18dc43e3908720ae81abaf1b19376b2</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -365,17 +364,6 @@
       <anchorfile>class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html</anchorfile>
       <anchor>a6e3c8892220a37da0d56644a1c4d7a3b</anchor>
       <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
-    <name>AFormula::Private::LLVMInitializer</name>
-    <filename>class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html</filename>
-    <member kind="function">
-      <type></type>
-      <name>LLVMInitializer</name>
-      <anchorfile>class_a_formula_1_1_private_1_1_l_l_v_m_initializer.html</anchorfile>
-      <anchor>a6745f7c81992b652833e8e60a3005061</anchor>
-      <arglist>()</arglist>
     </member>
   </compound>
   <compound kind="class">
