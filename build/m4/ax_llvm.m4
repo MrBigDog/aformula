@@ -31,9 +31,7 @@ AC_DEFUN([AX_LLVM],
 AC_ARG_WITH([llvm],
 	AS_HELP_STRING([--with-llvm@<:@=PATH-TO-LLVM-CONFIG@:>@], [use LLVM (default is yes, may specify the path to the llvm-config executable)]),
 	[
-    if test "$withval" = "no"; then
-		want_llvm="no"
-    elif test "$withval" = "yes"; then
+    if test "$withval" = "yes"; then
         want_llvm="yes"
         ac_llvm_config_path=`which llvm-config`
     else
@@ -45,7 +43,8 @@ AC_ARG_WITH([llvm],
 
 	succeeded=no
 	if test -z "$ac_llvm_config_path"; then
-		ac_llvm_config_path=`which llvm-config`
+		AC_PATH_PROG([ac_llvm_config_path],[llvm-config],[],
+			[$PATH$PATH_SEPARATOR/usr/bin$PATH_SEPARATOR/usr/local/bin$PATH_SEPARATOR/opt/bin$PATH_SEPARATOR/opt/local/bin$PATH_SEPARATOR])
 	fi
 
 	if test "x$want_llvm" = "xyes"; then

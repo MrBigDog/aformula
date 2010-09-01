@@ -39,9 +39,7 @@ AC_DEFUN([AX_BOOST_THREAD],
                    [use the Thread library from boost - it is possible to specify a certain library for the linker
                         e.g. --with-boost-thread=boost_thread-gcc-mt ]),
         [
-        if test "$withval" = "no"; then
-			want_boost="no"
-        elif test "$withval" = "yes"; then
+        if test "$withval" = "yes"; then
             want_boost="yes"
             ax_boost_user_thread_lib=""
         else
@@ -70,7 +68,7 @@ AC_DEFUN([AX_BOOST_THREAD],
 
 			 if test "x$build_os" = "xsolaris" ; then
   				 CXXFLAGS="-pthreads $CXXFLAGS"
-			 elif test "x$build_os" = "xming32" ; then
+			 elif test "x$build_os" = "xmingw32" ; then
 				 CXXFLAGS="-mthreads $CXXFLAGS"
 			 else
 				CXXFLAGS="-pthread $CXXFLAGS"

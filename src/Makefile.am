@@ -21,8 +21,6 @@ endif
 
 if LIBJIT
 libaformula_@AFORMULA_API_VERSION@_la_SOURCES += libjitformula.cpp
-libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS += @LIBJIT_CPPFLAGS@
-libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS += @LIBJIT_LDFLAGS@
 endif
 
 libaformula_@AFORMULA_API_VERSION@_la_LIBADD = \

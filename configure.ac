@@ -29,6 +29,7 @@ AC_SUBST([LIBTOOL_DEPS])
 # C++ Feature Tests
 ###################
 AC_LANG(C++)
+AX_CXXFLAGS_WARN_ALL
 
 
 # Libraries
@@ -36,17 +37,28 @@ AC_LANG(C++)
 AX_BOOST_BASE([1.29.0])
 AX_BOOST_THREAD
 
+AX_EXT_HAVE_HEADER([jit/jit.h], [/include /usr/include /usr/local/include /opt/include /opt/local/include])
+AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib], [jit], [jit_context_create])
+if test "x$ext_cv_jit_jit_h" = "xyes" -a "x$ext_lib_found" = "xyes" ; then
+  AC_DEFINE([HAVE_LIBJIT],[1],[Define to 1 if the libjit library is available])
+  AC_SUBST([HAVE_LIBJIT],[yes])
+  have_libjit="yes"
+else
+  AC_MSG_WARN([libjit is not available; the libjit backend will not be built!])
+  AC_SUBST([HAVE_LIBJIT],[no])
+  have_libjit="no"
+fi
+
 AX_LLVM([core jit target native])
-AF_LIBJIT
 
 AM_CONDITIONAL([LLVM], [test x$ax_cv_llvm = xyes])
-AM_CONDITIONAL([LIBJIT], [test x$af_cv_libjit = xyes])
+AM_CONDITIONAL([LIBJIT], [test x$have_libjit = xyes])
 if test "x$ax_cv_llvm" = "xyes" ; then
   AC_SUBST([LLVM_DEF], [1])
 else
   AC_SUBST([LLVM_DEF], [0])
 fi
-if test "x$af_cv_libjit" = "xyes" ; then
+if test "x$have_libjit" = "xyes" ; then
   AC_SUBST([LIBJIT_DEF], [1])
 else
   AC_SUBST([LIBJIT_DEF], [0])
@@ -97,7 +109,7 @@ if test "x$ax_cv_llvm" = xyes ; then
 else
   echo "  * LLVM: no"
 fi
-if test "x$af_cv_libjit" = xyes ; then
+if test "x$have_libjit" = xyes ; then
   echo "  * libjit: yes"
 else
   echo "  * libjit: no"
