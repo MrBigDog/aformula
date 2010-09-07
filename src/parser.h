@@ -101,7 +101,7 @@ private:
 		/// @brief Name of this function.
 		const char *name;
 		/// @brief Number of arguments this function takes.
-		int numArgs;
+		unsigned int numArgs;
 	};
 
 	/// @brief Number of functions.

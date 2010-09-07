@@ -211,6 +211,8 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 		else if (bestBackend == BACKEND_LIBJIT)
 			backendName = "libjit";
 #endif
+		else
+			backendName = "undefined?";
 
 		printf ("\nFastest backend: %s\n\n", backendName);
 	}
