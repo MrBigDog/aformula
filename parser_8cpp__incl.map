@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$aformula_8h.html" title="Main include file for AFormula." alt="" coords="115,83,205,112"/>
-<area shape="rect" id="node13" href="$parser_8h.html" title="Definition of the Parser class." alt="" coords="467,83,541,112"/>
-<area shape="rect" id="node23" href="$parsetree_8h.html" title="Definition of the various ExprAST classes." alt="" coords="580,83,681,112"/>
-<area shape="rect" id="node26" href="$codegenerator_8h.html" title="Definition of the CodeGenerator interface." alt="" coords="688,160,821,189"/>
+<area shape="rect" id="node3" href="$aformula_8h.html" title="Main include file for AFormula." alt="" coords="21,83,112,112"/>
+<area shape="rect" id="node15" href="$parser_8h.html" title="Definition of the Parser class." alt="" coords="459,83,533,112"/>
+<area shape="rect" id="node25" href="$parsetree_8h.html" title="Definition of the various ExprAST classes." alt="" coords="568,83,664,112"/>
+<area shape="rect" id="node28" href="$codegenerator_8h.html" title="Definition of the CodeGenerator interface." alt="" coords="671,160,796,189"/>
 </map>

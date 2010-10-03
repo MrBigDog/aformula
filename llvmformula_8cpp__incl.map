@@ -1,7 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$aformula_8h.html" title="Main include file for AFormula." alt="" coords="5,83,96,112"/>
-<area shape="rect" id="node12" href="$jitformula_8h.html" title="Definition of the JITFormula class." alt="" coords="307,83,405,112"/>
-<area shape="rect" id="node25" href="$codegenerator_8h.html" title="Definition of the CodeGenerator interface." alt="" coords="489,160,623,190"/>
-<area shape="rect" id="node29" href="$parsetree_8h.html" title="Definition of the various ExprAST classes." alt="" coords="683,83,784,112"/>
-<area shape="rect" id="node14" href="$parser_8h.html" title="Definition of the Parser class." alt="" coords="319,160,393,190"/>
+<area shape="rect" id="node3" href="$aformula_8h.html" title="Main include file for AFormula." alt="" coords="15,83,106,112"/>
+<area shape="rect" id="node11" href="$llvmformula_8h.html" title="Definition of the LLVMFormula class." alt="" coords="359,83,468,112"/>
+<area shape="rect" id="node30" href="$parsetree_8h.html" title="Definition of the various ExprAST classes." alt="" coords="492,83,588,112"/>
+<area shape="rect" id="node13" href="$jitformula_8h.html" title="Definition of the JITFormula class." alt="" coords="364,160,458,189"/>
+<area shape="rect" id="node26" href="$codegenerator_8h.html" title="Definition of the CodeGenerator interface." alt="" coords="482,160,607,189"/>
+<area shape="rect" id="node15" href="$parser_8h.html" title="Definition of the Parser class." alt="" coords="366,237,440,267"/>
 </map>
