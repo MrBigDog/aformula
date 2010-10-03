@@ -3,9 +3,16 @@ AFormula NEWS -- History of user-visible changes.
 Copyright (C) 2010 Charles Pence.
 See the end of the file for license conditions.
 
+* Version 0.9 [beta]
+
+** Fix the backend benchmark to properly protect us from backend crashes.
+
+** Now working with new LLVM 2.7!
+
+
 * Version 0.8 [beta]
 
-** Complete formula compilation with two backends
+** Complete formula compilation with three backends.
 
 ** See README for basic list of features, including a full suite of binary
    operators, built-in functions, etc.

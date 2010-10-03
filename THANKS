@@ -6,9 +6,19 @@ or submitting actual code.  Here is a list of these people.  Help me keep it
 complete and exempt of errors.
 
 
-Andy Kitchen				<agimbleinthewabe@gmail.com>
-  (LLVM M4 macro for Autoconf)
+The Boost Team				<http://www.boost.org>
+  (Boost)
+Guido U. Draheim			<guidod@gmx.de>
+  (C++ autoconf macros)
+Marcus D. Hanwell			<marcus@cryos.org>
+  (gitlog2changelog.sh)
+Dimitri van Heesch			<dimitri@stack.nl>
+  (Doxygen)
 Chris Lattner and the LLVM team		<sabre@nondot.org>
   (LLVM)
+Thomas Porschberg			<thomas@randspringer.de>
+  (Boost autoconf macros)
+Duncan Simpson				<dps@simpson.demon.co.uk>
+  (Nice header/library autoconf macros)
 Rhys Weatherley				<rweather@southern-storm.com.au>
   (libjit)
