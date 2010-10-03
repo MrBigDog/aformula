@@ -17,6 +17,8 @@
 /// @file timer.h
 /// @brief Definition of private timer functions.
 
+#include <stdint.h>
+
 #ifndef TIMER_H__
 #define TIMER_H__
 

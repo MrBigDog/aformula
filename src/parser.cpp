@@ -20,6 +20,7 @@
 #include <aformula.h>
 #include <config.h>
 #include <boost/thread/tss.hpp>
+#include <string.h>
 #include "parser.h"
 #include "parsetree.h"
 

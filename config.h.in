@@ -15,7 +15,7 @@
 /* Define to 1 if the libjit library is available */
 #undef HAVE_LIBJIT
 
-/* define if the LLVM library is available */
+/* Define to 1 if the LLVM library is available */
 #undef HAVE_LLVM
 
 /* Define to 1 if you have the <memory.h> header file. */
@@ -45,9 +45,6 @@
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
 #undef LT_OBJDIR
-
-/* Define to 1 if your C compiler doesn't accept -c and -o together. */
-#undef NO_MINUS_C_MINUS_O
 
 /* Name of package */
 #undef PACKAGE

@@ -32,6 +32,7 @@
 #undef PACKAGE_VERSION
 
 #include <llvm/DerivedTypes.h>
+#include <llvm/LLVMContext.h>
 #include <llvm/Module.h>
 #include <llvm/Support/IRBuilder.h>
 #include <llvm/Value.h>
@@ -39,7 +40,6 @@
 #include <llvm/ExecutionEngine/JIT.h>
 #include <llvm/PassManager.h>
 #include <llvm/GlobalVariable.h>
-#include <llvm/ModuleProvider.h>
 #include <llvm/Analysis/Verifier.h>
 #include <llvm/Function.h>
 #include <llvm/Intrinsics.h>
@@ -71,12 +71,11 @@ LLVMFormula::LLVMFormula ()
 		
 	// Build a module and a JIT engine
 	module = new Module ("AFormula JIT", getGlobalContext ());
-	MP = new ExistingModuleProvider (module);
 
-	// The Engine is going to take control of this MP and module,
+	// The Engine is going to take control of this module,
 	// don't delete them later.
 	std::string errorString;
-	engine = EngineBuilder (MP).setErrorStr (&errorString).create ();
+	engine = EngineBuilder (module).setErrorStr (&errorString).create ();
 	if (!engine)
 	{
 		// We won't let you call buildFunction if you catch this error
@@ -89,7 +88,7 @@ LLVMFormula::LLVMFormula ()
 		
 	// Build an optimizer.  These default JIT optimizer settings are taken from
 	// the folks at unladen-swallow.
-	FPM = new FunctionPassManager (MP);
+	FPM = new FunctionPassManager (module);
 	
 	FPM->add (new TargetData (*engine->getTargetData ()));
 	FPM->add (createCFGSimplificationPass ());

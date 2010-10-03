@@ -15,8 +15,6 @@ libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS = -version-info @AFORMULA_SO_VERSI
 
 if LLVM
 libaformula_@AFORMULA_API_VERSION@_la_SOURCES += llvmformula.cpp
-libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS += @LLVM_CPPFLAGS@
-libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS += @LLVM_LDFLAGS@
 endif
 
 if LIBJIT

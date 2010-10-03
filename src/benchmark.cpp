@@ -19,8 +19,14 @@
 
 #include <aformula.h>
 #include <config.h>
-#include <boost/format.hpp>
 #include <math.h>
+
+#ifdef HAVE_SYS_TYPES_H
+#  include <sys/types.h>
+#endif
+#include <unistd.h>
+
+#include <boost/format.hpp>
 
 #include "timer.h"
 
@@ -40,7 +46,7 @@ static double compiledCppBenchmark (float x, float y)
 	        +2.51)+x)-0.54)/0.98)+y)*y)+M_E)/x)+y)+x)+y)+M_PI)/M_E)+x)))*2.77);
 }
 
-};
+}
 
 
 extern "C"
@@ -229,4 +235,4 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 	return bestBackend;
 }
 
-};
+}

@@ -7,13 +7,16 @@ AC_CONFIG_MACRO_DIR([build/m4])
 
 AM_INIT_AUTOMAKE([-Wall -Werror gnits 1.9.6 dist-bzip2])
 
+LT_PREREQ([2.2.10])
+LT_INIT
+AC_SUBST([LIBTOOL_DEPS])
+
 AC_SUBST([AFORMULA_SO_VERSION], [1:0:0])
 AC_SUBST([AFORMULA_API_VERSION], [1.0])
 
 
 # Program Tests
 ###############
-AM_PROG_CC_C_O
 AC_PROG_CXX
 
 AC_PROG_MAKE_SET
@@ -21,19 +24,21 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_AWK
 
-LT_PREREQ([2.2.10])
-LT_INIT
-AC_SUBST([LIBTOOL_DEPS])
-
 
 # C++ Feature Tests
 ###################
 AC_LANG(C++)
 AX_CXXFLAGS_WARN_ALL
+# LLVM needs these flags to get limit and constant macros in <cstdint>
+CPPFLAGS="-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $CPPFLAGS"
+CXXFLAGS="-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $CXXFLAGS"
 
 
 # Libraries
 ###################
+AC_CHECK_HEADERS([sys/types.h])
+AC_CHECK_HEADERS([unistd.h],[],[AC_MSG_ERROR([unistd.h not found: if using Win32, compile under Cygwin!])])
+
 AX_BOOST_BASE([1.29.0])
 AX_BOOST_THREAD
 
@@ -49,11 +54,21 @@ else
   have_libjit="no"
 fi
 
-AX_LLVM([core jit target native])
+AX_EXT_HAVE_HEADER([llvm/DerivedTypes.h], [/include /usr/include /usr/local/include /opt/include /opt/local/include])
+AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib], [LLVM-2.7], [llvm::InitializeNativeTarget], [], [#include <llvm/Target/TargetSelect.h>])
+if test "x$ext_cv_llvm_DerivedTypes_h" = "xyes" -a "x$ext_lib_found" = "xyes" ; then
+  AC_DEFINE([HAVE_LLVM],[1],[Define to 1 if the LLVM library is available])
+  AC_SUBST([HAVE_LLVM],[yes])
+  have_llvm="yes"
+else
+  AC_MSG_WARN([LLVM is not available; the LLVM backend will not be built!])
+  AC_SUBST([HAVE_LLVM],[no])
+  have_llvm="no"
+fi
 
-AM_CONDITIONAL([LLVM], [test x$ax_cv_llvm = xyes])
+AM_CONDITIONAL([LLVM], [test x$have_llvm = xyes])
 AM_CONDITIONAL([LIBJIT], [test x$have_libjit = xyes])
-if test "x$ax_cv_llvm" = "xyes" ; then
+if test "x$have_llvm" = "xyes" ; then
   AC_SUBST([LLVM_DEF], [1])
 else
   AC_SUBST([LLVM_DEF], [0])
@@ -104,7 +119,7 @@ echo "AFormula Configuration:"
 echo ""
 echo "Available backends:"
 echo "  * muParser: yes"
-if test "x$ax_cv_llvm" = xyes ; then
+if test "x$have_llvm" = xyes ; then
   echo "  * LLVM: yes"
 else
   echo "  * LLVM: no"

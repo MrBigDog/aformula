@@ -27,7 +27,6 @@
 namespace llvm
 {
 class Module;
-class ModuleProvider;
 class FunctionPassManager;
 class ExecutionEngine;
 class Constant;
@@ -71,8 +70,6 @@ protected:
 private:
 	/// @brief High-level container for all LLVM objects.
 	llvm::Module *module;
-	/// @brief Pointer to an @c llvm::ExistingModuleProvider bound to @c module.
- 	llvm::ModuleProvider *MP;
 	/// @brief Builder which is responsible for code insertion.
 	llvm::IRBuilder<> *builder;
 	/// @brief Function-level optimization manager.

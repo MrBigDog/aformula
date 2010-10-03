@@ -21,7 +21,7 @@
 #
 #   Example:
 #
-#    AX_EXT_HAVE_LIB(/lib /usr/lib /usr/local/lib /usr/lib/mysql /usr/local/mysql/lib, mysqlclient, mysql_init, [-lz])
+#    AX_EXT_HAVE_LIB(/lib /usr/lib /usr/local/lib /usr/lib/mysql /usr/local/mysql/lib, mysqlclient, mysql_init, [-lz], [#include <mysql.h>])
 #
 #   which finds the mysql client library if succeds system when it tries
 #   with -L/usr/lib/mysql then it adds -lmysqlclient to LIBS and
@@ -44,23 +44,32 @@ AC_DEFUN([AX_EXT_HAVE_LIB],
 [
 new_ldflags=${LDFLAGS}
 new_libs=$LIBS
+
 AC_CHECK_LIB([$2], $3, new_libs="-l$2"; ext_lib_found="yes",  ext_lib_found="no")
 for dir in $1
 do
 if test $ext_lib_found = no
 then
 ext_haslib_cvdir=`echo $dir | $as_tr_sh`
-AC_CACHE_CHECK([for $2 library with -L$dir], [ext_cv${ext_haslib_cvdir}_haslib_$2],
+ext_haslib_libvar=`echo $2 | $as_tr_sh`
+AC_CACHE_CHECK([for $2 library with -L$dir], [ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}],
 [ext_func_search_save_LIBS=$LIBS
 ext_func_save_ldflags=${LDFLAGS}
 LIBS="-l$2 $4 ${ext_func_search_save_LIBS}"
 LDFLAGS="-L$dir ${ext_func_save_ldflags}"
-AC_TRY_LINK_FUNC([$3], [eval "ext_cv${ext_haslib_cvdir}_haslib_$2"="yes"],
-[eval "ext_cv${ext_haslib_cvdir}_haslib_$2"="no"])
+if test "x$5" = x ; then
+AC_LINK_IFELSE([AC_LANG_CALL([],[$3])],
+[eval "ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}"="yes"],
+[eval "ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}"="no"])
+else
+AC_LINK_IFELSE([AC_LANG_PROGRAM([$5],[$3])],
+[eval "ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}"="yes"],
+[eval "ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}"="no"])
+fi
 LIBS=$ext_func_search_save_LIBS
 LDFLAGS=$ext_func_save_ldflags
 ])
-if eval `echo 'test x${'ext_cv${ext_haslib_cvdir}_haslib_$2'}' = "xyes"`; then
+if eval `echo 'test x${'ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}'}' = "xyes"`; then
 new_libs="-l$2 ${new_libs}"
 new_ldflags="-L${dir} ${new_ldflags}"
 ext_lib_found="yes"

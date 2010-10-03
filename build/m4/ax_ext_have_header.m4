@@ -45,15 +45,16 @@ AC_DEFUN([AX_EXT_HAVE_HEADER],
    ext_hashdr_cvdir=`echo $dir | $as_tr_sh`
    AC_CACHE_CHECK([for $1 library with -I$dir],
     [ext_cv${ext_hashdr_cvdir}_hashdr_${hdr}],
-    [ext_have_hdr_save_cflags=${CFLAGS}
-     CFLAGS="${CFLAGS} -I${dir}"
+    [ext_have_hdr_save_cflags=${CXXFLAGS}
+     CXXFLAGS="${CXXFLAGS} -I${dir}"
      AC_COMPILE_IFELSE(
-      [AC_LANG_PROGRAM([#inc[]lude <$1>])],
+      [AC_LANG_PROGRAM([#include <$1>])],
        [got="yes"; eval "ext_cv${ext_hashdr_cvdir}_hashdr_${hdr}"="yes"],
        [got="no"; eval "ext_cv${ext_hashdr_cvdir}_hashdr_${hdr}"="no"])
-      CFLAGS=$ext_have_hdr_save_cflags])
+      CXXFLAGS=$ext_have_hdr_save_cflags])
      if eval `echo 'test x${'ext_cv${ext_hashdr_cvdir}_hashdr_${hdr}'}' = "xyes"`; then
       CFLAGS="${CFLAGS} -I${dir}"
+      CXXFLAGS="${CXXFLAGS} -I${dir}"
       CPPFLAGS="${CPPFLAGS} -I${dir}"
       got="yes";
       eval "ext_cv_${hdr}"="yes"
