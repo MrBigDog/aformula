@@ -10,5 +10,6 @@ config.h
 libtool
 stamp-h1
 aformula-*.pc
+aformula.tag
 *.gz
 *.bz2
