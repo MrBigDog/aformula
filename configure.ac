@@ -36,7 +36,7 @@ CXXFLAGS="-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $CXXFLAGS"
 
 # Libraries
 ###################
-AC_CHECK_HEADERS([sys/types.h])
+AC_CHECK_HEADERS([sys/types.h sys/wait.h])
 AC_CHECK_HEADERS([unistd.h],[],[AC_MSG_ERROR([unistd.h not found: if using Win32, compile under Cygwin!])])
 
 AX_BOOST_BASE([1.29.0])

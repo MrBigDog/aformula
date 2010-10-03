@@ -20,9 +20,13 @@
 #include <aformula.h>
 #include <config.h>
 #include <math.h>
+#include <limits.h>
 
 #ifdef HAVE_SYS_TYPES_H
 #  include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_WAIT_H
+#  include <sys/wait.h>
 #endif
 #include <unistd.h>
 
@@ -49,37 +53,12 @@ static double compiledCppBenchmark (float x, float y)
 }
 
 
-extern "C"
-{
-	/// @brief Set to 1 if a backend has crashed.
-	volatile sig_atomic_t errorflag = 0;
-
-	/// @brief Trap for crash signals during backend testing.
-	///
-	/// On our speed test, it is possible that a given backend may simply crash
-	/// entirely.  We want to try to guard against that and insulate the user,
-	/// so endeavor to catch any signals, raise a flag, and abort the testing of
-	/// that module.
-	static void signal_handler (int signum)
-	{
-		// One of the backends went down, let everybody know
-		fprintf (stderr, "ERROR: Backend raised signal in AFormula::Formula::fastestBackend(), aborting test for this backend\n");
-		errorflag = 1;
-	}
-};
 
 int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 {
 	int bestBackend = BACKEND_MUPARSER;
-	uint64_t bestBackendTime = UINT64_MAX;
+	int bestBackendTime = INT_MAX;
 	
-	// Trap SIGABRT, SIGFPE, SIGILL, SIGSEGV, and don't let a rogue
-	// backend bring down the entire system
-	signal (SIGABRT, signal_handler);
-	signal (SIGFPE, signal_handler);
-	signal (SIGILL, signal_handler);
-	signal (SIGSEGV, signal_handler);
-
 	if (printTimings)
 		printf ("\nBackend benchmark:\n\n");
 	
@@ -99,75 +78,129 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 		else if (backend == BACKEND_LIBJIT)
 			backendName = "libjit";
 #endif
-		
-		// Reset the signal error flag
-		errorflag = 0;
-		
-		Formula *formula = Formula::createFormula (backend);
-		if (!formula || errorflag)
-			continue;
-		
-		static double x;
-		static double y;
-		if (!formula->setVariable ("x", &x) || !formula->setVariable ("y", &y))
-			continue;
-		if (errorflag)
-			continue;
 
-		const char *str =
-			"(atan(sin((((((((((((((((pi/cos((x/((((0.53-y)-pi)*e)/y))))"
-			"+2.51)+x)-0.54)/0.98)+y)*y)+e)/x)+y)+x)+y)+pi)/e)+x)))*2.77)";
-		if (!formula->setExpression (str))
-			continue;
-		if (errorflag)
-			continue;
-		
-		uint64_t timeStart = Private::timerTime ();
-		
-		for (int i = 0 ; i < 500000 ; i++)
+		// Open a pipe to pass data between the parent and child threads
+		int fileDescriptors[2];
+		if (pipe (fileDescriptors) == -1)
 		{
-			x = (double)i;
-			y = x / 2;
-			double ret = formula->evaluate ();
-			
-			if (errorflag)
-				break;
-			
-			double gd = (atan(sin((((((((((((((((M_PI/cos((x/((((0.53-y)-M_PI)*M_E)/y))))
-			    +2.51)+x)-0.54)/0.98)+y)*y)+M_E)/x)+y)+x)+y)+M_PI)/M_E)+x)))*2.77);
-
-			if (fabs (ret - gd) > 0.0001)
-			{
-				fprintf (stderr, "ERROR: Backend reported invalid result in AFormula::Formula::fastestBackend, aborting test for this backend\n");
-				errorflag = 1;
-				break;
-			}
+			fprintf (stderr, "ERROR: Cannot create pipe for IPC in benchmark, aborting\n");
+			return BACKEND_MUPARSER;
 		}
 
-		// We leak memory here on purpose, because we don't know whether
-		// the crash has broken state in such a way that deleting the formula
-		// variable will cause another crash.
-		if (errorflag)
-			continue;
-				
-		uint64_t timeEnd = Private::timerTime ();
-		
-		delete formula;
-
-		if (timeEnd - timeStart < bestBackendTime)
+		// We'll put the result here when we get it from the child process
+		int timeResult;
+						
+		// Fork the actual benchmark into another process, so that if it crashes,
+		// we don't bring down the whole system
+		pid_t pid = fork ();
+		if (pid == 0)
 		{
-			bestBackendTime = timeEnd - timeStart;
+			// Child process -- do the test		
+			Formula *formula = Formula::createFormula (backend);
+			if (!formula)
+			{
+				close (fileDescriptors[1]);
+				exit (-1);
+			}
+						
+			static double x;
+			static double y;
+			if (!formula->setVariable ("x", &x) || !formula->setVariable ("y", &y))
+			{
+				close (fileDescriptors[1]);
+				exit (-1);
+			}
+						
+			const char *str =
+				"(atan(sin((((((((((((((((pi/cos((x/((((0.53-y)-pi)*e)/y))))"
+				"+2.51)+x)-0.54)/0.98)+y)*y)+e)/x)+y)+x)+y)+pi)/e)+x)))*2.77)";
+			if (!formula->setExpression (str))
+			{
+				close (fileDescriptors[1]);
+				exit (-1);
+			}
+						
+			uint64_t timeStart = Private::timerTime ();
+			
+			for (int i = 0 ; i < 500000 ; i++)
+			{
+				x = (double)i;
+				y = x / 2;
+				double ret = formula->evaluate ();
+				double gd = (atan(sin((((((((((((((((M_PI/cos((x/((((0.53-y)-M_PI)*M_E)/y))))
+			    +2.51)+x)-0.54)/0.98)+y)*y)+M_E)/x)+y)+x)+y)+M_PI)/M_E)+x)))*2.77);
+				
+				if (fabs (ret - gd) > 0.0001)
+				{
+					fprintf (stderr, "ERROR: Backend reported invalid result in benchmark, aborting test for this backend\n");
+					close (fileDescriptors[1]);
+					exit (-1);
+				}
+			}
+			
+			uint64_t timeEnd = Private::timerTime ();
+			
+			delete formula;
+
+			// Return (timeEnd - timeStart) in microseconds.  This will only overflow if
+			// an individual test takes more than six hours (!)
+			uint64_t timeDelta = timeEnd - timeStart;
+			double timeSeconds = (double)timeDelta / (double)Private::timerFrequency ();
+			int timeUS = (int)(timeSeconds * 100000.0);
+
+			// Pass data back down the pipe
+			if (write (fileDescriptors[1], &timeUS, sizeof(int)) < (signed)sizeof(int))
+			{
+				fprintf (stderr, "ERROR: Cannot pass data back to parent in benchmark, aborting\n");
+				close (fileDescriptors[1]);
+				exit (-1);
+			}
+						
+			// Bail
+			close (fileDescriptors[1]);
+			exit (0);
+		}
+		else if (pid < 0)
+		{
+			// Failed to fork, bail out with an error
+			fprintf (stderr, "ERROR: Failed to fork() in backend testing, aborting\n");
+			return BACKEND_MUPARSER;
+		}
+		else
+		{
+			// Parent process, first read from the pipe
+			bool gotTime = true;
+			if (read (fileDescriptors[0], &timeResult, sizeof(int)) < (signed)sizeof(int))
+			{
+				gotTime = false;
+				break;
+			}
+									
+			// Wait for child to terminate
+			int status;
+			waitpid (pid, &status, 0);
+			bool success = false;
+			
+			if (WIFEXITED (status) && (WEXITSTATUS (status) == 0))
+				success = true;
+
+			// If this test failed, skip it
+			if (!success || !gotTime)
+				continue;
+		}
+		
+		if (timeResult < bestBackendTime)
+		{
+			bestBackendTime = timeResult;
 			bestBackend = backend;
 		}
 
 		if (printTimings)
 		{
-			uint64_t frequency = Private::timerFrequency ();
-			uint64_t delta = timeEnd - timeStart;
-			double seconds = (double)delta / (double)frequency;
+			double seconds = (double)timeResult / 100000.0;
 			std::string res = boost::str (
-				boost::format ("Backend %1% (%2%): %3% seconds (%4% ticks)\n") %
-				backend % backendName % seconds % delta);
+				boost::format ("Backend %1% (%2%): %3% seconds\n") %
+				backend % backendName % seconds);
 			
 			printf ("%s", res.c_str ());
 		}
@@ -177,7 +210,6 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 	{
 		// Run a compiled C++ benchmark for comparison
 		uint64_t timeStart = Private::timerTime ();
-		errorflag = 0;
 		
 		for (int i = 0 ; i < 500000 ; i++)
 		{
@@ -189,8 +221,6 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 			// out the timings.
 			double gd = (atan(sin((((((((((((((((M_PI/cos((x/((((0.53-y)-M_PI)*M_E)/y))))
 			    +2.51)+x)-0.54)/0.98)+y)*y)+M_E)/x)+y)+x)+y)+M_PI)/M_E)+x)))*2.77);
-			if (errorflag)
-				break;
 			if (fabs (ret - gd) > 0.0001)
 				break;
 		}
@@ -226,12 +256,6 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 	if (setAsDefault)
 		Private::defaultBackend = bestBackend;
 		
-	// Release the signals
-	signal (SIGABRT, SIG_DFL);
-	signal (SIGFPE, SIG_DFL);
-	signal (SIGILL, SIG_DFL);
-	signal (SIGSEGV, SIG_DFL);
-
 	return bestBackend;
 }
 
