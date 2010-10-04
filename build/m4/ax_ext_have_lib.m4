@@ -44,14 +44,32 @@ AC_DEFUN([AX_EXT_HAVE_LIB],
 [
 new_ldflags=${LDFLAGS}
 new_libs=$LIBS
+ext_haslib_libvar=`echo $2 | $as_tr_sh`
+eval "ext_have_${ext_haslib_libvar}"="no"
 
-AC_CHECK_LIB([$2], $3, new_libs="-l$2"; ext_lib_found="yes",  ext_lib_found="no")
+AC_CACHE_CHECK([for $2 library without parameters], [ext_cv_haslib_${ext_haslib_libvar}],
+[ext_func_search_save_LIBS=$LIBS
+LIBS="-l$2 $4 ${ext_func_search_save_LIBS}"
+if test "x$5" = x ; then
+AC_LINK_IFELSE([AC_LANG_CALL([],[$3])],
+[eval "ext_cv_haslib_${ext_haslib_libvar}"="yes"],
+[eval "ext_cv_haslib_${ext_haslib_libvar}"="no"])
+else
+AC_LINK_IFELSE([AC_LANG_PROGRAM([$5],[$3])],
+[eval "ext_cv_haslib_${ext_haslib_libvar}"="yes"],
+[eval "ext_cv_haslib_${ext_haslib_libvar}"="no"])
+fi
+LIBS=$ext_func_search_save_LIBS
+])
+if eval `echo 'test x${'ext_cv_haslib_${ext_haslib_libvar}'}' = "xyes"`; then
+new_libs="-l$2 ${new_libs}"
+eval "ext_have_${ext_haslib_libvar}"="yes"
+fi
+
 for dir in $1
 do
-if test $ext_lib_found = no
-then
+if eval `echo 'test x${'ext_have_${ext_haslib_libvar}'}' != "xyes"`; then
 ext_haslib_cvdir=`echo $dir | $as_tr_sh`
-ext_haslib_libvar=`echo $2 | $as_tr_sh`
 AC_CACHE_CHECK([for $2 library with -L$dir], [ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}],
 [ext_func_search_save_LIBS=$LIBS
 ext_func_save_ldflags=${LDFLAGS}
@@ -72,7 +90,7 @@ LDFLAGS=$ext_func_save_ldflags
 if eval `echo 'test x${'ext_cv${ext_haslib_cvdir}_haslib_${ext_haslib_libvar}'}' = "xyes"`; then
 new_libs="-l$2 ${new_libs}"
 new_ldflags="-L${dir} ${new_ldflags}"
-ext_lib_found="yes"
+eval "ext_have_${ext_haslib_libvar}"="yes"
 fi
 fi
 done

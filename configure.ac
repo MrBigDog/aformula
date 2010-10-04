@@ -1,6 +1,6 @@
 # Initialize Autoconf, Automake
 ###############################
-AC_INIT([aformula],[0.9.1],[charles@charlespence.net],[aformula],[http://cpence.github.com/aformula/])
+AC_INIT([aformula],[0.9.2],[charles@charlespence.net],[aformula],[http://cpence.github.com/aformula/])
 AC_CONFIG_SRCDIR([src/formula.cpp])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/m4])
@@ -44,7 +44,7 @@ AX_BOOST_THREAD
 
 AX_EXT_HAVE_HEADER([jit/jit.h], [/include /usr/include /usr/local/include /opt/include /opt/local/include])
 AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib], [jit], [jit_context_create])
-if test "x$ext_cv_jit_jit_h" = "xyes" -a "x$ext_lib_found" = "xyes" ; then
+if test "x$ext_cv_jit_jit_h" = "xyes" -a "x$ext_have_jit" = "xyes" ; then
   AC_DEFINE([HAVE_LIBJIT],[1],[Define to 1 if the libjit library is available])
   AC_SUBST([HAVE_LIBJIT],[yes])
   have_libjit="yes"
@@ -56,7 +56,7 @@ fi
 
 AX_EXT_HAVE_HEADER([llvm/DerivedTypes.h], [/include /usr/include /usr/local/include /opt/include /opt/local/include])
 AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib], [LLVM-2.7], [llvm::InitializeNativeTarget], [], [#include <llvm/Target/TargetSelect.h>])
-if test "x$ext_cv_llvm_DerivedTypes_h" = "xyes" -a "x$ext_lib_found" = "xyes" ; then
+if test "x$ext_cv_llvm_DerivedTypes_h" = "xyes" -a "x$ext_have_LLVM_2_7" = "xyes" ; then
   AC_DEFINE([HAVE_LLVM],[1],[Define to 1 if the LLVM library is available])
   AC_SUBST([HAVE_LLVM],[yes])
   have_llvm="yes"
