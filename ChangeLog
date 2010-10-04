@@ -1,4 +1,11 @@
+2010-10-04  Charles Pence <charles@charlespence.net>
+
+  * NEWS, configure.ac: Fixed a silly bug with the SOVERSION (I'd confused the
+  order of the flags, oops).
+
 2010-10-03  Charles Pence <charles@charlespence.net>
+
+  * ChangeLog: Updated ChangeLog.
 
   * .gitignore, build/footer.html, doc/.gitignore, doc/html/aformula_8h.html,
   doc/html/aformula_8h_source.html, doc/html/annotated.html,
