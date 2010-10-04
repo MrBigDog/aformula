@@ -3,6 +3,11 @@ AFormula NEWS -- History of user-visible changes.
 Copyright (C) 2010 Charles Pence.
 See the end of the file for license conditions.
 
+* Version 0.9.1 [beta]
+
+** Fix a silly bug with the SOVERSION.  Sorry!
+
+
 * Version 0.9 [beta]
 
 ** Fix the backend benchmark to properly protect us from backend crashes.

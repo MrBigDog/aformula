@@ -1,6 +1,6 @@
 # Initialize Autoconf, Automake
 ###############################
-AC_INIT([aformula],[0.9],[charles@charlespence.net],[aformula],[http://cpence.github.com/aformula/])
+AC_INIT([aformula],[0.9.1],[charles@charlespence.net],[aformula],[http://cpence.github.com/aformula/])
 AC_CONFIG_SRCDIR([src/formula.cpp])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build/m4])
@@ -11,7 +11,7 @@ LT_PREREQ([2.2.10])
 LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
-AC_SUBST([AFORMULA_SO_VERSION], [1:0:1])
+AC_SUBST([AFORMULA_SO_VERSION], [1:1:0])
 AC_SUBST([AFORMULA_API_VERSION], [1.0])
 
 
