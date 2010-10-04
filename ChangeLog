@@ -1,5 +1,13 @@
 2010-10-04  Charles Pence <charles@charlespence.net>
 
+  * build/m4/ax_ext_have_lib.m4, configure.ac: A strange bug in M4 code was
+  causing junk to be emitted into the libtool file, causing linking errors for
+  clients.  Fixed.
+
+  * doc/html/index.html: Updated docs with new version number.
+
+  * ChangeLog: Updated ChangeLog.
+
   * NEWS, configure.ac: Fixed a silly bug with the SOVERSION (I'd confused the
   order of the flags, oops).
 
