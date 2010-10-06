@@ -34,6 +34,8 @@
 
 #include "timer.h"
 
+#define TEST_SIZE 500000
+
 namespace AFormula
 {
 
@@ -41,10 +43,12 @@ namespace Private
 {
 extern int defaultBackend;
 
+extern double *compiledTestResults;
+double *compiledTestResults;
 
 /// @brief Compiled-C++ version of our fastestBackend benchmark, for
 /// comparison testing.
-static double compiledCppBenchmark (float x, float y)
+double compiledCppBenchmark (float x, float y)
 {
 	return (atan(sin((((((((((((((((M_PI/cos((x/((((0.53-y)-M_PI)*M_E)/y))))
 	        +2.51)+x)-0.54)/0.98)+y)*y)+M_E)/x)+y)+x)+y)+M_PI)/M_E)+x)))*2.77);
@@ -122,7 +126,7 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 						
 			uint64_t timeStart = Private::timerTime ();
 			
-			for (int i = 0 ; i < 500000 ; i++)
+			for (int i = 0 ; i < TEST_SIZE ; i++)
 			{
 				x = (double)i;
 				y = x / 2;
@@ -208,24 +212,28 @@ int Formula::fastestBackend (bool setAsDefault, bool printTimings)
 
 	if (printTimings)
 	{
+		Private::compiledTestResults = new double[TEST_SIZE];
+		
 		// Run a compiled C++ benchmark for comparison
 		uint64_t timeStart = Private::timerTime ();
 		
-		for (int i = 0 ; i < 500000 ; i++)
+		for (int i = 0 ; i < TEST_SIZE ; i++)
 		{
 			double x = (double)i;
 			double y = x / 2;
-			double ret = Private::compiledCppBenchmark (x, y);
+			Private::compiledTestResults[i] = Private::compiledCppBenchmark (x, y);
 
 			// Fake the rest of what's in the inner loop, to balance
 			// out the timings.
 			double gd = (atan(sin((((((((((((((((M_PI/cos((x/((((0.53-y)-M_PI)*M_E)/y))))
 			    +2.51)+x)-0.54)/0.98)+y)*y)+M_E)/x)+y)+x)+y)+M_PI)/M_E)+x)))*2.77);
-			if (fabs (ret - gd) > 0.0001)
+			if (fabs (Private::compiledTestResults[i] - gd) > 0.0001)
 				break;
 		}
 
 		uint64_t timeEnd = Private::timerTime ();
+		
+		delete[] Private::compiledTestResults;
 		
 		uint64_t frequency = Private::timerFrequency ();
 		uint64_t delta = timeEnd - timeStart;
