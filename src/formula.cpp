@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2010  Charles Pence <charles@charlespence.net>
+  Copyright (C) 2010-2011  Charles Pence <charles@charlespence.net>
   
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

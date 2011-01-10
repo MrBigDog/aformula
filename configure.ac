@@ -31,7 +31,6 @@ AC_LANG(C++)
 AX_CXXFLAGS_WARN_ALL
 # LLVM needs these flags to get limit and constant macros in <cstdint>
 CPPFLAGS="-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $CPPFLAGS"
-CXXFLAGS="-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $CXXFLAGS"
 
 
 # Libraries
