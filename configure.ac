@@ -7,7 +7,7 @@ AC_CONFIG_MACRO_DIR([build/m4])
 
 AM_INIT_AUTOMAKE([-Wall -Werror gnits 1.9.6 dist-bzip2])
 
-LT_PREREQ([2.2.10])
+LT_PREREQ([2.2.4])
 LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
@@ -53,9 +53,8 @@ else
   have_libjit="no"
 fi
 
-AX_EXT_HAVE_HEADER([llvm/DerivedTypes.h], [/include /usr/include /usr/local/include /opt/include /opt/local/include])
-AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib], [LLVM-2.7], [llvm::InitializeNativeTarget], [], [#include <llvm/Target/TargetSelect.h>])
-if test "x$ext_cv_llvm_DerivedTypes_h" = "xyes" -a "x$ext_have_LLVM_2_7" = "xyes" ; then
+AX_LLVM([core native])
+if test "x$ax_cv_llvm" = "xyes" ; then
   AC_DEFINE([HAVE_LLVM],[1],[Define to 1 if the LLVM library is available])
   AC_SUBST([HAVE_LLVM],[yes])
   have_llvm="yes"

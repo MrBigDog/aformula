@@ -6,7 +6,7 @@ LIBTOOL_DEPS = @LIBTOOL_DEPS@
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status libtool
 
-include build/doxygen.am
+include build/doxygen.inc
 MOSTLYCLEANFILES = $(DX_CLEANFILES)
 EXTRA_DIST = $(DX_CONFIG)
 
