@@ -13,14 +13,17 @@ libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS = \
 libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS = -version-info @AFORMULA_SO_VERSION@ \
 	@BOOST_LDFLAGS@
 
+libaformula_@AFORMULA_API_VERSION@_la_LIBADD = \
+	@top_builddir@/lib/muparser/libmuparser.la \
+	@BOOST_THREAD_LIB@
+
 if LLVM
 libaformula_@AFORMULA_API_VERSION@_la_SOURCES += llvmformula.cpp
+libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS += @LLVM_CPPFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS += @LLVM_LDFLAGS@
+libaformula_@AFORMULA_API_VERSION@_la_LIBADD += @LLVM_LIBS@
 endif
 
 if LIBJIT
 libaformula_@AFORMULA_API_VERSION@_la_SOURCES += libjitformula.cpp
 endif
-
-libaformula_@AFORMULA_API_VERSION@_la_LIBADD = \
-	@top_builddir@/lib/muparser/libmuparser.la \
-	@BOOST_THREAD_LIB@

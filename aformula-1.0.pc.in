@@ -8,5 +8,5 @@ Description: Mathematical formula evaluation library
 Version: @PACKAGE_VERSION@
 URL: @PACKAGE_URL@
 Libs: -L${libdir} -laformula-@AFORMULA_API_VERSION@
-Libs.private: -lm
+Libs.private: -lm @LLVM_LIBS@
 Cflags: -I${includedir}/aformula-@AFORMULA_API_VERSION@

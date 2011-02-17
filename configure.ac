@@ -29,8 +29,6 @@ AC_PROG_AWK
 ###################
 AC_LANG(C++)
 AX_CXXFLAGS_WARN_ALL
-# LLVM needs these flags to get limit and constant macros in <cstdint>
-CPPFLAGS="-D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $CPPFLAGS"
 
 
 # Libraries
@@ -53,7 +51,7 @@ else
   have_libjit="no"
 fi
 
-AX_LLVM([core native])
+AX_LLVM([core engine native])
 if test "x$ax_cv_llvm" = "xyes" ; then
   AC_DEFINE([HAVE_LLVM],[1],[Define to 1 if the LLVM library is available])
   AC_SUBST([HAVE_LLVM],[yes])

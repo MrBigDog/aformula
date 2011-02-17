@@ -42,7 +42,7 @@ bool MuParserFormula::setExpression (const std::string &str)
 		
 		return true;
 	}
-	catch (const mu::Parser::exception_type &e)
+	catch (const mu::ParserError &e)
 	{
 		errorMessage.reset (new std::string ("muParser: Error while setting expression to " + str));
 		return false;
@@ -61,7 +61,7 @@ bool MuParserFormula::setVariable (const std::string &variable, double *pointer)
 		muParser.DefineVar (variable, pointer);
 		return true;
 	}
-	catch (const mu::Parser::exception_type &e)
+	catch (const mu::ParserError &e)
 	{
 		errorMessage.reset (new std::string ("muParser: Error while setting variable " + variable));
 		return false;
@@ -74,7 +74,7 @@ double MuParserFormula::evaluate ()
 	{
 		return muParser.Eval ();
 	}
-	catch (mu::Parser::exception_type &e)
+	catch (mu::ParserError &e)
 	{
 		errorMessage.reset (new std::string ("muParser: Error evaluating expression"));
 		return 0.0f;

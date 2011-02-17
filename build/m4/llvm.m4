@@ -50,8 +50,9 @@ AC_ARG_WITH([llvm],
 
 	if test "x$want_llvm" = "xyes"; then
 		if test -e "$ac_llvm_config_path"; then
-			LLVM_CPPFLAGS=`$ac_llvm_config_path --cxxflags`
-			LLVM_LDFLAGS="$($ac_llvm_config_path --ldflags) $($ac_llvm_config_path --libs $1)"
+			LLVM_CPPFLAGS=`$ac_llvm_config_path --cxxflags | sed "s@-fno-exceptions@@" | sed "s@-fno-rtti@@"`
+			LLVM_LDFLAGS="$($ac_llvm_config_path --ldflags)"
+			LLVM_LIBS="$($ac_llvm_config_path --libs $1)"
 
 			AC_REQUIRE([AC_PROG_CXX])
 			CPPFLAGS_SAVED="$CPPFLAGS"
@@ -59,7 +60,7 @@ AC_ARG_WITH([llvm],
 			export CPPFLAGS
 
 			LDFLAGS_SAVED="$LDFLAGS"
-			LDFLAGS="$LDFLAGS $LLVM_LDFLAGS"
+			LDFLAGS="$LDFLAGS $LLVM_LDFLAGS $LLVM_LIBS"
 			export LDFLAGS
 
 			AC_CACHE_CHECK(can compile with and link with llvm([$1]),
@@ -77,7 +78,7 @@ AC_ARG_WITH([llvm],
 			fi
 
 			CPPFLAGS="$CPPFLAGS_SAVED"
-		LDFLAGS="$LDFLAGS_SAVED"
+			LDFLAGS="$LDFLAGS_SAVED"
 		else
 			succeeded=no
 		fi
@@ -88,6 +89,7 @@ AC_ARG_WITH([llvm],
 		else
 			AC_SUBST(LLVM_CPPFLAGS)
 			AC_SUBST(LLVM_LDFLAGS)
+			AC_SUBST(LLVM_LIBS)
 			AC_DEFINE(HAVE_LLVM,,[define if the llvm library is available])
 		fi
 ])
