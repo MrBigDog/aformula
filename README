@@ -51,7 +51,9 @@ Compile LLVM with the --enable-shared option, to create the large libLLVM-2.7
 shared library.
 
 Note that at the time of this writing I was not able to get libjit to compile 
-without a fair bit of hacking around on its source code.
+without a fair bit of hacking around on its source code.  I've pushed my 
+changes to an unofficial clone of libjit, available at 
+<http://github.com/cpence/libjit>.
 
 Neither of these libraries are necessary (the included muParser backend will be
 built regardless), but they will provide a large speed boost.
