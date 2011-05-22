@@ -93,6 +93,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">C API: Get fastest backend (mirrors <code>Formula::fastestBackend</code>)  <a href="#ace9b4c3c56f94a402f36c59be3dc7ecc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015">aformula_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aformula_8h.html#ad87ccfa61ebff783edfaa5e59953e07d">af_create_formula</a> (int backend)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">C API: Create new formula (mirrors <code>Formula::createFormula</code>)  <a href="#ad87ccfa61ebff783edfaa5e59953e07d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aformula_8h.html#a1a5fe17658fd0386797946b07546540c">af_destroy_formula</a> (<a class="el" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015">aformula_t</a> formula)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">C API: Destroy formula (mirrors <code>delete</code> for formulas)  <a href="#a1a5fe17658fd0386797946b07546540c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aformula_8h.html#a4c38014c6df945f199877e0a00bfc8d7">af_formula_errstr</a> (<a class="el" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015">aformula_t</a> formula)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">C API: Get error string for this formula (mirrors <code>Formula::errorString</code>)  <a href="#a4c38014c6df945f199877e0a00bfc8d7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aformula_8h.html#a1c85e2f69b73e56f41da829dfe51be44">af_formula_setexpr</a> (<a class="el" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015">aformula_t</a> formula, const char *expr)</td></tr>
@@ -219,6 +221,27 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1a5fe17658fd0386797946b07546540c"></a><!-- doxytag: member="aformula.h::af_destroy_formula" ref="a1a5fe17658fd0386797946b07546540c" args="(aformula_t formula)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void af_destroy_formula </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015">aformula_t</a>&#160;</td>
+          <td class="paramname"><em>formula</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>C API: Destroy formula (mirrors <code>delete</code> for formulas) </p>
+
+<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00031">31</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a4c38014c6df945f199877e0a00bfc8d7"></a><!-- doxytag: member="aformula.h::af_formula_errstr" ref="a4c38014c6df945f199877e0a00bfc8d7" args="(aformula_t formula)" -->
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +259,7 @@ Functions</h2></td></tr>
 
 <p>C API: Get error string for this formula (mirrors <code>Formula::errorString</code>) </p>
 
-<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00031">31</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
+<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00034">34</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
 
 </div>
 </div>
@@ -267,7 +290,7 @@ Functions</h2></td></tr>
 
 <p>C API: Set formula expression (mirrors <code>Formula::setExpression</code>) </p>
 
-<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00034">34</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
+<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00037">37</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +311,7 @@ Functions</h2></td></tr>
 
 <p>C API: Get formula expression (mirrors <code>Formula::expression</code>) </p>
 
-<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00037">37</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
+<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00040">40</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
 
 </div>
 </div>
@@ -325,7 +348,7 @@ Functions</h2></td></tr>
 
 <p>C API: Set variable to pointer (mirrors <code>Formula::setVariable</code>) </p>
 
-<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00040">40</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
+<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00043">43</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
 
 </div>
 </div>
@@ -346,7 +369,7 @@ Functions</h2></td></tr>
 
 <p>C API: Evaluate this formula (mirrors <code>Formula::evaluate</code>) </p>
 
-<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00043">43</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
+<p>Definition at line <a class="el" href="c__api_8cpp_source.html#l00046">46</a> of file <a class="el" href="c__api_8cpp_source.html">c_api.cpp</a>.</p>
 
 </div>
 </div>
