@@ -19,7 +19,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">aformula&#160;<span id="projectnumber">0.9.2</span></div>
+   <div id="projectname">aformula&#160;<span id="projectnumber">0.9.3</span></div>
   </td>
  </tr>
  </tbody>
@@ -88,22 +88,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00028"></a><a class="code" href="c__api_8cpp.html#ad87ccfa61ebff783edfaa5e59953e07d">00028</a> <a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> <a class="code" href="aformula_8h.html#ad87ccfa61ebff783edfaa5e59953e07d" title="C API: Create new formula (mirrors Formula::createFormula)">af_create_formula</a>(<span class="keywordtype">int</span> backend)
 <a name="l00029"></a>00029 { <span class="keywordflow">return</span> (<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> *)AFormula::Formula::createFormula(backend); }
 <a name="l00030"></a>00030 
-<a name="l00031"></a><a class="code" href="c__api_8cpp.html#a4c38014c6df945f199877e0a00bfc8d7">00031</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="aformula_8h.html#a4c38014c6df945f199877e0a00bfc8d7" title="C API: Get error string for this formula (mirrors Formula::errorString)">af_formula_errstr</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
-<a name="l00032"></a>00032 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;errorString().c_str(); }
+<a name="l00031"></a><a class="code" href="c__api_8cpp.html#a1a5fe17658fd0386797946b07546540c">00031</a> <span class="keywordtype">void</span> <a class="code" href="aformula_8h.html#a1a5fe17658fd0386797946b07546540c" title="C API: Destroy formula (mirrors delete for formulas)">af_destroy_formula</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
+<a name="l00032"></a>00032 { <span class="keyword">delete</span> ((AFormula::Formula *)formula); }
 <a name="l00033"></a>00033 
-<a name="l00034"></a><a class="code" href="c__api_8cpp.html#a1c85e2f69b73e56f41da829dfe51be44">00034</a> <span class="keywordtype">int</span> <a class="code" href="aformula_8h.html#a1c85e2f69b73e56f41da829dfe51be44" title="C API: Set formula expression (mirrors Formula::setExpression)">af_formula_setexpr</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula, <span class="keyword">const</span> <span class="keywordtype">char</span> *expr)
-<a name="l00035"></a>00035 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;setExpression(expr); }
+<a name="l00034"></a><a class="code" href="c__api_8cpp.html#a4c38014c6df945f199877e0a00bfc8d7">00034</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="aformula_8h.html#a4c38014c6df945f199877e0a00bfc8d7" title="C API: Get error string for this formula (mirrors Formula::errorString)">af_formula_errstr</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
+<a name="l00035"></a>00035 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;errorString().c_str(); }
 <a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="c__api_8cpp.html#a3a30de572156ac2e8440c77d001c1731">00037</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="aformula_8h.html#a3a30de572156ac2e8440c77d001c1731" title="C API: Get formula expression (mirrors Formula::expression)">af_formula_getexpr</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
-<a name="l00038"></a>00038 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;expression().c_str(); }
+<a name="l00037"></a><a class="code" href="c__api_8cpp.html#a1c85e2f69b73e56f41da829dfe51be44">00037</a> <span class="keywordtype">int</span> <a class="code" href="aformula_8h.html#a1c85e2f69b73e56f41da829dfe51be44" title="C API: Set formula expression (mirrors Formula::setExpression)">af_formula_setexpr</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula, <span class="keyword">const</span> <span class="keywordtype">char</span> *expr)
+<a name="l00038"></a>00038 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;setExpression(expr); }
 <a name="l00039"></a>00039 
-<a name="l00040"></a><a class="code" href="c__api_8cpp.html#a3782bed1b8b594b214d75649917eece1">00040</a> <span class="keywordtype">int</span> <a class="code" href="aformula_8h.html#a3782bed1b8b594b214d75649917eece1" title="C API: Set variable to pointer (mirrors Formula::setVariable)">af_formula_setvariable</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula, <span class="keyword">const</span> <span class="keywordtype">char</span> *variable, <span class="keywordtype">double</span> *pointer)
-<a name="l00041"></a>00041 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;setVariable(variable, pointer) ? 1 : 0; }
+<a name="l00040"></a><a class="code" href="c__api_8cpp.html#a3a30de572156ac2e8440c77d001c1731">00040</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="aformula_8h.html#a3a30de572156ac2e8440c77d001c1731" title="C API: Get formula expression (mirrors Formula::expression)">af_formula_getexpr</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
+<a name="l00041"></a>00041 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;expression().c_str(); }
 <a name="l00042"></a>00042 
-<a name="l00043"></a><a class="code" href="c__api_8cpp.html#a7b8321c27723feaa3f076f7eed2b0eb5">00043</a> <span class="keywordtype">double</span> <a class="code" href="aformula_8h.html#a7b8321c27723feaa3f076f7eed2b0eb5" title="C API: Evaluate this formula (mirrors Formula::evaluate)">af_formula_evaluate</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
-<a name="l00044"></a>00044 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;evaluate(); }
+<a name="l00043"></a><a class="code" href="c__api_8cpp.html#a3782bed1b8b594b214d75649917eece1">00043</a> <span class="keywordtype">int</span> <a class="code" href="aformula_8h.html#a3782bed1b8b594b214d75649917eece1" title="C API: Set variable to pointer (mirrors Formula::setVariable)">af_formula_setvariable</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula, <span class="keyword">const</span> <span class="keywordtype">char</span> *variable, <span class="keywordtype">double</span> *pointer)
+<a name="l00044"></a>00044 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;setVariable(variable, pointer) ? 1 : 0; }
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 }
+<a name="l00046"></a><a class="code" href="c__api_8cpp.html#a7b8321c27723feaa3f076f7eed2b0eb5">00046</a> <span class="keywordtype">double</span> <a class="code" href="aformula_8h.html#a7b8321c27723feaa3f076f7eed2b0eb5" title="C API: Evaluate this formula (mirrors Formula::evaluate)">af_formula_evaluate</a>(<a class="code" href="aformula_8h.html#a2fb8afb7e821b5984a1265a82735f015" title="C API: Opaque pointer type for AFormula objects.">aformula_t</a> formula)
+<a name="l00047"></a>00047 { <span class="keywordflow">return</span> ((AFormula::Formula *)formula)-&gt;evaluate(); }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 }
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
