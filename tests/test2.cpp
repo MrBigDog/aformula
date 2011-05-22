@@ -60,7 +60,7 @@ void CHECK_EQUATION(const char *formula, bool pass)
 
 int main (int argc, char *argv[])
 {
-	for (int i = 1 ; i < AFormula::Formula::NUM_BACKENDS ; i++)
+	for (int i = 1 ; i < NUM_BACKENDS ; i++)
 	{
 		double a = 1.0;
 

@@ -28,6 +28,9 @@ int af_fastest_backend(int set_as_default, int print_timings)
 aformula_t af_create_formula(int backend)
 { return (aformula_t *)AFormula::Formula::createFormula(backend); }
 
+void af_destroy_formula(aformula_t formula)
+{ delete ((AFormula::Formula *)formula); }
+
 const char *af_formula_errstr(aformula_t formula)
 { return ((AFormula::Formula *)formula)->errorString().c_str(); }
 

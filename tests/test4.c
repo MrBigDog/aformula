@@ -15,8 +15,14 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <aformula.h>
+
+//
+// Test the C API, using the same tests as test1
+//
+
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 
 //
@@ -24,29 +30,31 @@
 // Tests every operator and function on every backend.
 //
 
-AFormula::Formula *f;
+aformula_t *f;
 double x, y, z;
 
 void CHECK_FORMULA (const char *formula, double value)
 {
 	double ret;
+    const char *errstr;
 
-	f->errorString ();
+    af_formula_errstr(f);
 
-	if (!f->setExpression (formula))
+	if (!af_formula_setexpr(f, formula))
 	{
 		fprintf (stderr, "FAIL: Could not set expression to %s\n", formula);
-		fprintf (stderr, "%s\n", f->errorString ().c_str ());
+		fprintf (stderr, "%s\n", af_formula_errstr(f));
 		
 		exit (1);
 	}
 
-	ret = f->evaluate ();
-
-	if (f->errorString () != "")
+    ret = af_formula_evaluate(f);
+    errstr = af_formula_errstr(f);
+    
+	if (strlen(errstr))
 	{
 		fprintf (stderr, "FAIL: Could not evaluate %s\n", formula);
-		fprintf (stderr, "%s\n", f->errorString ().c_str ());
+		fprintf (stderr, "%s\n", errstr);
 		
 		exit (1);
 	}
@@ -55,9 +63,10 @@ void CHECK_FORMULA (const char *formula, double value)
 	{
 		fprintf (stderr, "FAIL: Evaluated %s and expected %f, got %f\n",
 		         formula, value, ret);
-
-		if (f->errorString () != "")
-			fprintf (stderr, "%s\n", f->errorString ().c_str ());
+        
+        errstr = af_formula_errstr(f);
+		if (strlen(errstr))
+			fprintf (stderr, "%s\n", errstr);
 				
 		exit (1);
 	}
@@ -80,16 +89,19 @@ void CHECK_VARIABLE_STR (const char *varname, double variable, double value)
 
 #define CHECK_VARIABLE(variable, value) CHECK_VARIABLE_STR (#variable, variable, value)
 
-AFormula::Formula *makeFormula (int backend)
+aformula_t *makeFormula (int backend)
 {
-	AFormula::Formula *f = AFormula::Formula::createFormula (backend);
+    aformula_t *f = af_create_formula(backend);
 	if (!f)
 		return NULL;
 
-	f->setVariable ("x", &x);
-	f->setVariable ("y", &y);
-	f->setVariable ("z", &z);
-
+	if (!af_formula_setvariable(f, "x", &x))
+        return NULL;
+    if (!af_formula_setvariable(f, "y", &y))
+        return NULL;
+    if (!af_formula_setvariable(f, "z", &z))
+        return NULL;
+    
 	return f;
 }
 
@@ -139,7 +151,9 @@ void muParserFunctionChecks ()
 
 int main (int argc, char *argv[])
 {
-	for (int i = 1 ; i < NUM_BACKENDS ; i++)
+    int i;
+    
+	for (i = 1 ; i < NUM_BACKENDS ; i++)
 	{
 		fprintf (stdout, "\n*** Begin testing backend number %d:\n\n", i);
 
@@ -261,7 +275,7 @@ int main (int argc, char *argv[])
 
 		muParserFunctionChecks ();
 						
-		delete f;
+        af_destroy_formula(f);
 	}
 	
 	return 0;

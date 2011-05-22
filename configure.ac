@@ -11,8 +11,8 @@ LT_PREREQ([2.2.4])
 LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
-AC_SUBST([AFORMULA_SO_VERSION], [2:0:1])
-AC_SUBST([AFORMULA_API_VERSION], [1.0])
+AC_SUBST([AFORMULA_SO_VERSION], [2:0:0])
+AC_SUBST([AFORMULA_API_VERSION], [1.1])
 
 
 # Program Tests
@@ -95,7 +95,7 @@ DX_INIT_DOXYGEN([aformula], [doxygen.cfg], [doc])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
   Makefile
-  aformula-1.0.pc
+  aformula-1.1.pc
     include/Makefile
       include/aformula.h
     lib/Makefile

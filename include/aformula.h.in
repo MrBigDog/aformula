@@ -310,6 +310,9 @@ int af_fastest_backend(int set_as_default, int print_timings);
 /// @brief C API: Create new formula (mirrors @c Formula::createFormula)
 aformula_t af_create_formula(int backend);
 
+/// @brief C API: Destroy formula (mirrors @c delete for formulas)
+void af_destroy_formula(aformula_t formula);
+
 /// @brief C API: Get error string for this formula (mirrors @c Formula::errorString)
 const char *af_formula_errstr(aformula_t formula);
 
