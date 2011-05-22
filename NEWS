@@ -3,10 +3,15 @@ AFormula NEWS -- History of user-visible changes.
 Copyright (C) 2010-2011 Charles Pence.
 See the end of the file for license conditions.
 
+* Version 0.9.3 [beta]
+
+** Add a C interface.
+
+
 * Version 0.9.2 [beta]
 
-* Fix a strange libtool bug, silencing warnings that were being received by
-  linking clients.
+** Fix a strange libtool bug, silencing warnings that were being received by
+   linking clients.
 
 
 * Version 0.9.1 [beta]
