@@ -20,9 +20,6 @@
 #ifndef AFORMULA_H__
 #define AFORMULA_H__
 
-#include <string>
-#include <boost/utility.hpp>
-
 /**
 @mainpage AFormula
 @author Charles Pence
@@ -126,6 +123,47 @@ its documentation for more information.
 */
 
 
+/// @brief Available formula-execution backends.
+///
+/// @note Some of these backends may be surrounded by <tt>\#if
+/// 0</tt> preprocessor blocks on your system.  If so, do not
+/// remove them!  These backends were disabled at compile-time on
+/// your system, and support for them is not included in AFormula.
+/// Enabling them will cause AFormula-based programs to crash.
+///
+/// If you want to enable more backend support, install LLVM
+/// and/or libjit, and consult the @c --with-llvm and @c
+/// --with-libjit options to the @c configure script.
+enum
+{
+	/// @brief Default formula backend.
+	///
+	/// Usually, muParser will be the default backend, but if you
+	/// run the @c Formula::fastestBackend benchmark, passing @c
+	/// true for the @c setAsDefault parameter, future calls using
+	/// @c BACKEND_DEFAULT will use the known-fastest backend.
+	BACKEND_DEFAULT = 0,
+
+	/// @brief muParser backend.
+	BACKEND_MUPARSER,
+#if @LLVM_DEF@
+	/// @brief LLVM backend.
+	BACKEND_LLVM,
+#endif
+#if @LIBJIT_DEF@
+	/// @brief libjit backend.
+	BACKEND_LIBJIT,
+#endif
+	/// @brief Number of available backends.
+	NUM_BACKENDS
+};
+
+
+#ifdef __cplusplus
+
+#include <string>
+#include <boost/utility.hpp>
+
 /// @namespace AFormula
 /// @brief Namespace enclosing all AFormula code.
 namespace AFormula
@@ -145,41 +183,6 @@ public:
 	/// @brief Destructor.
 	virtual ~Formula ();
 
-
-	/// @brief Available formula-execution backends.
-	///
-	/// @note Some of these backends may be surrounded by <tt>\#if
-	/// 0</tt> preprocessor blocks on your system.  If so, do not
-	/// remove them!  These backends were disabled at compile-time on
-	/// your system, and support for them is not included in AFormula.
-	/// Enabling them will cause AFormula-based programs to crash.
-	///
-	/// If you want to enable more backend support, install LLVM
-	/// and/or libjit, and consult the @c --with-llvm and @c
-	/// --with-libjit options to the @c configure script.
-	enum
-	{
-		/// @brief Default formula backend.
-		///
-		/// Usually, muParser will be the default backend, but if you
-		/// run the @c Formula::fastestBackend benchmark, passing @c
-		/// true for the @c setAsDefault parameter, future calls using
-		/// @c BACKEND_DEFAULT will use the known-fastest backend.
-		BACKEND_DEFAULT = 0,
-
-		/// @brief muParser backend.
-		BACKEND_MUPARSER,
-#if @LLVM_DEF@
-		/// @brief LLVM backend.
-		BACKEND_LLVM,
-#endif
-#if @LIBJIT_DEF@
-		/// @brief libjit backend.
-		BACKEND_LIBJIT,
-#endif
-		/// @brief Number of available backends.
-		NUM_BACKENDS
-	};
 	
 	/// @brief Create a new formula.
 	/// 
@@ -291,6 +294,40 @@ protected:
 };
 
 };
+
+#endif /* __cplusplus */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/// @brief C API: Opaque pointer type for AFormula objects
+typedef void *aformula_t;
+
+/// @brief C API: Get fastest backend (mirrors @c Formula::fastestBackend)
+int af_fastest_backend(int set_as_default, int print_timings);
+
+/// @brief C API: Create new formula (mirrors @c Formula::createFormula)
+aformula_t af_create_formula(int backend);
+
+/// @brief C API: Get error string for this formula (mirrors @c Formula::errorString)
+const char *af_formula_errstr(aformula_t formula);
+
+/// @brief C API: Set formula expression (mirrors @c Formula::setExpression)
+int af_formula_setexpr(aformula_t formula, const char *expr);
+
+/// @brief C API: Get formula expression (mirrors @c Formula::expression)
+const char *af_formula_getexpr(aformula_t formula);
+
+/// @brief C API: Set variable to pointer (mirrors @c Formula::setVariable)
+int af_formula_setvariable(aformula_t formula, const char *variable, double *pointer);
+
+/// @brief C API: Evaluate this formula (mirrors @c Formula::evaluate)
+double af_formula_evaluate(aformula_t formula);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif /* AFORMULA_H__ */
 

@@ -5,7 +5,7 @@ noinst_HEADERS = codegenerator.h jitformula.h libjitformula.h llvmformula.h \
 
 libaformula_@AFORMULA_API_VERSION@_la_SOURCES = \
 	benchmark.cpp formula.cpp jitformula.cpp muparserformula.cpp parser.cpp \
-	timer.cpp
+	timer.cpp c_api.cpp
 
 libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS = \
 	-I@top_srcdir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@

@@ -50,7 +50,7 @@ boost::thread_specific_ptr<std::string> errorMessage;
 
 /// @brief Current backend which will be used if @c BACKEND_DEFAULT
 /// is specified.
-int defaultBackend = Formula::BACKEND_MUPARSER;
+int defaultBackend = BACKEND_MUPARSER;
 };
 
 //

@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_a_formula_1_1_private_1_1_j_i_t_formula.html" title="Base class for JIT formula compilers." alt="" coords="140,83,348,112"/>
-<area shape="rect" id="node9" href="$class_a_formula_1_1_private_1_1_mu_parser_formula.html" title="muParser formula backend." alt="" coords="372,83,625,112"/>
-<area shape="rect" id="node5" href="$class_a_formula_1_1_private_1_1_lib_j_i_t_formula.html" title="Formula&#45;compiling backend using libjit." alt="" coords="5,160,232,189"/>
-<area shape="rect" id="node7" href="$class_a_formula_1_1_private_1_1_l_l_v_m_formula.html" title="LLVM formula&#45;compiling backend." alt="" coords="256,160,483,189"/>
-</map>

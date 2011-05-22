@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$jitformula_8cpp.html" title="Implementation of the JITFormula class." alt="" coords="5,83,115,112"/>
-<area shape="rect" id="node5" href="$libjitformula_8cpp.html" title="Implementation of the LibJITFormula class." alt="" coords="139,83,261,112"/>
-<area shape="rect" id="node7" href="$llvmformula_8cpp.html" title="Implementation of the LLVMFormula class." alt="" coords="285,83,408,112"/>
-<area shape="rect" id="node9" href="$parser_8cpp.html" title="Implementation of the Parser class." alt="" coords="432,83,520,112"/>
-</map>
