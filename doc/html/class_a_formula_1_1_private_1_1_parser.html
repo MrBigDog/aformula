@@ -19,7 +19,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">aformula&#160;<span id="projectnumber">0.9.3</span></div>
+   <div id="projectname">aformula&#160;<span id="projectnumber">0.9.4</span></div>
   </td>
  </tr>
  </tbody>
@@ -417,7 +417,7 @@ Static Private Attributes</h2></td></tr>
 <p>This function updates <code>currentToken</code>, <code>strToken</code>, and <code>numToken</code> to the next token in the parsing stream.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Call this instead of <code><a class="el" href="class_a_formula_1_1_private_1_1_parser.html#af0efe8ba9cbfdee50bcffb9e17247e41" title="Get a token from the parse buffer.">getToken()</a>!</code> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00274">274</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00275">275</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +446,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The identifer type (<code>TOKEN_IDENT_*</code>) or <code>TOKEN_BAD</code>.</dd></dl>
 <p>This function classifies a generic string identifier into the <code>TOKEN_IDENT_*</code> categories. If the identifier doesn't match any of the registered variables, functions, constants, or operators, <code>TOKEN_BAD</code> is returned. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00280">280</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00281">281</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +467,7 @@ Static Private Attributes</h2></td></tr>
 <p>Parse a constant number into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a></code> corresponding to <code>numToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00309">309</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00310">310</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +488,7 @@ Static Private Attributes</h2></td></tr>
 <p>Parse an open parenthesis into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code> corresponding to the contents of the parenthesis-expression, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00319">319</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00320">320</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,7 +509,7 @@ Static Private Attributes</h2></td></tr>
 <p>Parse a function identifier into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html" title="Syntax tree element representing a function call.">CallExprAST</a></code> corresponding to the correct function call, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00343">343</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00344">344</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -530,7 +530,7 @@ Static Private Attributes</h2></td></tr>
 <p>Parse a constant-identifier into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a></code> corresponding to the constant identifier in <code>strToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00404">404</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00405">405</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -551,7 +551,7 @@ Static Private Attributes</h2></td></tr>
 <p>Parse a variable-identifier into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_variable_expr_a_s_t.html" title="Syntax tree element for a reference to a variable.">VariableExprAST</a></code> corresponding to the variable identifier in <code>strToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00422">422</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00423">423</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -572,7 +572,7 @@ Static Private Attributes</h2></td></tr>
 <p>Parse a constant number into an <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_number_expr_a_s_t.html" title="Syntax tree element for a constant number.">NumberExprAST</a></code> corresponding to <code>numToken</code>, or <code>NULL</code> on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00452">452</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00453">453</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -594,7 +594,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code> corresponding to a primary expression, or <code>NULL</code> on failure.</dd></dl>
 <p>A "primary expression" is anything which could be the left-hand side of a binary operator. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00472">472</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00473">473</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -627,7 +627,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <code><a class="el" href="class_a_formula_1_1_private_1_1_binary_expr_a_s_t.html" title="Syntax tree element representing a binary-operator expression.">BinaryExprAST</a></code> corresponding to the current binary expression, or <code>NULL</code> on failure.</dd></dl>
 <p>This function is called when we have already parsed a primary expression (the left-hand side of the operator), and <code>currentToken</code> is <code>TOKEN_OPERATOR</code>. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00500">500</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00501">501</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -649,7 +649,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An <code><a class="el" href="class_a_formula_1_1_private_1_1_expr_a_s_t.html" title="Base class for all expressions in our syntax tree.">ExprAST</a></code> corresponding to a complete expression, or <code>NULL</code> on failure.</dd></dl>
 <p>A complete expression is an LHS (a primary expression), optionally followed by a binary operator and a bin-op RHS. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00575">575</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00576">576</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,7 +673,7 @@ Static Private Attributes</h2></td></tr>
 <p>This function parses a complete formula into an expression tree. This is the primary entry point for the <code><a class="el" href="class_a_formula_1_1_private_1_1_parser.html" title="Class which parses a string formula into an abstract syntax tree.">Parser</a></code> class.</p>
 <p>If a <code>NULL</code> value is returned, the function did not parse. A fairly informative error message will be stored in <code>Formula::errorString</code>, suitable for display to the user. </p>
 
-<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00584">584</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p>Definition at line <a class="el" href="parser_8cpp_source.html#l00585">585</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 
 </div>
 </div>
