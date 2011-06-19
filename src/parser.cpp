@@ -174,13 +174,14 @@ const Parser::Operator Parser::operators[NUM_OPERATORS] =
 };
 
 int Parser::getToken ()
-{
-	if (!parseBuffer.length ())
-		return TOKEN_END;
-		
+{		
 	// Eat whitespace
 	while (isspace (parseBuffer[0]))
 		parseBuffer.erase (0, 1);
+
+    // Bail if we're done
+	if (!parseBuffer.length ())
+		return TOKEN_END;
 
 	// See if the first part of the parseBuffer is an operator string
 	for (int i = 0 ; i < NUM_OPERATORS ; i++)

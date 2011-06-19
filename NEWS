@@ -3,6 +3,11 @@ AFormula NEWS -- History of user-visible changes.
 Copyright (C) 2010-2011 Charles Pence.
 See the end of the file for license conditions.
 
+* Version 0.9.4 [beta]
+
+** Fix a bug regarding trailing whitespace in formulas.
+
+
 * Version 0.9.3 [beta]
 
 ** Add a C interface.
