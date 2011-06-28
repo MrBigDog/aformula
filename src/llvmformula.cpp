@@ -364,16 +364,34 @@ void *LLVMFormula::emit (CallExprAST *expr)
 	// The rest of these are calls to stdlib floating point math
 	// functions.
 	
-	// Emit a call to function (arg)
-	Value *arg = (Value *)expr->args[0]->generate (this);
-	if (!arg) return NULL;
+	// atan2 is special, because it has two arguments
+	if (expr->function == "atan2")
+	{
+        Value *arg1 = (Value *)expr->args[0]->generate (this);
+        Value *arg2 = (Value *)expr->args[1]->generate (this);
+        if (!arg1 || !arg2) return NULL;
+        
+        Module *M = builder->GetInsertBlock ()->getParent ()->getParent ();
+        Value *Callee = M->getOrInsertFunction (expr->function,
+                                                Type::getDoubleTy (getGlobalContext ()),
+    	                                        Type::getDoubleTy (getGlobalContext ()),
+    	                                        Type::getDoubleTy (getGlobalContext ()),
+                                                NULL);
+        return builder->CreateCall2 (Callee, arg1, arg2, expr->function);
+	}
+	else
+	{
+    	// Emit a call to function (arg)
+    	Value *arg = (Value *)expr->args[0]->generate (this);
+    	if (!arg) return NULL;
 	
-	Module *M = builder->GetInsertBlock ()->getParent ()->getParent ();
-	Value *Callee = M->getOrInsertFunction (expr->function,
-	                                        Type::getDoubleTy (getGlobalContext ()),
-	                                        Type::getDoubleTy (getGlobalContext ()),
-	                                        NULL);
-	return builder->CreateCall (Callee, arg, expr->function);
+    	Module *M = builder->GetInsertBlock ()->getParent ()->getParent ();
+    	Value *Callee = M->getOrInsertFunction (expr->function,
+    	                                        Type::getDoubleTy (getGlobalContext ()),
+    	                                        Type::getDoubleTy (getGlobalContext ()),
+    	                                        NULL);
+    	return builder->CreateCall (Callee, arg, expr->function);
+    }
 }
 
 

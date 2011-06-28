@@ -105,7 +105,7 @@ private:
 	};
 
 	/// @brief Number of functions.
-	static const int NUM_FUNCTIONS = 22;
+	static const int NUM_FUNCTIONS = 23;
 	/// @brief List of hard-coded functions.
 	static const Function functions[NUM_FUNCTIONS];
 

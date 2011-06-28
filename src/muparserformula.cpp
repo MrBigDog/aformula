@@ -29,6 +29,11 @@ namespace Private
 extern boost::thread_specific_ptr<std::string> errorMessage;
 
 
+MuParserFormula::MuParserFormula ()
+{
+    muParser.DefineFun("atan2", &atan2, false);
+}
+
 bool MuParserFormula::setExpression (const std::string &str)
 {
 	try

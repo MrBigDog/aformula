@@ -191,6 +191,23 @@ void *LibJITFormula::emit (CallExprAST *expr)
 
 		return result;
 	}
+	else if (expr->function == "atan2")
+	{
+	    // HACK: We have to put this here since it has two arguments
+        jit_value_t args[2];
+        args[0] = (jit_value_t)expr->args[0]->generate (this);
+        args[1] = (jit_value_t)expr->args[1]->generate (this);
+        
+        jit_type_t params[2];
+        params[0] = jit_type_float64;
+        params[1] = jit_type_float64;
+        jit_type_t signature;
+        signature = jit_type_create_signature (jit_abi_cdecl, jit_type_float64,
+                                               params, 2, 1);
+        
+        return jit_insn_call_native (function, "atan2", (void *)atan2, signature,
+                                     args, 2, 0);
+	}
 	
 	// Compile the arguments
 	// HACK: we just assume for now that if() is the only thing with

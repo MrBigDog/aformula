@@ -130,6 +130,7 @@ const Parser::Function Parser::functions[NUM_FUNCTIONS] =
 	{"asin", 1},
 	{"acos", 1},
 	{"atan", 1},
+	{"atan2", 2},
 	{"sinh", 1},
 	{"cosh", 1},
 	{"tanh", 1},

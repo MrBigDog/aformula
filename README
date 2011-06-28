@@ -13,7 +13,7 @@ variables may be defined (as pointers to double-values), and the assignment
 operator (=) may be used to assign values to them.  A full suite of builtin
 functions is supported, including:
 
- * Trigonometry (sin, cos, tan, asin, acos, atan)
+ * Trigonometry (sin, cos, tan, asin, acos, atan, atan2)
  * Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
  * Exponentials (log2, log10 [= log], ln, exp, sqrt)
  * Miscellaneous (sign, rint, abs)

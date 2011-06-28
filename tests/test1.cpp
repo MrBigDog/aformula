@@ -134,9 +134,6 @@ void muParserFunctionChecks ()
 	               ")+x)))*2.77)", -2.16995656);
 	
 	CHECK_FORMULA ("1+2-3*4/5^6*(2*(1-5+(3*7^9)*(4+6*7-3)))+12", -7995810.09926);
-	
-	// Regression test for bug regarding trailing whitespace (6/2011)
-    CHECK_FORMULA ("  z  ", 3.0);
 }
 
 
@@ -261,6 +258,13 @@ int main (int argc, char *argv[])
 		CHECK_FORMULA ("sign(-13.0)", -1.0);
 		CHECK_FORMULA ("rint(1.5)", 2.0);
 		CHECK_FORMULA ("if(y == 2.0,3.5,1.2)", 3.5);
+		
+    	// Regression test for bug regarding trailing whitespace (6/2011)
+        CHECK_FORMULA ("  z  ", 2.0);
+
+        // Regression test for new atan2() function (6/2011)
+        CHECK_FORMULA ("atan2(-0.5, 0.5)", -0.78539816339745);
+        CHECK_FORMULA ("atan2(0.5, 0.5)", 0.78539816339745);
 
 		muParserFunctionChecks ();
 						

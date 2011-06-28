@@ -35,6 +35,7 @@ namespace Private
 class MuParserFormula : public Formula
 {
 public:
+    MuParserFormula();
 	virtual ~MuParserFormula () { }
 	
 	virtual bool setExpression (const std::string &str);
