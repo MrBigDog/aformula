@@ -43,7 +43,7 @@ Arbitrary variables may be defined (as pointers to double-values),
 and the assignment operator, @c =, may be used to assign values to
 them.  A full suite of builtin functions is supported:
 
-@li Trigonometry (sin, cos, tan, asin, acos, atan)
+@li Trigonometry (sin, cos, tan, asin, acos, atan, atan2)
 @li Hyperbolic trigonometry (sinh, cosh, tanh, asinh, acosh, atanh)
 @li Logarithms (log2, log10 [= log], ln, exp, sqrt)
 @li Miscellaneous (sign, rint, abs)
