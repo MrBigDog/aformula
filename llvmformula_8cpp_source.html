@@ -19,7 +19,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">aformula&#160;<span id="projectnumber">0.9.4</span></div>
+   <div id="projectname">aformula&#160;<span id="projectnumber">0.9.5</span></div>
   </td>
  </tr>
  </tbody>
@@ -424,22 +424,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00364"></a>00364     <span class="comment">// The rest of these are calls to stdlib floating point math</span>
 <a name="l00365"></a>00365     <span class="comment">// functions.</span>
 <a name="l00366"></a>00366     
-<a name="l00367"></a>00367     <span class="comment">// Emit a call to function (arg)</span>
-<a name="l00368"></a>00368     Value *arg = (Value *)expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aac9c6f61d8256643e348877424c4871a" title="List of function arguments.">args</a>[0]-&gt;generate (<span class="keyword">this</span>);
-<a name="l00369"></a>00369     <span class="keywordflow">if</span> (!arg) <span class="keywordflow">return</span> NULL;
-<a name="l00370"></a>00370     
-<a name="l00371"></a>00371     Module *M = builder-&gt;GetInsertBlock ()-&gt;getParent ()-&gt;getParent ();
-<a name="l00372"></a>00372     Value *Callee = M-&gt;getOrInsertFunction (expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a>,
-<a name="l00373"></a>00373                                             Type::getDoubleTy (getGlobalContext ()),
-<a name="l00374"></a>00374                                             Type::getDoubleTy (getGlobalContext ()),
-<a name="l00375"></a>00375                                             NULL);
-<a name="l00376"></a>00376     <span class="keywordflow">return</span> builder-&gt;CreateCall (Callee, arg, expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a>);
-<a name="l00377"></a>00377 }
-<a name="l00378"></a>00378 
-<a name="l00379"></a>00379 
-<a name="l00380"></a>00380 };
-<a name="l00381"></a>00381 };
-<a name="l00382"></a>00382 
+<a name="l00367"></a>00367     <span class="comment">// atan2 is special, because it has two arguments</span>
+<a name="l00368"></a>00368     <span class="keywordflow">if</span> (expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a> == <span class="stringliteral">&quot;atan2&quot;</span>)
+<a name="l00369"></a>00369     {
+<a name="l00370"></a>00370         Value *arg1 = (Value *)expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aac9c6f61d8256643e348877424c4871a" title="List of function arguments.">args</a>[0]-&gt;generate (<span class="keyword">this</span>);
+<a name="l00371"></a>00371         Value *arg2 = (Value *)expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aac9c6f61d8256643e348877424c4871a" title="List of function arguments.">args</a>[1]-&gt;generate (<span class="keyword">this</span>);
+<a name="l00372"></a>00372         <span class="keywordflow">if</span> (!arg1 || !arg2) <span class="keywordflow">return</span> NULL;
+<a name="l00373"></a>00373         
+<a name="l00374"></a>00374         Module *M = builder-&gt;GetInsertBlock ()-&gt;getParent ()-&gt;getParent ();
+<a name="l00375"></a>00375         Value *Callee = M-&gt;getOrInsertFunction (expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a>,
+<a name="l00376"></a>00376                                                 Type::getDoubleTy (getGlobalContext ()),
+<a name="l00377"></a>00377                                                 Type::getDoubleTy (getGlobalContext ()),
+<a name="l00378"></a>00378                                                 Type::getDoubleTy (getGlobalContext ()),
+<a name="l00379"></a>00379                                                 NULL);
+<a name="l00380"></a>00380         <span class="keywordflow">return</span> builder-&gt;CreateCall2 (Callee, arg1, arg2, expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a>);
+<a name="l00381"></a>00381     }
+<a name="l00382"></a>00382     <span class="keywordflow">else</span>
+<a name="l00383"></a>00383     {
+<a name="l00384"></a>00384         <span class="comment">// Emit a call to function (arg)</span>
+<a name="l00385"></a>00385         Value *arg = (Value *)expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aac9c6f61d8256643e348877424c4871a" title="List of function arguments.">args</a>[0]-&gt;generate (<span class="keyword">this</span>);
+<a name="l00386"></a>00386         <span class="keywordflow">if</span> (!arg) <span class="keywordflow">return</span> NULL;
+<a name="l00387"></a>00387     
+<a name="l00388"></a>00388         Module *M = builder-&gt;GetInsertBlock ()-&gt;getParent ()-&gt;getParent ();
+<a name="l00389"></a>00389         Value *Callee = M-&gt;getOrInsertFunction (expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a>,
+<a name="l00390"></a>00390                                                 Type::getDoubleTy (getGlobalContext ()),
+<a name="l00391"></a>00391                                                 Type::getDoubleTy (getGlobalContext ()),
+<a name="l00392"></a>00392                                                 NULL);
+<a name="l00393"></a>00393         <span class="keywordflow">return</span> builder-&gt;CreateCall (Callee, arg, expr-&gt;<a class="code" href="class_a_formula_1_1_private_1_1_call_expr_a_s_t.html#aa05092f750c479a2b4dcead9b41e2bbf" title="Function name to be called.">function</a>);
+<a name="l00394"></a>00394     }
+<a name="l00395"></a>00395 }
+<a name="l00396"></a>00396 
+<a name="l00397"></a>00397 
+<a name="l00398"></a>00398 };
+<a name="l00399"></a>00399 };
+<a name="l00400"></a>00400 
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->

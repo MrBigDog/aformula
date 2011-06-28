@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node2" title="STL class." alt="" coords="241,61,327,91"/>
-<area shape="rect" id="node14" href="$struct_a_formula_1_1_private_1_1_parser_1_1_variable.html" title="Details of a user&#45;registered variable." alt="" coords="413,91,656,120"/>
-<area shape="rect" id="node4" title="STL class." alt="" coords="5,61,189,91"/>
-<area shape="rect" id="node6" href="$struct_a_formula_1_1_private_1_1_parser_1_1_operator.html" title="Details of a hard&#45;coded binary operator." alt="" coords="780,144,1028,173"/>
-<area shape="rect" id="node8" href="$struct_a_formula_1_1_private_1_1_parser_1_1_function.html" title="Details of a hard&#45;coded function identifier." alt="" coords="781,197,1027,227"/>
-<area shape="rect" id="node10" href="$struct_a_formula_1_1_private_1_1_parser_1_1_constant.html" title="Details of a hard&#45;coded mathematical constant." alt="" coords="779,251,1029,280"/>
-</map>

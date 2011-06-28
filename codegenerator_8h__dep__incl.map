@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$parsetree_8h.html" title="Definition of the various ExprAST classes." alt="" coords="189,83,285,112"/>
-<area shape="rect" id="node13" href="$libjitformula_8h.html" title="Definition of the LibJITFormula class." alt="" coords="52,83,159,112"/>
-<area shape="rect" id="node16" href="$llvmformula_8h.html" title="Definition of the LLVMFormula class." alt="" coords="372,83,481,112"/>
-<area shape="rect" id="node5" href="$jitformula_8cpp.html" title="Implementation of the JITFormula class." alt="" coords="152,160,261,189"/>
-<area shape="rect" id="node7" href="$libjitformula_8cpp.html" title="Implementation of the LibJITFormula class." alt="" coords="5,160,128,189"/>
-<area shape="rect" id="node9" href="$llvmformula_8cpp.html" title="Implementation of the LLVMFormula class." alt="" coords="397,160,520,189"/>
-<area shape="rect" id="node11" href="$parser_8cpp.html" title="Implementation of the Parser class." alt="" coords="285,160,373,189"/>
-</map>
