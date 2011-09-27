@@ -1,6 +1,8 @@
 AFormula
 ========
 
+[![StillMaintained](http://stillmaintained.com/cpence/aformula.png)](http://stillmaintained.com/cpence/aformula)
+
 AFormula is a library for dynamically calculating the value of mathematical
 formulas, passed in as strings.  It is designed to mirror roughly the API of
 the muParser library <http://muparser.sourceforge.net/> as well as offer me
@@ -23,11 +25,11 @@ Finally, the constants 'pi' and 'e' are supported.
 
 The priority of operations is:
 
-=                       (assignment, lowest)
-<=, >=, !=, ==, <, >    (comparisons)
-+, -                    (addition/subtraction)
-*, /                    (multiplication/division)
-^                       (exponentiation)
+    =                       (assignment, lowest)
+    <=, >=, !=, ==, <, >    (comparisons)
+    +, -                    (addition/subtraction)
+    *, /                    (multiplication/division)
+    ^                       (exponentiation)
 
 AFormula is designed to be quite robust to invalid formulas, and is careful to
 return appropriate errors when necessary.
