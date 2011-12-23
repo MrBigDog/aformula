@@ -40,7 +40,7 @@ AX_BOOST_BASE([1.29.0])
 AX_BOOST_THREAD
 
 AX_EXT_HAVE_HEADER([jit/jit.h], [/include /usr/include /usr/local/include /opt/include /opt/local/include])
-AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib], [jit], [jit_context_create])
+AX_EXT_HAVE_LIB([/lib /usr/lib /usr/local/lib /opt/lib /opt/local/lib /usr/lib/x86 /usr/lib/x86_64 /usr/local/lib/x86 /usr/local/lib/x86_64 /opt/lib/x86 /opt/lib/x86_64 /opt/local/lib/x86 /opt/local/lib/x86_64], [jit], [jit_context_create])
 if test "x$ext_cv_jit_jit_h" = "xyes" -a "x$ext_have_jit" = "xyes" ; then
   AC_DEFINE([HAVE_LIBJIT],[1],[Define to 1 if the libjit library is available])
   AC_SUBST([HAVE_LIBJIT],[yes])

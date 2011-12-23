@@ -44,7 +44,7 @@
 #include <llvm/Function.h>
 #include <llvm/Intrinsics.h>
 #include <llvm/Target/TargetData.h>
-#include <llvm/Target/TargetSelect.h>
+#include <llvm/Support/TargetSelect.h>
 #include <llvm/Transforms/Scalar.h>
 
 // For this file, I want to import this namespace
@@ -276,9 +276,10 @@ void *LLVMFormula::emit (BinaryExprAST *expr)
 	else if (expr->op == "^")
 	{
 		// The floating-point intrinsics are overloaded for multiple types
-		const Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
+		Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
+        ArrayRef<Type *> type_array(types, 1);
 		
-		Value *func = Intrinsic::getDeclaration (module, Intrinsic::pow, types, 1);
+		Value *func = Intrinsic::getDeclaration (module, Intrinsic::pow, type_array);
 		return builder->CreateCall2 (func, L, R, "pow");
 	}
 	else
@@ -352,12 +353,13 @@ void *LLVMFormula::emit (CallExprAST *expr)
 	if (intrinsicID != Intrinsic::not_intrinsic)
 	{
 		// Most of the floating-point intrinsics are overloaded for multiple types
-		const Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
+		Type *types[1] = { Type::getDoubleTy (getGlobalContext ()) };
+        ArrayRef<Type *> type_array(types, 1);
 		
 		Value *arg = (Value *)expr->args[0]->generate (this);
 		if (!arg) return NULL;
 
-		Value *func = Intrinsic::getDeclaration (module, intrinsicID, types, 1);
+		Value *func = Intrinsic::getDeclaration (module, intrinsicID, type_array);
 		return builder->CreateCall (func, arg, expr->function);
 	}
 	
