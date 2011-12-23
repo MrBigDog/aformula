@@ -3,6 +3,11 @@ AFormula NEWS -- History of user-visible changes.
 Copyright (C) 2010-2011 Charles Pence.
 See the end of the file for license conditions.
 
+* Version 0.9.6 [beta]
+
+** Update for compatibility with LLVM 3.0 APIs.
+
+
 * Version 0.9.5 [beta]
 
 ** Add the atan2(y, x) function, following the C math library.
