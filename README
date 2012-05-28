@@ -1,8 +1,6 @@
 AFormula
 ========
 
-[![StillMaintained](http://stillmaintained.com/cpence/aformula.png)](http://stillmaintained.com/cpence/aformula)
-
 AFormula is a library for dynamically calculating the value of mathematical
 formulas, passed in as strings.  It is designed to mirror roughly the API of
 the muParser library <http://muparser.sourceforge.net/> as well as offer me
