@@ -1,5 +1,5 @@
 AM_DEFAULT_SOURCE_EXT = .cpp
-AM_CPPFLAGS = -I@top_srcdir@/include @BOOST_CPPFLAGS@
+AM_CPPFLAGS = -I@top_srcdir@/include -I@top_builddir@/include @BOOST_CPPFLAGS@
 AM_LDFLAGS = @BOOST_LDFLAGS@
 
 check_PROGRAMS = test1 test2 test3 test4

@@ -8,7 +8,7 @@ libaformula_@AFORMULA_API_VERSION@_la_SOURCES = \
 	timer.cpp c_api.cpp
 
 libaformula_@AFORMULA_API_VERSION@_la_CPPFLAGS = \
-	-I@top_srcdir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@
+	-I@top_srcdir@/include -I@top_builddir@/include -I@top_srcdir@/lib/muparser @BOOST_CPPFLAGS@
 
 libaformula_@AFORMULA_API_VERSION@_la_LDFLAGS = -version-info @AFORMULA_SO_VERSION@ \
 	@BOOST_LDFLAGS@
