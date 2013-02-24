@@ -34,16 +34,15 @@
 #include <llvm/DerivedTypes.h>
 #include <llvm/LLVMContext.h>
 #include <llvm/Module.h>
-#include <llvm/Support/IRBuilder.h>
 #include <llvm/Value.h>
 #include <llvm/ExecutionEngine/ExecutionEngine.h>
 #include <llvm/ExecutionEngine/JIT.h>
 #include <llvm/PassManager.h>
+#include <llvm/Transforms/IPO/PassManagerBuilder.h>
 #include <llvm/GlobalVariable.h>
 #include <llvm/Analysis/Verifier.h>
 #include <llvm/Function.h>
 #include <llvm/Intrinsics.h>
-#include <llvm/Target/TargetData.h>
 #include <llvm/Support/TargetSelect.h>
 #include <llvm/Transforms/Scalar.h>
 
@@ -85,25 +84,26 @@ LLVMFormula::LLVMFormula ()
 
 	// Create an IRBuilder
 	builder = new IRBuilder<> (getGlobalContext ());
+    
+    // Get a data layout for this module
+    const std::string &moduleDataLayout = module->getDataLayout ();
+    if (!moduleDataLayout.empty ())
+        TD = new DataLayout (moduleDataLayout);
+    else
+        TD = NULL;
 		
-	// Build an optimizer.  These default JIT optimizer settings are taken from
-	// the folks at unladen-swallow.
+	// Build an optimizer.  We're going to get default optimization settings
+    // in the same way that LLVM does.
 	FPM = new FunctionPassManager (module);
+    
+    if (TD)
+        FPM->add (TD);
 	
-	FPM->add (new TargetData (*engine->getTargetData ()));
-	FPM->add (createCFGSimplificationPass ());
-	FPM->add (createJumpThreadingPass ());
-	FPM->add (createPromoteMemoryToRegisterPass ());
-	FPM->add (createInstructionCombiningPass ());
-	FPM->add (createCFGSimplificationPass ());
-	FPM->add (createScalarReplAggregatesPass ());
-	FPM->add (createReassociatePass ());
-	FPM->add (createJumpThreadingPass ());
-	FPM->add (createGVNPass ());
-	FPM->add (createSCCPPass ());
-	FPM->add (createAggressiveDCEPass ());
-	FPM->add (createCFGSimplificationPass ());
-	FPM->add (createVerifierPass ());
+	FPM->add (createVerifierPass());
+    
+    PassManagerBuilder builder;
+    builder.OptLevel = 3;
+    builder.populateFunctionPassManager (*FPM);
 		
 	FPM->doInitialization ();
 }
@@ -111,6 +111,7 @@ LLVMFormula::LLVMFormula ()
 LLVMFormula::~LLVMFormula ()
 {
 	delete FPM;
+    delete TD;
 	delete builder;
 	delete engine;
 }

@@ -30,10 +30,11 @@ class Module;
 class FunctionPassManager;
 class ExecutionEngine;
 class Constant;
+class DataLayout;
 };
 
 // Can't forward-declare this one, it's a template
-#include <llvm/Support/IRBuilder.h>
+#include <llvm/IRBuilder.h>
 
 
 namespace AFormula
@@ -72,6 +73,8 @@ private:
 	llvm::Module *module;
 	/// @brief Builder which is responsible for code insertion.
 	llvm::IRBuilder<> *builder;
+    /// @brief The data layout for this target.
+    llvm::DataLayout *TD;
 	/// @brief Function-level optimization manager.
 	llvm::FunctionPassManager *FPM;
 	/// @brief Engine which converts LLVM IR into machine code.

@@ -8,6 +8,7 @@ AC_CONFIG_MACRO_DIR([build/m4])
 AM_INIT_AUTOMAKE([-Wall -Werror gnits 1.9.6 dist-bzip2])
 
 LT_PREREQ([2.2.4])
+AM_PROG_AR
 LT_INIT
 AC_SUBST([LIBTOOL_DEPS])
 
@@ -51,7 +52,7 @@ else
   have_libjit="no"
 fi
 
-AX_LLVM([core engine native])
+AX_LLVM([core engine native ipo])
 if test "x$ax_cv_llvm" = "xyes" ; then
   AC_DEFINE([HAVE_LLVM],[1],[Define to 1 if the LLVM library is available])
   AC_SUBST([HAVE_LLVM],[yes])
