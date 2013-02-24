@@ -23,7 +23,7 @@
 
 int main (int argc, char *argv[])
 {
-	int fastestBackend = AFormula::Formula::fastestBackend (false, true);
+	AFormula::Formula::fastestBackend (false, true);
 	return 0;
 }
 
