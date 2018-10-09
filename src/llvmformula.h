@@ -1,16 +1,16 @@
 /*
   Copyright (C) 2010-2011  Charles Pence <charles@charlespence.net>
-  
+
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -27,14 +27,14 @@
 namespace llvm
 {
 class Module;
-class FunctionPassManager;
 class ExecutionEngine;
 class Constant;
-class DataLayout;
 };
 
-// Can't forward-declare this one, it's a template
-#include <llvm/IRBuilder.h>
+// Can't forward-declare these, they're templates
+#include <llvm/IR/LLVMContext.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/IR/LegacyPassManager.h>
 
 
 namespace AFormula
@@ -64,19 +64,19 @@ public:
 	virtual void *emit (UnaryMinusExprAST *);
 	virtual void *emit (BinaryExprAST *);
 	virtual void *emit (CallExprAST *);
-	
+
 protected:
 	virtual bool buildFunction ();
 
 private:
+  /// @brief Context for holding our global variables.
+  llvm::LLVMContext globalContext;
 	/// @brief High-level container for all LLVM objects.
-	llvm::Module *module;
+	std::unique_ptr<llvm::Module> module;
 	/// @brief Builder which is responsible for code insertion.
 	llvm::IRBuilder<> *builder;
-    /// @brief The data layout for this target.
-    llvm::DataLayout *TD;
 	/// @brief Function-level optimization manager.
-	llvm::FunctionPassManager *FPM;
+	llvm::legacy::FunctionPassManager *FPM;
 	/// @brief Engine which converts LLVM IR into machine code.
 	llvm::ExecutionEngine *engine;
 
