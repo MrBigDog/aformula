@@ -13,4 +13,6 @@ aformula-*.pc
 aformula.tag
 *.gz
 *.bz2
+*.log
+*.trs
 .DS_Store
